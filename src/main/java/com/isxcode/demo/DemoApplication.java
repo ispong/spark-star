@@ -27,7 +27,7 @@ public class DemoApplication {
 	@GetMapping("/demo")
 	public String demo() {
 
-		Dataset<Row> dataset = sparkSession.sql("show databases");
+		Dataset<Row> dataset = sparkSession.sql("select * from cdh_dev.ispong_table");
 		dataset.show();
 
 		return "hello world";
