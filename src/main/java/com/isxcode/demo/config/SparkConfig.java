@@ -12,12 +12,15 @@ public class SparkConfig {
 
         // hadoop fs -mkdir /spark-jars
         // hadoop fs -put /data/cdh/cloudera/parcels/CDH/lib/spark/spark-jars/* hdfs://172.23.39.206:30116/spark-jars/
+        // cd /data/cdh/cloudera/parcels/CDH/etc/spark/conf.dist
+        // vim spark-defaults.conf
+        // spark.yarn.jars  hdfs://172.23.39.206:30116/spark-jars/*.jar
         return SparkSession
                 .builder()
                 .appName("ispong spark demo")
 //                .master("local")
                 .master("yarn")
-                .config("spark.yarn.jars", "hdfs://172.23.39.206:30116/spark-jars/*.jar")
+//                .config("spark.yarn.jars", "hdfs://172.23.39.206:30116/spark-jars/*.jar")
                 .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
                 .enableHiveSupport()
                 .getOrCreate();
