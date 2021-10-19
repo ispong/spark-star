@@ -11,7 +11,8 @@ public class SparkConfig {
     public SparkSession sparkBean() {
 
         // hadoop fs -mkdir /spark-jars
-        // hadoop fs -put /data/cdh/cloudera/parcels/CDH/lib/spark/spark-jars/* hdfs://172.23.39.206:30116/spark-jars/
+        // hadoop fs -put /data/cdh/cloudera/parcels/CDH/lib/spark/jars/* hdfs://172.23.39.206:30116/spark-jars/
+        // hadoop fs -rm -r /spark-jars
         return SparkSession
                 .builder()
                 .appName("ispong spark demo")
