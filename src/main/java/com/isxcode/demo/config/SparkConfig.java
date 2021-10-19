@@ -19,7 +19,6 @@ public class SparkConfig {
                 .master("yarn")
                 .config("spark.yarn.jars", "hdfs://172.23.39.206:30116/spark-jars/*.jar")
                 .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
-                .config("spark.yarn.stagingDir", "/home/dehoop/sparkStaging")
                 .enableHiveSupport()
                 .getOrCreate();
 
