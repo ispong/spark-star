@@ -15,10 +15,11 @@ public class SparkConfig {
         return SparkSession
                 .builder()
                 .appName("ispong spark demo")
-                .master("yarn")
+                .master("local")
+//                .master("yarn")
 //                .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
 //                .config("spark.yarn.jars", "hdfs://172.23.39.206:30116/spark-jars/**")
-//                .enableHiveSupport()
+                .enableHiveSupport()
                 .getOrCreate();
 
 //        return SparkSession
