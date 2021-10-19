@@ -16,9 +16,9 @@ public class SparkConfig {
                 .builder()
                 .appName("ispong spark demo")
                 .master("yarn")
-                .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
-                .config("spark.yarn.jars", "hdfs://172.23.39.206:30116/spark-jars/**")
-                .enableHiveSupport()
+//                .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
+//                .config("spark.yarn.jars", "hdfs://172.23.39.206:30116/spark-jars/**")
+//                .enableHiveSupport()
                 .getOrCreate();
 
 //        return SparkSession
