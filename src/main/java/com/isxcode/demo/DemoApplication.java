@@ -1,5 +1,8 @@
 package com.isxcode.demo;
 
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SparkSession;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class DemoApplication {
 
+	private final SparkSession sparkSession;
+
+	public DemoApplication(SparkSession sparkSession) {
+		this.sparkSession = sparkSession;
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
@@ -18,6 +27,10 @@ public class DemoApplication {
 	@GetMapping("/demo")
 	public String demo() {
 
+		Dataset<Row> dataset = sparkSession.sql("show databases");
+		dataset.show();
+
 		return "hello world";
 	}
+
 }
