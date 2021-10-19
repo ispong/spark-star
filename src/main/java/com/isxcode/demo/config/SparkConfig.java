@@ -15,7 +15,7 @@ public class SparkConfig {
                 .appName("ispong spark demo")
                 .master("yarn")
                 .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
-                .config("spark.yarn.jars", "/data/cdh/cloudera/parcels/CDH-6.2.0-1.cdh6.2.0.p0.967373/jars/*")
+//                .config("spark.yarn.jars", "/data/cdh/cloudera/parcels/CDH-6.2.0-1.cdh6.2.0.p0.967373/jars/*")
 //                .config("spark.sql.hive.metastore.version", "2.1.1")
 //                .config("spark.sql.hive.metastore.jars", "/opt/cloudera/parcels/CDH-6.2.0-1.cdh6.2.0.p0.967373/lib/hive/lib/*")
                 .enableHiveSupport()
