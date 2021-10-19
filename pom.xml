@@ -20,7 +20,7 @@
 		<scala.version>2.11</scala.version>
 		<hive.version>2.1.1-cdh6.2.0</hive.version>
 <!--		<hadoop.version>3.0.0-cdh6.2.0</hadoop.version>-->
-		<hadoop.version>3.0.0</hadoop.version>
+		<hadoop.version>3.1.2</hadoop.version>
 	</properties>
 
 	<repositories>
