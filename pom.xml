@@ -142,6 +142,12 @@
 			<version>3.0.8</version>
 		</dependency>
 
+		<dependency>
+			<artifactId>com.fasterxml.jackson.module</artifactId>
+			<groupId>jackson-module-scala_${scala.version}</groupId>
+			<version>2.9.8</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
