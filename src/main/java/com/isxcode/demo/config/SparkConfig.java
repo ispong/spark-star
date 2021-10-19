@@ -17,7 +17,6 @@ public class SparkConfig {
                 .appName("ispong spark demo")
 //                .master("local")
                 .master("yarn")
-                .config("spark.yarn.preserve.staging.files", true)
                 .config("spark.yarn.jars", "/data/cdh/cloudera/parcels/CDH/lib/spark/jars/*.jar")
                 .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
                 .enableHiveSupport()
