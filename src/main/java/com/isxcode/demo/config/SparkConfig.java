@@ -12,9 +12,9 @@ public class SparkConfig {
 
         return SparkSession
                 .builder()
-                .appName("Java Spark SQL basic example")
+                .appName("ispong spark demo")
                 .master("yarn")
-                .config("spark.some.config.option", "some-value")
+                .config("spark.yarn.jars", "/data/cdh/cloudera/parcels/CDH/jars/*")
                 .getOrCreate();
 
 //        return SparkSession
