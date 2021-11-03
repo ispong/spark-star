@@ -17,7 +17,7 @@ public class SparkConfig {
                 .appName("isxcode spark demo1")
                 .master("yarn")
                 .config("hive.metastore.uris", "thrift://172.26.34.162:9083")
-                .config("spark.yarn.jars", "hdfs://ispongcluster/spark-jars/*.jar")
+                .config("spark.yarn.jars", "hdfs://172.26.34.162:8020/spark-jars/*.jar")
                 .config("spark.hadoop.yarn.resourcemanager.address", "172.26.34.162:8032")
                 .enableHiveSupport()
                 .getOrCreate();
