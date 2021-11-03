@@ -16,8 +16,8 @@ public class SparkConfig {
                 .master("yarn")
                 .config("hive.metastore.uris", "thrift://172.26.34.162:9083")
                 .config("spark.hadoop.yarn.resourcemanager.address", "172.26.34.161:8032")
+                .config("spark.hadoop.yarn.resourcemanager.scheduler.address", "172.26.34.161:8030")
                 .enableHiveSupport()
                 .getOrCreate();
     }
 }
-
