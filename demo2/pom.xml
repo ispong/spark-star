@@ -10,10 +10,10 @@
 	</parent>
 
 	<groupId>com.isxcode</groupId>
-	<artifactId>demo1</artifactId>
+	<artifactId>demo2</artifactId>
 	<version>0.0.1</version>
-	<name>demo1</name>
-	<description>demo1</description>
+	<name>demo2</name>
+	<description>demo2</description>
 
 	<properties>
 		<java.version>1.8</java.version>

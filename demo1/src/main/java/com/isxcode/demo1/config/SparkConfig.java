@@ -12,9 +12,9 @@ public class SparkConfig {
 
         return SparkSession
                 .builder()
-                .appName("ispong spark demo")
+                .appName("isxcode spark demo1")
                 .master("yarn")
-                .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
+                .config("hive.metastore.uris", "thrift://8.142.142.196:9083")
                 .enableHiveSupport()
                 .getOrCreate();
     }
