@@ -21,7 +21,7 @@ public class SparkConfig {
         // zip -q -r spark_jars.zip *
         // hadoop fs -mkdir -p /spark-yarn/zip
         // hadoop fs -put spark_jars.zip /spark-yarn/zip/
-        return SparkSession
+        SparkSession sparkSession = SparkSession
                 .builder()
                 .appName("isxcode spark demo1")
 //                .master("yarn")
@@ -34,5 +34,13 @@ public class SparkConfig {
                 .config("hive.metastore.uris", "thrift://master:9083")
                 .enableHiveSupport()
                 .getOrCreate();
+
+        sparkSession.sparkContext().hadoopConfiguration().set("fs.defaultFS", "hdfs://ispongcluster");
+        sparkSession.sparkContext().hadoopConfiguration().set("dfs.nameservices", "ispongcluster");
+
+        return sparkSession;
+
+//        spark.sql.warehouse.dir
+//        hive.metastore.warehouse.dir
     }
 }
