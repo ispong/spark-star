@@ -87,6 +87,13 @@
 			<version>${janino.version}</version>
 		</dependency>
 
+		<!-- hdfs -->
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-hdfs</artifactId>
+			<version>${hadoop.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
