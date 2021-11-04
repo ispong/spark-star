@@ -24,12 +24,13 @@ public class SparkConfig {
         return SparkSession
                 .builder()
                 .appName("isxcode spark demo1")
-                .master("yarn")
+//                .master("yarn")
+                .master("spark://master:8080")
                 .config("hive.metastore.uris", "thrift://master:9083")
-                .config("spark.yarn.preserve.staging.files", true)
-                .config("spark.yarn.archive", "hdfs://" + slave2 + ":8020/spark-yarn/zip/spark_jars.zip")
-                .config("spark.hadoop.yarn.resourcemanager.address", slave1 + ":8032")
-                .config("spark.hadoop.yarn.resourcemanager.scheduler.address", slave1 + ":8030")
+//                .config("spark.yarn.preserve.staging.files", true)
+//                .config("spark.yarn.archive", "hdfs://" + slave2 + ":8020/spark-yarn/zip/spark_jars.zip")
+//                .config("spark.hadoop.yarn.resourcemanager.address", slave1 + ":8032")
+//                .config("spark.hadoop.yarn.resourcemanager.scheduler.address", slave1 + ":8030")
                 .enableHiveSupport()
                 .getOrCreate();
     }
