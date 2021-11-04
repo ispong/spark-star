@@ -23,6 +23,7 @@
 		<scala.version>2.12</scala.version>
 		<hive.version>3.1.2</hive.version>
 		<hadoop.version>3.2.2</hadoop.version>
+		<janino.version>3.0.8</janino.version>
 	</properties>
 
 	<dependencies>
@@ -71,6 +72,19 @@
 			<groupId>org.apache.hive</groupId>
 			<artifactId>hive-common</artifactId>
 			<version>${hive.version}</version>
+		</dependency>
+
+		<!-- janino	-->
+		<dependency>
+			<groupId>org.codehaus.janino</groupId>
+			<artifactId>janino</artifactId>
+			<version>${janino.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.janino</groupId>
+			<artifactId>commons-compiler</artifactId>
+			<version>${janino.version}</version>
 		</dependency>
 
 	</dependencies>
