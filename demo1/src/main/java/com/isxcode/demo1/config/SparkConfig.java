@@ -19,8 +19,8 @@ public class SparkConfig {
                 .builder()
                 .appName("isxcode spark demo1")
 //                .master("yarn")
-//                .master("spark://master:7077")
-                .master("local")
+                .master("spark://master:7077")
+//                .master("local")
 //                .config("spark.yarn.preserve.staging.files", true)
 //                .config("spark.yarn.archive", "hdfs://" + slave2 + ":8020/spark-yarn/zip/spark_jars.zip")
 //                .config("spark.hadoop.yarn.resourcemanager.address", slave1 + ":8032")
@@ -28,8 +28,6 @@ public class SparkConfig {
                 .config("hive.metastore.uris", "thrift://master:9083")
                 .enableHiveSupport()
                 .getOrCreate();
-
-        sparkSession.sparkContext().hadoopConfiguration().set("fs.defaultFS", "hdfs://slave2:8020");
 
         return sparkSession;
 
