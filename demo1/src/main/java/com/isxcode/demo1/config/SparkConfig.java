@@ -25,7 +25,7 @@ public class SparkConfig {
                 .builder()
                 .appName("isxcode spark demo1")
 //                .master("yarn")
-                .master("spark://master:8080")
+                .master("spark://master:7077")
                 .config("hive.metastore.uris", "thrift://master:9083")
 //                .config("spark.yarn.preserve.staging.files", true)
 //                .config("spark.yarn.archive", "hdfs://" + slave2 + ":8020/spark-yarn/zip/spark_jars.zip")
