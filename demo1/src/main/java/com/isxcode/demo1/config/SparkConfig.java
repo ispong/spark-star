@@ -10,12 +10,6 @@ public class SparkConfig {
     @Bean("SparkSession")
     public SparkSession sparkBean() {
 
-        String master = "172.26.34.162";
-        String slave1 = "172.26.34.161";
-        String slave2 = "172.16.215.85";
-        String slave3 = "172.16.215.84";
-        String slave4 = "172.16.215.83";
-
         // 配置spark.yarn.archive
         // cd /opt/spark/jars/
         // zip -q -r spark_jars.zip *
@@ -35,8 +29,7 @@ public class SparkConfig {
                 .enableHiveSupport()
                 .getOrCreate();
 
-        sparkSession.sparkContext().hadoopConfiguration().set("fs.defaultFS", "hdfs://ispongcluster");
-        sparkSession.sparkContext().hadoopConfiguration().set("dfs.nameservices", "ispongcluster");
+        sparkSession.sparkContext().hadoopConfiguration().set("fs.defaultFS", "hdfs://slave2:8020");
 
         return sparkSession;
 
