@@ -23,10 +23,10 @@ public class SparkConfig {
 //                .master("local")
                 .config("spark.yarn.preserve.staging.files", true)
                 .config("spark.yarn.archive", "hdfs://ispongcluster/spark-yarn/zip/spark_jars.zip")
-//                .config("spark.hadoop.yarn.resourcemanager.address", slave1 + ":8032")
-//                .config("spark.hadoop.yarn.resourcemanager.scheduler.address", slave1 + ":8030")
+                .config("spark.hadoop.yarn.resourcemanager.address", "slave1:8032")
+                .config("spark.hadoop.yarn.resourcemanager.scheduler.address", "slave1:8030")
                 .config("hive.metastore.uris", "thrift://master:9083")
-                .config("spark.files","/opt/spark/conf/hdfs-site.xml,/opt/spark/conf/core-site.xml,/opt/spark/conf/yarn-site.xml")
+                .config("spark.files", "/opt/spark/conf/hdfs-site.xml,/opt/spark/conf/core-site.xml,/opt/spark/conf/yarn-site.xml")
                 .enableHiveSupport()
                 .getOrCreate();
 
