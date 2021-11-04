@@ -27,7 +27,7 @@ public class SparkConfig {
 //                .master("yarn")
 //                .master("spark://master:7077")
                 .master("local")
-                .config("hive.metastore.uris", "thrift://master:9083")
+//                .config("hive.metastore.uris", "thrift://master:9083")
 //                .config("spark.yarn.preserve.staging.files", true)
 //                .config("spark.yarn.archive", "hdfs://" + slave2 + ":8020/spark-yarn/zip/spark_jars.zip")
 //                .config("spark.hadoop.yarn.resourcemanager.address", slave1 + ":8032")
