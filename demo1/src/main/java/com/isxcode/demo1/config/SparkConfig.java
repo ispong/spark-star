@@ -23,7 +23,7 @@ public class SparkConfig {
                 .appName("isxcode spark demo1")
                 .master("yarn")
                 .config("hive.metastore.uris", "thrift://master:9083")
-//                .config("spark.yarn.jars", "hdfs://172.26.34.162:8020/spark-jars/*.jar")
+                .config("spark.yarn.jars", "hdfs://" + slave1 + ":8020/spark-jars/*.jar")
                 .config("spark.hadoop.yarn.resourcemanager.address", slave1 + ":8032")
                 .config("spark.hadoop.yarn.resourcemanager.scheduler.address", slave1 + ":8030")
                 .enableHiveSupport()
