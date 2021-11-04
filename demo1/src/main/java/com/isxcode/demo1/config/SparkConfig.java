@@ -26,10 +26,11 @@ public class SparkConfig {
 //                .config("spark.hadoop.yarn.resourcemanager.address", slave1 + ":8032")
 //                .config("spark.hadoop.yarn.resourcemanager.scheduler.address", slave1 + ":8030")
                 .config("hive.metastore.uris", "thrift://master:9083")
+                .config("spark.files", "/opt/hadoop/etc/hadoop/**")
                 .enableHiveSupport()
                 .getOrCreate();
 
-        sparkSession.sparkContext().hadoopConfiguration().set("fs.defaultFS", "hdfs://slave2:8020");
+//        sparkSession.sparkContext().hadoopConfiguration().set("fs.defaultFS", "hdfs://slave2:8020");
 
         return sparkSession;
 
