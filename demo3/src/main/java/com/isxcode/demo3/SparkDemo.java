@@ -35,14 +35,13 @@ public class SparkDemo {
         System.out.println("5");
         JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
 
+        // 计算
+        System.out.println("3");
+        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "zhangsan".equals(String.valueOf(e.get(0))));
 
-//        // 计算
-//        System.out.println("3");
-//        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "zhangsan".equals(String.valueOf(e.get(0))));
-//
-//        // 打印结果
-//        System.out.println("4");
-//        result.foreach((VoidFunction<Row>) System.out::println);
+        // 打印结果
+        System.out.println("4");
+        result.foreach((VoidFunction<Row>) System.out::println);
     }
 
 }
