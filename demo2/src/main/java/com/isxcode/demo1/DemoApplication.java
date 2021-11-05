@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping
 @RestController
@@ -31,10 +33,7 @@ public class DemoApplication {
 
 		Dataset<Row> dataset = sparkSession.sql("select * from rd_dev.ispong_table");
 		dataset.show();
-
-		List<String> toJSONList = dataset.toJSON().collectAsList();
-
-		toJSONList.forEach(System.out::println);
+		Arrays.stream(dataset.columns()).forEach(System.out::println);
 
 		return "hello world";
 	}
