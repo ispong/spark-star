@@ -28,13 +28,17 @@ public class SparkDemo {
                 .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
                 .enableHiveSupport()
                 .getOrCreate();
+        System.out.println("1");
         Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.ispong_table");
+        System.out.println("2");
         JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
 
         // 计算
+        System.out.println("3");
         JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "zhangsan".equals(String.valueOf(e.get(0))));
 
         // 打印结果
+        System.out.println("4");
         result.foreach((VoidFunction<Row>) System.out::println);
     }
 
