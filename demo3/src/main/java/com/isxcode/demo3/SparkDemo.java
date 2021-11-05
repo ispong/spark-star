@@ -26,12 +26,11 @@ public class SparkDemo {
                 .appName(appName)
                 .master(master)
                 .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
+                .config("spark.sql.hive.metastore.version", "2.1.1")
                 .enableHiveSupport()
                 .getOrCreate();
         System.out.println("1");
-        sparkSession.sql("show tables");
-        System.out.println("5");
-        Dataset<Row> rowDataset = sparkSession.sql("select * from ispong_table");
+        Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.ispong_table");
         System.out.println("2");
         rowDataset.show();
 
