@@ -1,6 +1,7 @@
 package com.isxcode.demo3;
 
 import org.apache.spark.SparkConf;
+import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
@@ -29,14 +30,8 @@ public class SparkDemo {
         Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.ispong_table");
         System.out.println("2");
         rowDataset.show();
-        sparkSession.close();
-
         System.out.println("3");
-        SparkConf conf = new SparkConf()
-            .setAppName("ispong-demo")
-            .setMaster(master);
-        System.out.println("4");
-        JavaSparkContext sc = new JavaSparkContext(conf);
+        JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());
         System.out.println("5");
         JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
 
