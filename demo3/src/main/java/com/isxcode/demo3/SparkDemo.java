@@ -20,6 +20,7 @@ public class SparkDemo {
         JavaRDD<Integer> distData = sc.parallelize(data);
 
         System.out.println(distData.toString());
+        System.out.println("hello spark");
     }
 
 }
