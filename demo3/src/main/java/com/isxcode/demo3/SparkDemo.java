@@ -28,6 +28,7 @@ public class SparkDemo {
         distData.foreach(integer -> result.add(integer + 1));
         System.out.println("=====> result");
         result.forEach(System.out::println);
+        System.out.println("=====> result");
     }
 
 }
