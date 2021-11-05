@@ -6,6 +6,7 @@ import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SaveMode;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.stream.Stream;
 
 @RequestMapping
@@ -49,7 +51,18 @@ public class DemoApplication {
 				.enableHiveSupport()
 				.getOrCreate();
 		// 读取hive中的数据
-		sparkSession.sql("insert into rd_dev.ispong_table ( username, age, birth,lucky_date ) values ('ispong2', 26,'2021-12-12','2021-12-12')");
+		Dataset<Row> sql = sparkSession.sql("insert into rd_dev.ispong_table ( username, age, birth,lucky_date ) values ('ispong2', 26,'2021-12-12','2021-12-12')");
+
+		//数据库内容
+		String url = "jdbc:postgresql://192.168.174.200:5432/postgres?charSet=utf-8";
+		Properties connectionProperties = new Properties();
+		connectionProperties.put("user","postgres");
+		connectionProperties.put("password","postgres");
+		connectionProperties.put("driver","org.postgresql.Driver");
+
+		//将数据通过覆盖的形式保存在数据表中
+		sql.write().mode(SaveMode.Overwrite).jdbc(url, "kczyqktj", connectionProperties);
+
 //		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		// 转为JavaSparkContext
 //		JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());

@@ -25,6 +25,5 @@ public class SparkConfig {
                 .enableHiveSupport()
                 .getOrCreate();
     }
-
 }
 
