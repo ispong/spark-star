@@ -27,6 +27,7 @@ public class SparkDemo {
                 .master(master)
                 .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
                 .config("spark.sql.hive.metastore.version", "2.1.1")
+                .config("spark.sql.hive.metastore.jars","/data/cdh/cloudera/parcels/CDH/lib/hive/lib/*")
                 .enableHiveSupport()
                 .getOrCreate();
         System.out.println("1");
