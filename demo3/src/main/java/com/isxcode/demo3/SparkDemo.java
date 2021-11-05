@@ -29,6 +29,8 @@ public class SparkDemo {
                 .enableHiveSupport()
                 .getOrCreate();
         System.out.println("1");
+        sparkSession.sql("use rd_dev");
+        System.out.println("5");
         Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.ispong_table");
         System.out.println("2");
         JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
