@@ -14,7 +14,6 @@ public class SparkDemo {
         String master = "local";
 
         SparkConf conf = new SparkConf().setAppName(appName).setMaster(master);
-
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         List<Integer> data = Arrays.asList(1, 2, 3, 4, 5);
