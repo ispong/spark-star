@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 @RequestMapping
 @RestController
@@ -33,7 +34,9 @@ public class DemoApplication {
 
 		Dataset<Row> dataset = sparkSession.sql("select * from rd_dev.ispong_table");
 		dataset.show();
-		Arrays.stream(dataset.columns()).forEach(System.out::println);
+		List<String> columns = Arrays.asList(dataset.columns());
+
+		dataset.collectAsList().forEach(System.out::println);
 
 		return "hello world";
 	}
