@@ -32,11 +32,13 @@ public class DemoApplication {
 	@GetMapping("/demo")
 	public String demo() {
 
-		Dataset<Row> dataset = sparkSession.sql("select * from rd_dev.ispong_table");
-		dataset.show();
+		String colName = "username";
+		String sql = "select * from rd_dev.ispong_table";
+		Dataset<Row> dataset = sparkSession.sql(sql);
+//		dataset.show();
 		List<String> columns = Arrays.asList(dataset.columns());
-
-		dataset.collectAsList().forEach(System.out::println);
+		List<Row> rows = dataset.collectAsList();
+		System.out.println(rows.get(0).get(columns.indexOf(colName)));;
 
 		return "hello world";
 	}
