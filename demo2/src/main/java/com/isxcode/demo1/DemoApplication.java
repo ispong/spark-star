@@ -49,7 +49,7 @@ public class DemoApplication {
 				.enableHiveSupport()
 				.getOrCreate();
 		// 读取hive中的数据
-		sparkSession.sql("insert into rd_dev.ispong_table(username, age, birth) values ('ispong2', 26,'2021-12-12')");
+		sparkSession.sql("insert into rd_dev.ispong_table ( username, age, birth,lucky_date ) values ('ispong2', 26,'2021-12-12','2021-12-12')");
 //		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		// 转为JavaSparkContext
 //		JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());
