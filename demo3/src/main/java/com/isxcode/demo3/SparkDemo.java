@@ -31,12 +31,15 @@ public class SparkDemo {
         // 转为JavaSparkContext
         JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());
         // 状态数据准备处理
+        System.out.println("1");
         JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
+        System.out.println("2");
         // 开始
 //        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "zhangsan".equals(String.valueOf(e.get(0))));
 
         // 打印结果
-        distData.foreach((VoidFunction<Row>) System.out::println);
+        distData.foreach((VoidFunction<Row>) e-> System.out.println(e.get(0)));
+        System.out.println("3");
     }
 
 }
