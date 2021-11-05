@@ -30,6 +30,7 @@ public class DemoApplication {
 	public String demo() {
 
 		Dataset<Row> dataset = sparkSession.sql("select * from rd_dev.ispong_table");
+		dataset.show();
 
 		List<String> toJSONList = dataset.toJSON().collectAsList();
 
