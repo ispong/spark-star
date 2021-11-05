@@ -49,18 +49,19 @@ public class DemoApplication {
 				.enableHiveSupport()
 				.getOrCreate();
 		// 读取hive中的数据
-		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
+		sparkSession.sql("insert into rd_dev.ispong_table(username, age, birth) values ('ispong2', 26,'2021-12-12')");
+//		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		// 转为JavaSparkContext
-		JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());
+//		JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());
 		// 状态数据准备处理
-		JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
+//		JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
 		// 开始
-		JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
+//		JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
 		// 打印结果
-		result.foreach((VoidFunction<Row>) e-> System.out.println(e.get(1)));
+//		result.foreach((VoidFunction<Row>) e-> System.out.println(e.get(1)));
 
-		distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
-		distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
+//		distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
+//		distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
 
 		return "hello";
 	}
