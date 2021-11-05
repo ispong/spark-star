@@ -29,7 +29,7 @@ public class SparkDemo {
                 .enableHiveSupport()
                 .getOrCreate();
         System.out.println("1");
-        sparkSession.sql("use rd_dev");
+        sparkSession.sql("show tables");
         System.out.println("5");
         Dataset<Row> rowDataset = sparkSession.sql("select * from ispong_table");
         System.out.println("2");
