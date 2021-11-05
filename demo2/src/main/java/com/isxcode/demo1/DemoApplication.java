@@ -38,7 +38,13 @@ public class DemoApplication {
 //		dataset.show();
 		List<String> columns = Arrays.asList(dataset.columns());
 		List<Row> rows = dataset.collectAsList();
-		System.out.println(rows.get(0).get(columns.indexOf(colName)));;
+		String username = String.valueOf(rows.get(0).get(columns.indexOf(colName)));
+
+		if (username.equals("zhangsan")) {
+			System.out.println("true");
+		} else {
+			System.out.println("false");
+		}
 
 		return "hello world";
 	}
