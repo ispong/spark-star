@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>isxcode-spark</artifactId>
         <groupId>com.isxcode</groupId>
         <version>0.0.1</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>demo3</artifactId>
 
@@ -35,11 +35,11 @@
             <artifactId>spark-core_${scala.version}</artifactId>
             <version>${spark.version}</version>
         </dependency>
+
         <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.11</artifactId>
-            <version>2.4.0-cdh6.2.0</version>
-            <scope>compile</scope>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.13.6</version>
         </dependency>
 
     </dependencies>
