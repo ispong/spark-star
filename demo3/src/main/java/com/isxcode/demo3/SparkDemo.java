@@ -14,9 +14,9 @@ public class SparkDemo {
 
     public static void main(String[] args) {
 
+        // 设置master类型
         String master = "local";
-
-        // 获取数据
+        // 创建sparkSession
         SparkSession sparkSession = SparkSession
                 .builder()
                 .appName("ispong-hive-demo")
@@ -26,22 +26,17 @@ public class SparkDemo {
                 .config("spark.sql.hive.metastore.jars", "/data/cdh/cloudera/parcels/CDH/lib/hive/lib/*")
                 .enableHiveSupport()
                 .getOrCreate();
-        System.out.println("1");
+        // 读取hive中的数据
         Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.ispong_table");
-        System.out.println("2");
-        rowDataset.show();
-        System.out.println("3");
+        // 转为JavaSparkContext
         JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());
-        System.out.println("5");
+        // 状态数据准备处理
         JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
-
-        // 计算
-        System.out.println("3");
-        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "zhangsan".equals(String.valueOf(e.get(0))));
+        // 开始
+//        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "zhangsan".equals(String.valueOf(e.get(0))));
 
         // 打印结果
-        System.out.println("4");
-        result.foreach((VoidFunction<Row>) System.out::println);
+        distData.foreach((VoidFunction<Row>) System.out::println);
     }
 
 }
