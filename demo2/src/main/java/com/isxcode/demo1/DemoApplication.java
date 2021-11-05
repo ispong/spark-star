@@ -59,6 +59,9 @@ public class DemoApplication {
 		// 打印结果
 		result.foreach((VoidFunction<Row>) e-> System.out.println(e.get(1)));
 
+		distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
+		distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
+
 		return "hello";
 	}
 
