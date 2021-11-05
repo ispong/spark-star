@@ -15,10 +15,10 @@ public class SparkDemo {
 
         String master = "local";
 
-        SparkConf conf = new SparkConf()
-                .setAppName("ispong-demo")
-                .setMaster(master);
-        JavaSparkContext sc = new JavaSparkContext(conf);
+//        SparkConf conf = new SparkConf()
+//                .setAppName("ispong-demo")
+//                .setMaster(master);
+//        JavaSparkContext sc = new JavaSparkContext(conf);
 
         // 获取数据
         SparkSession sparkSession = SparkSession
@@ -35,15 +35,15 @@ public class SparkDemo {
         System.out.println("2");
         rowDataset.show();
 
-        JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
-
-        // 计算
-        System.out.println("3");
-        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "zhangsan".equals(String.valueOf(e.get(0))));
-
-        // 打印结果
-        System.out.println("4");
-        result.foreach((VoidFunction<Row>) System.out::println);
+//        JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
+//
+//        // 计算
+//        System.out.println("3");
+//        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "zhangsan".equals(String.valueOf(e.get(0))));
+//
+//        // 打印结果
+//        System.out.println("4");
+//        result.foreach((VoidFunction<Row>) System.out::println);
     }
 
 }
