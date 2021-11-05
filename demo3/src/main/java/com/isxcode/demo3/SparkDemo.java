@@ -27,7 +27,7 @@ public class SparkDemo {
                 .enableHiveSupport()
                 .getOrCreate();
         // 读取hive中的数据
-        Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.ispong_table");
+        Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
         // 转为JavaSparkContext
         JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());
         // 状态数据准备处理
@@ -35,12 +35,11 @@ public class SparkDemo {
         JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
         System.out.println("2");
         // 开始
-        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "zhangsan".equals(String.valueOf(e.get(0))));
+        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
 
         // 打印结果
-        result.foreach((VoidFunction<Row>) e-> System.out.println(e.get(0)));
+        result.foreach((VoidFunction<Row>) e-> System.out.println(e.get(1)));
         System.out.println("3");
-
 
     }
 
