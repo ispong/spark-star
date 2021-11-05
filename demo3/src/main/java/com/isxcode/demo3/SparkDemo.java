@@ -5,10 +5,9 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.VoidFunction;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SparkSession;
 
 public class SparkDemo {
 
@@ -22,14 +21,21 @@ public class SparkDemo {
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         // 获取数据
-        List<Integer> data = Arrays.asList(1, 2, 3, 4, 5);
-        JavaRDD<Integer> distData = sc.parallelize(data);
+        SparkSession sparkSession = SparkSession
+                .builder()
+                .appName(appName)
+                .master(master)
+                .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
+                .enableHiveSupport()
+                .getOrCreate();
+        Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.ispong_table");
+        JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
 
         // 计算
-        JavaRDD<Integer> result = distData.filter((Function<Integer, Boolean>) integer -> integer < 3);
+        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "zhangsan".equals(String.valueOf(e.get(0))));
 
         // 打印结果
-        result.foreach((VoidFunction<Integer>) integer -> System.err.println("filter算子:" + integer));
+        result.foreach((VoidFunction<Row>) System.out::println);
     }
 
 }
