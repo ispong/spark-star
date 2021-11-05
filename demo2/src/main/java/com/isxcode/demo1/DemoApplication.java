@@ -37,7 +37,7 @@ public class DemoApplication {
 	public String demo() {
 
 		// 设置master类型
-		String master = "local";
+		String master = "yarn";
 		// 创建sparkSession
 		SparkSession sparkSession = SparkSession
 				.builder()
