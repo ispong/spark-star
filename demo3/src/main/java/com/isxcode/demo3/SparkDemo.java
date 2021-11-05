@@ -15,11 +15,6 @@ public class SparkDemo {
 
         String master = "local";
 
-//        SparkConf conf = new SparkConf()
-//                .setAppName("ispong-demo")
-//                .setMaster(master);
-//        JavaSparkContext sc = new JavaSparkContext(conf);
-
         // 获取数据
         SparkSession sparkSession = SparkSession
                 .builder()
@@ -34,9 +29,16 @@ public class SparkDemo {
         Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.ispong_table");
         System.out.println("2");
         rowDataset.show();
+        System.out.println("3");
+        SparkConf conf = new SparkConf()
+            .setAppName("ispong-demo")
+            .setMaster(master);
+        System.out.println("4");
+        JavaSparkContext sc = new JavaSparkContext(conf);
+        System.out.println("5");
+        JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
 
-//        JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
-//
+
 //        // 计算
 //        System.out.println("3");
 //        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "zhangsan".equals(String.valueOf(e.get(0))));
