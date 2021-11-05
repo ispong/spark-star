@@ -29,6 +29,8 @@ public class SparkDemo {
         Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.ispong_table");
         System.out.println("2");
         rowDataset.show();
+        sparkSession.close();
+
         System.out.println("3");
         SparkConf conf = new SparkConf()
             .setAppName("ispong-demo")
