@@ -51,17 +51,14 @@ public class DemoApplication {
 				.enableHiveSupport()
 				.getOrCreate();
 		// 读取hive中的数据
-		Dataset<Row> sql = sparkSession.sql("insert into rd_dev.ispong_table ( username, age, birth,lucky_date ) values ('ispong2', 26,'2021-12-12','2021-12-12')");
-
+		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		//数据库内容
-		String url = "jdbc:postgresql://192.168.174.200:5432/postgres?charSet=utf-8";
+		String url = "jdbc:hive2://39.103.230.188:30115/RD_DEV";
 		Properties connectionProperties = new Properties();
-		connectionProperties.put("user","postgres");
-		connectionProperties.put("password","postgres");
-		connectionProperties.put("driver","org.postgresql.Driver");
-
+		connectionProperties.put("user", "dehoop");
+		connectionProperties.put("driver", "org.apache.hive.jdbc.HiveDriver");
 		//将数据通过覆盖的形式保存在数据表中
-		sql.write().mode(SaveMode.Overwrite).jdbc(url, "kczyqktj", connectionProperties);
+		rowDataset.write().mode(SaveMode.Overwrite).jdbc(url, "ispong_result", connectionProperties);
 
 //		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		// 转为JavaSparkContext
