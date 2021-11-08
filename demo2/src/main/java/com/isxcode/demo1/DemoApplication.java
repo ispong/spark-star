@@ -58,7 +58,7 @@ public class DemoApplication {
 		connectionProperties.put("user", "dehoop");
 		connectionProperties.put("driver", "org.apache.hive.jdbc.HiveDriver");
 		//将数据通过覆盖的形式保存在数据表中
-		rowDataset.write().mode(SaveMode.Overwrite).jdbc(url, "ispong_result", connectionProperties);
+		rowDataset.write().mode(SaveMode.Overwrite).jdbc(url, "houseinfo_result", connectionProperties);
 
 //		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		// 转为JavaSparkContext
