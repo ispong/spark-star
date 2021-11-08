@@ -56,7 +56,7 @@ public class DemoApplication {
 		String url = "jdbc:hive2://39.103.230.188:30115/RD_DEV";
 		Properties connectionProperties = new Properties();
 		connectionProperties.put("user", "dehoop");
-		connectionProperties.put("driver", "org.apache.hive.jdbc.HiveDriver");
+//		connectionProperties.put("driver", "org.apache.hive.jdbc.HiveDriver");
 		//将数据通过覆盖的形式保存在数据表中
 		rowDataset.write().mode(SaveMode.Overwrite).jdbc(url, "houseinfo_result", connectionProperties);
 
