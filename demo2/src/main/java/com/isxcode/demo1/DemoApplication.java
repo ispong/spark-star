@@ -1,5 +1,9 @@
 package com.isxcode.demo1;
 
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.Function;
+import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SaveMode;
@@ -42,6 +46,13 @@ public class DemoApplication {
 				.getOrCreate();
 		// 读取hive中的数据
 		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
+
+		// 转为JavaSparkContext
+		JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());
+		// 状态数据准备处理
+		JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
+		// 开始
+		JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
 		//数据库内容
 		rowDataset.select("id", "theme")
 				.write()
@@ -49,19 +60,6 @@ public class DemoApplication {
 				.format("Hive")
 				.mode(SaveMode.Overwrite)
 				.saveAsTable("rd_dev.houseinfo_result");
-		//将数据通过覆盖的形式保存在数据表中de
-//		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
-		// 转为JavaSparkContext
-//		JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());
-		// 状态数据准备处理
-//		JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
-		// 开始
-//		JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
-		// 打印结果
-//		result.foreach((VoidFunction<Row>) e-> System.out.println(e.get(1)));
-
-//		distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
-//		distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
 
 		return "hello";
 	}
