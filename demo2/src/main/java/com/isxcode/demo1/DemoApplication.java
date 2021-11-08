@@ -2,6 +2,7 @@ package com.isxcode.demo1;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SaveMode;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -42,7 +43,7 @@ public class DemoApplication {
 		// 读取hive中的数据
 		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		//数据库内容
-		rowDataset.write().saveAsTable("rd_dev.houseinfo_result");
+		rowDataset.write().mode(SaveMode.Overwrite).saveAsTable("rd_dev.houseinfo_result");
 		//将数据通过覆盖的形式保存在数据表中
 //		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		// 转为JavaSparkContext
