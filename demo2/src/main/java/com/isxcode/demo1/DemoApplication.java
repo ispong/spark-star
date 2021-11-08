@@ -43,8 +43,12 @@ public class DemoApplication {
 		// 读取hive中的数据
 		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		//数据库内容
-		// select("id", "theme")
-		rowDataset.write().format("csv").mode(SaveMode.Append).saveAsTable("rd_dev.houseinfo_result");
+		rowDataset.select("id", "theme")
+				.write()
+				.option("timestampFormat", "yyyy/MM/dd HH:mm:ss ZZ")
+				.format("my.csv")
+				.mode(SaveMode.Overwrite)
+				.saveAsTable("rd_dev.houseinfo_result");
 		//将数据通过覆盖的形式保存在数据表中de
 //		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		// 转为JavaSparkContext
