@@ -43,7 +43,7 @@ public class DemoApplication {
 		// 读取hive中的数据
 		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		//数据库内容
-		rowDataset.write().mode(SaveMode.Overwrite).saveAsTable("rd_dev.houseinfo_result");
+		rowDataset.write().mode(SaveMode.Append).saveAsTable("rd_dev.houseinfo_result");
 		//将数据通过覆盖的形式保存在数据表中
 //		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		// 转为JavaSparkContext
