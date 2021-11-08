@@ -53,13 +53,8 @@ public class DemoApplication {
 		// 读取hive中的数据
 		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		//数据库内容
-		String url = "jdbc:hive2://39.103.230.188:30115/RD_DEV";
-		Properties connectionProperties = new Properties();
-		connectionProperties.put("user", "dehoop");
-		connectionProperties.put("driver", "org.apache.hive.jdbc.HiveDriver");
+		rowDataset.write().saveAsTable("houseinfo_result");
 		//将数据通过覆盖的形式保存在数据表中
-		rowDataset.write().mode(SaveMode.Overwrite).jdbc(url, "houseinfo_result", connectionProperties);
-
 //		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
 		// 转为JavaSparkContext
 //		JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());
