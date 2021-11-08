@@ -46,7 +46,7 @@ public class DemoApplication {
 		rowDataset.select("id", "theme")
 				.write()
 				.option("timestampFormat", "yyyy/MM/dd HH:mm:ss ZZ")
-				.format("csv")
+				.format("Hive")
 				.mode(SaveMode.Overwrite)
 				.saveAsTable("rd_dev.houseinfo_result");
 		//将数据通过覆盖的形式保存在数据表中de
