@@ -2,6 +2,7 @@ package com.isxcode.demo1;
 
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.FilterFunction;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
@@ -46,15 +47,15 @@ public class DemoApplication {
 				.getOrCreate();
 		// 读取hive中的数据
 		Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
-
 		// 转为JavaSparkContext
-		JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());
+//		JavaSparkContext sc = JavaSparkContext.fromSparkContext(sparkSession.sparkContext());
 		// 状态数据准备处理
-		JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
+//		JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
 		// 开始
-		JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
+		Dataset<Row> result = rowDataset.filter((FilterFunction<Row>)  e -> "180".equals(String.valueOf(e.get(0))));
 		//数据库内容
-		rowDataset.select("id", "theme")
+//		Dataset<Row> dataFrame = sparkSession.createDataFrame(result, Object.class);
+		result.select("id", "theme")
 				.write()
 				.option("timestampFormat", "yyyy/MM/dd HH:mm:ss ZZ")
 				.format("Hive")
