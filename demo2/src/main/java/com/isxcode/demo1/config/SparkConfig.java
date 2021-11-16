@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SparkConfig {
 
-    @Bean("SparkSession")
-    public SparkSession sparkBean() {
+//    @Bean("SparkSession")
+//    public SparkSession sparkBean() {
 
         // 配置spark.yarn.archive
         // cd /data/cdh/cloudera/parcels/CDH/lib/spark/jars
@@ -26,19 +26,19 @@ public class SparkConfig {
 //                .getOrCreate();
 
         // 设置master类型
-        String master = "yarn";
-        // 创建sparkSession
-        SparkSession
-                .builder()
-                .appName("ispong-hive-demo")
-                .master(master)
-                .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
-                .config("spark.sql.hive.metastore.version", "2.1.1")
-                .config("spark.sql.hive.metastore.jars", "/data/cdh/cloudera/parcels/CDH/lib/hive/lib/*")
-                .enableHiveSupport()
-                .getOrCreate();
-
-        return null;
-    }
+//        String master = "yarn";
+//        // 创建sparkSession
+//        SparkSession
+//                .builder()
+//                .appName("ispong-hive-demo")
+//                .master(master)
+//                .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
+//                .config("spark.sql.hive.metastore.version", "2.1.1")
+//                .config("spark.sql.hive.metastore.jars", "/data/cdh/cloudera/parcels/CDH/lib/hive/lib/*")
+//                .enableHiveSupport()
+//                .getOrCreate();
+//
+//        return null;
+//    }
 }
 
