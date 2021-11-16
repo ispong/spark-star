@@ -16,12 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class DemoApplication {
 
-//    private final SparkSession sparkSession;
-//
-//    public DemoApplication(SparkSession sparkSession) {
-//        this.sparkSession = sparkSession;
-//    }
-
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
@@ -31,7 +25,6 @@ public class DemoApplication {
 
         // 设置master类型
         String master = "yarn";
-
         // 创建sparkSession
         SparkSession sparkSession = SparkSession
                 .builder()
@@ -42,7 +35,6 @@ public class DemoApplication {
                 .config("spark.sql.hive.metastore.jars", "/data/cdh/cloudera/parcels/CDH/lib/hive/lib/*")
                 .enableHiveSupport()
                 .getOrCreate();
-
         // 读取hive中的数据
         Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
         // 拦截过滤数据
