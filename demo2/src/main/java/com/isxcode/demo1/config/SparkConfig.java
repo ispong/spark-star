@@ -28,7 +28,7 @@ public class SparkConfig {
         // 设置master类型
         String master = "yarn";
         // 创建sparkSession
-        return SparkSession
+        SparkSession
                 .builder()
                 .appName("ispong-hive-demo")
                 .master(master)
@@ -37,6 +37,8 @@ public class SparkConfig {
                 .config("spark.sql.hive.metastore.jars", "/data/cdh/cloudera/parcels/CDH/lib/hive/lib/*")
                 .enableHiveSupport()
                 .getOrCreate();
+
+        return null;
     }
 }
 
