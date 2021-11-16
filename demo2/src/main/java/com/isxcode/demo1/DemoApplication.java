@@ -23,8 +23,8 @@ public class DemoApplication {
     @GetMapping("/demo")
     public String demo() {
 
+        // 设置master类型
         String master = "yarn";
-
         // 创建sparkSession
         SparkSession sparkSession = SparkSession
                 .builder()
@@ -35,7 +35,6 @@ public class DemoApplication {
                 .config("spark.sql.hive.metastore.jars", "/data/cdh/cloudera/parcels/CDH/lib/hive/lib/*")
                 .enableHiveSupport()
                 .getOrCreate();
-
         // 读取hive中的数据
         Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
         // 拦截过滤数据
@@ -47,9 +46,6 @@ public class DemoApplication {
                 .format("Hive")
                 .mode(SaveMode.Overwrite)
                 .saveAsTable("rd_dev.houseinfo_result");
-
-        // 关闭
-        sparkSession.close();
 
         return "hello";
     }
