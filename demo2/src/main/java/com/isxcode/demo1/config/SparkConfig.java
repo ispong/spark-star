@@ -10,18 +10,17 @@ public class SparkConfig {
     @Bean("SparkSession")
     public SparkSession sparkBean() {
 
-        // 配置spark.yarn.archive
-        // cd /data/cdh/cloudera/parcels/CDH/lib/spark/jars
-        // zip -q -r spark_jars.zip *
-        // hadoop fs -mkdir -p /spark-yarn/zip
-        // hadoop fs -put spark_jars.zip /spark-yarn/zip/
-        return SparkSession
+        // 设置master类型
+        String master = "yarn";
+
+        // 创建sparkSession
+        return  SparkSession
                 .builder()
-                .appName("ispong spark demo")
-                .master("local")
-//                .master("yarn")
-//                .config("spark.yarn.archive", "hdfs://172.23.39.206:30116/spark-yarn/zip/spark_jars.zip")
+                .appName("ispong-hive-demo")
+                .master(master)
                 .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
+                .config("spark.sql.hive.metastore.version", "2.1.1")
+                .config("spark.sql.hive.metastore.jars", "/data/cdh/cloudera/parcels/CDH/lib/hive/lib/*")
                 .enableHiveSupport()
                 .getOrCreate();
     }
