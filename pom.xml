@@ -6,10 +6,10 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.isxcode</groupId>
-	<artifactId>isxcode-spark</artifactId>
+	<artifactId>spark-star</artifactId>
 	<version>0.0.1</version>
-	<name>isxcode-spark</name>
-	<description>isxcode-spark</description>
+	<name>spark-star</name>
+	<description>spark-star</description>
 	<packaging>pom</packaging>
 
 	<modules>
