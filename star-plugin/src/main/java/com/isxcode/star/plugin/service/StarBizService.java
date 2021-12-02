@@ -22,9 +22,11 @@ public class StarBizService {
 
     public void executeSql(ExecuteSqlDto executeSqlDto) {
 
-        Dataset<Row> rowDataset = sparkSession.sql(executeSqlDto.getSql());
-        rowDataset.show();
+        SparkSession sparkSession1 = starService.generateNewSession();
         sparkSession.close();
+        Dataset<Row> rowDataset = sparkSession1.sql(executeSqlDto.getSql());
+        rowDataset.show();
+        sparkSession1.close();
     }
 
 }

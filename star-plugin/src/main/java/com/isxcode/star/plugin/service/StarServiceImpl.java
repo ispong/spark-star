@@ -18,10 +18,9 @@ public class StarServiceImpl implements StarService {
 
         return SparkSession
                 .builder()
-                .master(starProperties.getMaster())
+                .appName("star spark session")
+                .master("yarn-client")
                 .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
-                .config("spark.sql.hive.metastore.version", starProperties.getHiveMetastoreVersion())
-                .config("spark.sql.hive.metastore.jars", starProperties.getHiveMetastoreJars())
                 .enableHiveSupport()
                 .getOrCreate();
     }

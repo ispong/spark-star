@@ -21,17 +21,7 @@ public class SparkConfig {
                 .builder()
                 .appName("star spark session")
                 .master("yarn-client")
-                .config("spark.yarn.preserve.staging.files", true)
-//                .config("spark.yarn.archive", "hdfs://ispongcluster/spark-yarn/zip/spark_jars.zip")
-//                .config("spark.hadoop.yarn.resourcemanager.address", "172.23.39.206:8032")
-//                .config("spark.files", "/data/cdh/cloudera/parcels/CDH/lib/hadoop/etc/hadoop/hdfs-site.xml,/data/cdh/cloudera/parcels/CDH/lib/hadoop/etc/hadoop/core-site.xml,/data/cdh/cloudera/parcels/CDH/lib/hadoop/etc/hadoop/yarn-site.xml")
-//                .config("spark.hadoop.yarn.resourcemanager.scheduler.address", "slave1:8030")
-//                .config("hive.metastore.uris", "thrift://master:9083")
-//                .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
-//                .config("spark.yarn.archive", starProperties.getSparkYarnArchi`ve())
                 .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
-//                .config("spark.sql.hive.metastore.version", "2.1.1-cdh6.2.0")
-//                .config("spark.sql.hive.metastore.jars", starProperties.getHiveMetastoreJars())
                 .enableHiveSupport()
                 .getOrCreate();
     }
