@@ -23,7 +23,8 @@ public class StarBizService {
     public void executeSql(ExecuteSqlDto executeSqlDto) {
 
         SparkSession sparkSession1 = sparkSession.newSession();
-        sparkSession.close();
+        SparkSession sparkSession2 = this.sparkSession.newSession();
+        sparkSession2.close();
         Dataset<Row> rowDataset = sparkSession1.sql(executeSqlDto.getSql());
         rowDataset.show();
         sparkSession1.close();
