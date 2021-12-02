@@ -30,8 +30,6 @@
 
 ### 📦 插件
 
-> Note: 目前插件只支持cdh6.2.0-spark集群
-
 ```bash
 git clone https://github.com/ispong/spark-star.git
 cd star-plugin
