@@ -24,8 +24,19 @@ source /etc/profile
 
 #### 添加HADOOP_CONF_DIR到spark-envs.sh
 
+SPARK_CONF_DIR
+HIVE_CONF_DIR
+
 ```bash
+sudo vim /etc/profile
+export HADOOP_HOME=/data/cdh/cloudera/parcels/CDH/lib/hadoop
+export SPARK_HOME=/data/cdh/cloudera/parcels/CDH/lib/spark
+export SPARK_CONF_DIR=/data/cdh/cloudera/parcels/CDH/lib/spark/conf
+export HIVE_CONF_DIR=/data/cdh/cloudera/parcels/CDH/lib/hive/conf
+source /etc/profile
+
 sudo vim /data/cdh/cloudera/parcels/CDH/lib/spark/conf/spark-env.sh
+
 
 HADOOP_CONF_DIR=/data/cdh/cloudera/parcels/CDH/lib/hadoop/etc/hadoop/
 #HADOOP_CONF_DIR=${HADOOP_CONF_DIR:-$SPARK_CONF_DIR/yarn-conf}
