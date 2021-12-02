@@ -5,7 +5,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.isxcode</groupId>
+	<groupId>com.isxcode.star</groupId>
 	<artifactId>spark-star</artifactId>
 	<version>0.0.1</version>
 	<name>spark-star</name>
@@ -16,6 +16,8 @@
 		<module>demo1</module>
 		<module>demo2</module>
 		<module>demo3</module>
-	</modules>
+        <module>star-plugin</module>
+        <module>star-common</module>
+    </modules>
 
 </project>
