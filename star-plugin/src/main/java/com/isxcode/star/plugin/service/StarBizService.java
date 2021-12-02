@@ -24,10 +24,10 @@ public class StarBizService {
 
     public void executeSql(ExecuteSqlDto executeSqlDto) {
 
-        SparkSession executeSqlSession = sparkSession;
-        if (NEW_SPARK.equals(executeSqlDto.getSparkType())) {
-            executeSqlSession = starService.generateNewSession();
-        }
+//        SparkSession executeSqlSession = sparkSession;
+//        if (NEW_SPARK.equals(executeSqlDto.getSparkType())) {
+        SparkSession executeSqlSession = starService.generateNewSession();
+//        }
 
         Dataset<Row> rowDataset = executeSqlSession.sql(executeSqlDto.getSql());
         rowDataset.show();
