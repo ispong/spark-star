@@ -30,8 +30,8 @@ public class SparkConfig {
 //                .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
 //                .config("spark.yarn.archive", starProperties.getSparkYarnArchi`ve())
                 .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
-                .config("spark.sql.hive.metastore.version", starProperties.getHiveMetastoreVersion())
-                .config("spark.sql.hive.metastore.jars", starProperties.getHiveMetastoreJars())
+//                .config("spark.sql.hive.metastore.version", "2.1.1-cdh6.2.0")
+//                .config("spark.sql.hive.metastore.jars", starProperties.getHiveMetastoreJars())
                 .enableHiveSupport()
                 .getOrCreate();
     }
