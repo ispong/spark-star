@@ -20,7 +20,7 @@ public class SparkConfig {
         return SparkSession
                 .builder()
                 .appName("star spark session")
-                .master(starProperties.getMaster())
+                .master("yarn-client")
                 .config("spark.yarn.preserve.staging.files", true)
 //                .config("spark.yarn.archive", "hdfs://ispongcluster/spark-yarn/zip/spark_jars.zip")
 //                .config("spark.hadoop.yarn.resourcemanager.address", "172.23.39.206:8032")
