@@ -29,12 +29,12 @@
         <hadoop.version>3.0.0-cdh6.2.0</hadoop.version>
     </properties>
 
-<!--    <repositories>-->
-<!--        <repository>-->
-<!--            <id>cloudera</id>-->
-<!--            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>-->
-<!--        </repository>-->
-<!--    </repositories>-->
+    <repositories>
+        <repository>
+            <id>cloudera</id>
+            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
