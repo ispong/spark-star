@@ -6,31 +6,26 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.stereotype.Service;
 
-import static com.isxcode.star.common.menu.SparkType.NEW_SPARK;
-
 @Service
 public class StarBizService {
 
-    private final SparkSession sparkSession;
-
     private final StarService starService;
 
-    public StarBizService(SparkSession sparkSession,
-                          StarService starService) {
+    public StarBizService(StarService starService) {
 
-        this.sparkSession = sparkSession;
         this.starService = starService;
     }
 
     public void executeSql(ExecuteSqlDto executeSqlDto) {
 
-//        SparkSession executeSqlSession = sparkSession;
-//        if (NEW_SPARK.equals(executeSqlDto.getSparkType())) {
         SparkSession executeSqlSession = starService.generateNewSession();
-//        }
-
+        SparkSession executeSqlSession1 = starService.generateNewSession();
         Dataset<Row> rowDataset = executeSqlSession.sql(executeSqlDto.getSql());
         rowDataset.show();
+        executeSqlSession.close();
+        Dataset<Row> sql = executeSqlSession1.sql(executeSqlDto.getSql());
+        sql.show();
+        executeSqlSession1.close();
     }
 
 }
