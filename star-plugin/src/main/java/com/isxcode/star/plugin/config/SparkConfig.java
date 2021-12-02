@@ -19,6 +19,7 @@ public class SparkConfig {
 
         return SparkSession
                 .builder()
+                .appName("star spark session")
                 .master(starProperties.getMaster())
 //                .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
 //                .config("spark.yarn.archive", starProperties.getSparkYarnArchive())
