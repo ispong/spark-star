@@ -23,6 +23,7 @@ public class SparkConfig {
                 .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
                 .config("spark.sql.hive.metastore.version", starProperties.getHiveMetastoreVersion())
                 .config("spark.sql.hive.metastore.jars", starProperties.getHiveMetastoreJars())
+                .config("spark.yarn.archive", starProperties.getSparkYarnArchive())
                 .enableHiveSupport()
                 .getOrCreate();
     }

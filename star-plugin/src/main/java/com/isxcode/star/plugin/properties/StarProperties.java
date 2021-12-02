@@ -16,4 +16,6 @@ public class StarProperties {
     private String hiveMetastoreVersion;
 
     private String hiveMetastoreJars;
+
+    private String sparkYarnArchive;
 }
