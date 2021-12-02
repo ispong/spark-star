@@ -28,7 +28,7 @@ public class SparkConfig {
 //                .config("spark.hadoop.yarn.resourcemanager.scheduler.address", "slave1:8030")
 //                .config("hive.metastore.uris", "thrift://master:9083")
 //                .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
-//                .config("spark.yarn.archive", starProperties.getSparkYarnArchive())
+//                .config("spark.yarn.archive", starProperties.getSparkYarnArchi`ve())
 //                .enableHiveSupport()
                 .getOrCreate();
     }
