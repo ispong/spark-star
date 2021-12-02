@@ -28,8 +28,7 @@ public class DemoApplication {
         // 创建sparkSession
         SparkSession sparkSession = SparkSession
                 .builder()
-                .appName("ispong-hive-demo")
-                .master(master)
+                .master("yarn")
                 .config("hive.metastore.uris", "thrift://172.23.39.206:30123")
                 .config("spark.sql.hive.metastore.version", "2.1.1")
                 .config("spark.sql.hive.metastore.jars", "/data/cdh/cloudera/parcels/CDH/lib/hive/lib/*")

@@ -20,6 +20,8 @@ public class SparkConfig {
         return SparkSession
                 .builder()
                 .master("local")
+                .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
+                .enableHiveSupport()
                 .getOrCreate();
     }
 }
