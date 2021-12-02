@@ -29,7 +29,10 @@ public class SparkConfig {
 //                .config("hive.metastore.uris", "thrift://master:9083")
 //                .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
 //                .config("spark.yarn.archive", starProperties.getSparkYarnArchi`ve())
-//                .enableHiveSupport()
+                .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
+                .config("spark.sql.hive.metastore.version", starProperties.getHiveMetastoreVersion())
+                .config("spark.sql.hive.metastore.jars", starProperties.getHiveMetastoreJars())
+                .enableHiveSupport()
                 .getOrCreate();
     }
 }

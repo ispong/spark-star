@@ -9,23 +9,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class StarBizService {
 
+    private final SparkSession sparkSession;
+
     private final StarService starService;
 
-    public StarBizService(StarService starService) {
+    public StarBizService(SparkSession sparkSession,
+                          StarService starService) {
 
+        this.sparkSession = sparkSession;
         this.starService = starService;
     }
 
     public void executeSql(ExecuteSqlDto executeSqlDto) {
 
-        SparkSession executeSqlSession = starService.generateNewSession();
-        SparkSession executeSqlSession1 = starService.generateNewSession();
-        Dataset<Row> rowDataset = executeSqlSession.sql(executeSqlDto.getSql());
+        Dataset<Row> rowDataset = sparkSession.sql(executeSqlDto.getSql());
         rowDataset.show();
-        executeSqlSession.close();
-        Dataset<Row> sql = executeSqlSession1.sql(executeSqlDto.getSql());
-        sql.show();
-        executeSqlSession1.close();
+        sparkSession.close();
     }
 
 }
