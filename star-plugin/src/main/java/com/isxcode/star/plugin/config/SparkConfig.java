@@ -19,13 +19,7 @@ public class SparkConfig {
 
         return SparkSession
                 .builder()
-                .master(starProperties.getMaster())
-                .config("spark.yarn.preserve.staging.files", true)
-                .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
-                .config("spark.sql.hive.metastore.version", starProperties.getHiveMetastoreVersion())
-                .config("spark.sql.hive.metastore.jars", starProperties.getHiveMetastoreJars())
-                .config("spark.yarn.archive", starProperties.getSparkYarnArchive())
-                .enableHiveSupport()
+                .master("local")
                 .getOrCreate();
     }
 }
