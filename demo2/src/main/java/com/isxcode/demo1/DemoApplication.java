@@ -36,16 +36,17 @@ public class DemoApplication {
                 .enableHiveSupport()
                 .getOrCreate();
         // 读取hive中的数据
-        Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo");
+        Dataset<Row> rowDataset = sparkSession.sql("select * from rd_dev.houseinfo limit 10");
+        rowDataset.show();
         // 拦截过滤数据
-        Dataset<Row> result = rowDataset.filter((FilterFunction<Row>) e -> "180".equals(String.valueOf(e.get(0))));
+//        Dataset<Row> result = rowDataset.filter((FilterFunction<Row>) e -> "180".equals(String.valueOf(e.get(0))));
         // 将结果写入hive中一张新的表
-        result.select("id", "theme")
-                .write()
-                .option("timestampFormat", "yyyy/MM/dd HH:mm:ss ZZ")
-                .format("Hive")
-                .mode(SaveMode.Overwrite)
-                .saveAsTable("rd_dev.houseinfo_result");
+//        result.select("id", "theme")
+//                .write()
+//                .option("timestampFormat", "yyyy/MM/dd HH:mm:ss ZZ")
+//                .format("Hive")
+//                .mode(SaveMode.Overwrite)
+//                .saveAsTable("rd_dev.houseinfo_result");
 
         return "hello";
     }
