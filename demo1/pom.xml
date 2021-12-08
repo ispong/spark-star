@@ -11,7 +11,7 @@
 		<relativePath/>
 	</parent>
 
-	<groupId>com.isxcode</groupId>
+	<groupId>com.isxcode.star</groupId>
 	<artifactId>demo1</artifactId>
 	<version>0.0.1</version>
 	<name>demo1</name>

@@ -35,10 +35,10 @@ public class SparkDemo {
         JavaRDD<Row> distData = sc.parallelize(rowDataset.collectAsList());
         System.out.println("2");
         // 开始
-        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
+//        JavaRDD<Row> result = distData.filter((Function<Row, Boolean>) e -> "180".equals(String.valueOf(e.get(0))));
 
         // 打印结果
-        result.foreach((VoidFunction<Row>) e-> System.out.println(e.get(1)));
+//        result.foreach((VoidFunction<Row>) e-> System.out.println(e.get(1)));
         System.out.println("3");
 
     }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping
 @RestController
-@SpringBootApplication
+//@SpringBootApplication
 public class DemoApplication {
 
 	private final SparkSession sparkSession;
