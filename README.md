@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/ispong/spark-star" style="border-bottom: none !important;">
-    <img alt="spark-star" width="200" src="https://github.com/ispong/spark-star/raw/main/logo.png">
+    <img alt="spark-star" width="200" src="https://github.com/ispong/spark-star/raw/main/docs/assets/images/logo.png">
   </a>
 </p>
 
