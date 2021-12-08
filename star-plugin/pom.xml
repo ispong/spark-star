@@ -32,9 +32,20 @@
 
     <repositories>
         <repository>
-            <id>cloudera</id>
+            <id>apache.snapshots</id>
             <name>Apache Development Snapshot Repository</name>
-            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>apache.snapshots.ossrh</id>
+            <name>Apache Development Snapshot Repository OSSRH</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -48,7 +59,7 @@
         <dependency>
             <groupId>com.isxcode.star</groupId>
             <artifactId>star-common</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
