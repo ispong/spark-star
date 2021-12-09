@@ -1,7 +1,8 @@
 package com.isxcode.star.plugin.controller;
 
 
-import com.isxcode.star.common.dto.ExecuteSqlDto;
+import com.isxcode.star.common.pojo.entity.ExecuteConfig;
+import com.isxcode.star.common.pojo.entity.StarResponse;
 import com.isxcode.star.plugin.service.StarBizService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,11 +20,31 @@ public class StarController {
     }
 
     /**
-     * 执行一个
+     * 执行sparksql
      */
     @PostMapping("/executeSql")
-    public void executeSql(@RequestBody ExecuteSqlDto executeSqlDto) {
+    public StarResponse executeSql(@RequestBody ExecuteConfig executeConfig) {
 
-        starBizService.executeSql(executeSqlDto);
+        return starBizService.executeSql(executeConfig);
+    }
+
+    public void getWorkLog() {
+
+    }
+
+    public void getTableInfo() {
+
+    }
+
+    public void listTables() {
+
+    }
+
+    public void foreachParseData() {
+
+    }
+
+    public void getWorkStatus() {
+
     }
 }

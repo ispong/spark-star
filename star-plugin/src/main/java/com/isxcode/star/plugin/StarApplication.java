@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 @RestController
 @SpringBootApplication
-public class DemoApplication {
+public class StarApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+
+        SpringApplication.run(StarApplication.class, args);
     }
 }

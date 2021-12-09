@@ -11,6 +11,7 @@ public class SparkConfig {
     public final StarProperties starProperties;
 
     public SparkConfig(StarProperties starProperties) {
+
         this.starProperties = starProperties;
     }
 
@@ -19,8 +20,9 @@ public class SparkConfig {
 
         return SparkSession
                 .builder()
-                .appName("star spark session")
-                .master("yarn-client")
+                .appName(starProperties.getAppName())
+                .master(starProperties.getMaster())
+                .config("spark.ui.port", starProperties.getSparkUiPort())
                 .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
                 .enableHiveSupport()
                 .getOrCreate();

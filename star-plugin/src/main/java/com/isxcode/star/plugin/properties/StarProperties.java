@@ -13,9 +13,7 @@ public class StarProperties {
 
     private String hiveMetastoreUris;
 
-    private String hiveMetastoreVersion;
+    private String sparkUiPort = "30166";
 
-    private String hiveMetastoreJars;
-
-    private String sparkYarnArchive;
+    private String appName = "star spark session";
 }
