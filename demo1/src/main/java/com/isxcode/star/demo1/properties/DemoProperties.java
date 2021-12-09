@@ -9,11 +9,5 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "star.hadoop")
 public class DemoProperties {
 
-    private String hdfsSitePath;
-
-    private String coreSitePath;
-
-    private String mapredSitePath;
-
-    private String yarnSitePath;
+    private String ConfigPath;
 }
