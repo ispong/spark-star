@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SparkConfig {
 
-
     @ConditionalOnClass(WebConfig.class)
     @Bean("SparkSession")
     public SparkSession sparkBean() {

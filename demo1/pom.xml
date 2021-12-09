@@ -23,10 +23,10 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<spark.version>3.1.1</spark.version>
-		<scala.version>2.12</scala.version>
-		<hive.version>3.1.2</hive.version>
-		<hadoop.version>3.2.2</hadoop.version>
+		<spark.version>2.4.0</spark.version>
+		<scala.version>2.11</scala.version>
+		<hive.version>2.1.1</hive.version>
+		<hadoop.version>3.0.0</hadoop.version>
 		<janino.version>3.0.8</janino.version>
 	</properties>
 
