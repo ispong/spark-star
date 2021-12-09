@@ -52,7 +52,7 @@ java -jar star-plugin.jar
 <dependency>
     <groupId>com.isxcode.star</groupId>
     <artifactId>star-common</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.3-SNAPSHOT</version>
 </dependency>
 ```
 

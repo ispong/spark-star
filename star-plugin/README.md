@@ -1,7 +1,6 @@
 ##### 使用前提
 
-> Note:
-> 在spring项目中运行yarn模式，无法读取core-site.xml、yarn-site.xml、mapred-site.xml、hdfs-site.xml这四个文件
+###### 配置系统环境变量
 
 ```bash
 sudo vim /etc/profile
@@ -14,7 +13,11 @@ export SPARK_HOME=/data/cdh/cloudera/parcels/CDH/lib/spark
 source /etc/profile
 ```
 
-###### 或者
+
+> Note:
+> 在spring项目中运行yarn模式，无法读取core-site.xml、yarn-site.xml、mapred-site.xml、hdfs-site.xml这四个文件
+
+###### 方法1
 
 ```bash
 # 或者 git clone https://gitee.com/ispong/spark-star.git
@@ -25,4 +28,34 @@ cd star-plugin && mvn clean package
 cd target && mkdir build && unzip star-plugin.jar -d ./build
 cp ${HADOOP_HOME}/etc/hadoop/* ./build/BOOT-INF/classes/
 cd ./build/ && jar -cvfM0 star-plugin.jar ./
+# 运行jar
+java -jar ./target/build/star-plugin.jar
+```
+
+###### 方法2
+
+```bash
+# 或者 git clone https://gitee.com/ispong/spark-star.git
+git clone https://github.com/ispong/spark-star.git
+# 添加hadoop配置文件
+cd star-plugin && cp ${HADOOP_HOME}/etc/hadoop/* ./star-plugin/src/main/resources/
+# 构建插件
+mvn clean package
+java -jar ./target/star-plugin.jar
+```
+
+
+##### 调用接口 
+
+- http://39.103.230.188:30166
+
+```http request
+###
+POST http://39.103.230.188:30156/spark-star/executeSql
+Content-Type: application/json
+
+{
+   "sql":"select * from rd_dev.ispong_table",
+   "hasReturn":true
+}
 ```

@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class StarResponse {
 
-    private ResponseEnum responseEnum;
+    private ResponseEnum response;
 
     private DataInfo dataInfo;
 
@@ -15,6 +15,6 @@ public class StarResponse {
     }
 
     public StarResponse(ResponseEnum responseEnum) {
-        this.responseEnum = responseEnum;
+        this.response = responseEnum;
     }
 }
