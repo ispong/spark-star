@@ -2,7 +2,6 @@ package com.isxcode.star.demo1.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.spark.sql.SparkSession;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SparkConfig {
 
-    @ConditionalOnClass(WebConfig.class)
     @Bean("SparkSession")
     public SparkSession sparkBean() {
 
