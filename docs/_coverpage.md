@@ -4,7 +4,7 @@
     Spark Star
 </h1>
 <h3 align="center" style="font-weight: bold">
-    小黑星
+    黑星
 </h3>
 
 - 🌟 Spark集成Hive的服务器插件，通过Restful快速查询hive中数据。

@@ -9,7 +9,7 @@
 </h1>
 
 <h3 align="center">
-    小黑星
+    黑星
 </h3>
 
 <h4 align="center">
@@ -24,18 +24,17 @@
 
 ### 📢 公告
 
-目前，插件主要针对`Spark-3.1.4`版本进行开发。
+适用于spark on yarn模式，且目前版本支持`2.4.0-scala-2.11`版本Spark与`2.1.1`版本Hive
 
 ### ✨ 模块
 
-| 模块名                                          | 说明                                          |
-|:---------------------------------------------| :-------------------------------------------- |
-| [acorn-common](./acorn-common/README.md)     | 提供AcornTemplate组件，方便用户调用插件服务。 |
-| [acorn-plugin](./acorn-plugin/README.md)     | 服务器插件本体。                              |
-| [acorn-template](./acorn-template/README.md) | 如何使用插件的模板。                          |
-| [demo1](./demo1/README.md)                   | kafka输入，kafka输出。                        |
-| [demo2](./demo2/README.md)                   | kafka输入，mysql输出。                        |
-| [demo3](./demo3/README.md)                   | kafka输入，hive输出。                         |
+| 模块名                                        | 说明                           |
+|:-------------------------------------------|:-----------------------------|
+| [star-common](./star-common/README.md)     | 提供StarTemplate组件，方便用户调用插件服务。 |
+| [star-plugin](./star-plugin/README.md)     | 服务器插件本体。                     |
+| [star-template](./star-template/README.md) | 如何使用插件的模板。                   |
+| [demo1](./demo1/README.md)                 | 案例：通过sql查询hive上的数据           |
+| [demo2](./demo2/README.md)                 | 案列：spark实现单条数据处理             |
 
 ### 📦 安装使用
 
@@ -45,9 +44,9 @@
 # 或者 git clone https://gitee.com/ispong/spark-star.git
 git clone https://github.com/ispong/spark-star.git
 # 构建插件
-cd acorn-plugin && mvn clean package
+cd star-plugin && mvn clean package
 # 运行插件，默认端口`30155`
-nohup java -jar -Xmx2048m ./target/acorn-plugin.jar >> ./spark-star.log 2>&1 &
+nohup java -jar -Xmx2048m ./target/star-plugin.jar >> ./spark-star.log 2>&1 &
 ```
 
 ##### 客户端，插件使用
@@ -55,8 +54,8 @@ nohup java -jar -Xmx2048m ./target/acorn-plugin.jar >> ./spark-star.log 2>&1 &
 ```xml
 <!-- 添加maven依赖 -->
 <dependency>
-    <groupId>com.isxcode.acorn</groupId>
-    <artifactId>acorn-common</artifactId>
+    <groupId>com.isxcode.star</groupId>
+    <artifactId>star-common</artifactId>
     <version>0.0.3-SNAPSHOT</version>
 </dependency>
 ```
@@ -66,53 +65,17 @@ nohup java -jar -Xmx2048m ./target/acorn-plugin.jar >> ./spark-star.log 2>&1 &
 @RequestMapping
 public class TemplateController {
 
-    private final AcornTemplate acornTemplate;
+    private final StarTemplate starTemplate;
 
-    public TemplateApplication(AcornTemplate acornTemplate) {
-        this.acornTemplate = acornTemplate;
+    public TemplateApplication(StarTemplate starTemplate) {
+        this.starTemplate = starTemplate;
     }
 
     @GetMapping("/demo")
-    public AcornResponse testExecuteSpark() {
-
-        // 输入点
-        List<SparkCol> kafkaInputColumns = new ArrayList<>();
-        kafkaInputColumns.add(new SparkCol("username", SparkSqlType.STRING));
-        kafkaInputColumns.add(new SparkCol("age", SparkSqlType.INT));
-
-        KafkaInput kafkaInput = KafkaInput.builder()
-                .brokerList("host:port")
-                .zookeeper("host:port")
-                .topic("topicName")
-                .dataFormat(DataFormat.CSV)
-                .columnList(kafkaInputColumns)
-                .build();
-
-        // 输出点
-        List<SparkCol> mysqlOutputColumns = new ArrayList<>();
-        mysqlOutputColumns.add(new SparkCol("username", SparkSqlType.STRING));
-        mysqlOutputColumns.add(new SparkCol("age", SparkSqlType.INT));
-
-        MysqlOutput mysqlOutput = MysqlOutput.builder()
-                .url("jdbc:mysql://host:port/dbName")
-                .tableName("tableName")
-                .driver("com.mysql.cj.jdbc.Driver")
-                .username("username")
-                .password("password")
-                .columnList(mysqlOutputColumns)
-                .build();
-
-        // 构建请求对象
-        ExecuteConfig executeConfig = ExecuteConfig.builder()
-                .executeId("executeId")
-                .flowId("flowId")
-                .workType(WorkType.KAFKA_INPUT_MYSQL_OUTPUT)
-                .kafkaInput(kafkaInput)
-                .mysqlOutput(mysqlOutput)
-                .build();
+    public StarResponse testExecuteSpark() {
 
         // 运行
-        return acornTemplate.executeSpark("host", "port", "key", executeConfig);
+        return starTemplate.executeSpark("host", "port", "key", executeConfig);
     }
 }
 ```
