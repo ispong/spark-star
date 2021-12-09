@@ -16,7 +16,7 @@
         <module>star-plugin</module>
         <module>star-common</module>
 		<module>star-template</module>
-<!--		<module>demo1</module>-->
+		<module>demo1</module>
 <!--		<module>demo2</module>-->
 <!--		<module>demo3</module>-->
 	</modules>

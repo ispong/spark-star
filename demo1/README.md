@@ -1,4 +1,4 @@
 
-```shell
-wget http://localhost:8888/demo
+```http request
+GET http://localhost:30156/demo
 ```
