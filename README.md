@@ -45,8 +45,12 @@
 git clone https://github.com/ispong/spark-star.git
 # 构建插件
 cd star-plugin && mvn clean package
-# 运行插件，默认端口`30155`
-nohup java -jar -Xmx2048m ./target/star-plugin.jar >> ./spark-star.log 2>&1 &
+# 添加hadoop配置文件
+cd target && mkdir build && unzip star-plugin.jar -d ./build
+cp ${HADOOP_HOME}/etc/hadoop/* ./build/BOOT-INF/classes/
+cd ./build/ && jar -cvfM0 star-plugin.jar ./
+# 运行插件，默认端口`30156`
+nohup java -jar -Xmx2048m ./target/build/star-plugin.jar >> ./spark-star.log 2>&1 &
 ```
 
 ##### 客户端，插件使用

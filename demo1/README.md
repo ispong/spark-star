@@ -27,5 +27,5 @@ source /etc/profile
 ```
 
 ```http request
-GET http://localhost:30156/demo
+GET http://39.103.230.188:30156/demo
 ```
