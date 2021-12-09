@@ -1,17 +1,12 @@
 ##### 使用前提
 
-> 设置环境变量 sparkhome
-
-#### 添加HADOOP_CONF_DIR到spark-envs.sh
-
-
 ```bash
-sudo vim /etc/profile
-export HADOOP_HOME=/data/cdh/cloudera/parcels/CDH/lib/hadoop
-export SPARK_HOME=/data/cdh/cloudera/parcels/CDH/lib/spark
-export SPARK_CONF_DIR=/data/cdh/cloudera/parcels/CDH/lib/spark/conf
-export HIVE_CONF_DIR=/data/cdh/cloudera/parcels/CDH/lib/hive/conf
-source /etc/profile
+# 或者 git clone https://gitee.com/ispong/spark-star.git
+git clone https://github.com/ispong/spark-star.git
+# 构建插件
+cd star-plugin && mvn clean package
+# 添加hadoop配置文件
+cd target && mkdir build && unzip star-plugin.jar -d ./build
+cp ${HADOOP_HOME}/etc/hadoop/* ./build/BOOT-INF/classes/
+cd ./build/ && jar -cvfM0 star-plugin.jar ./
 ```
-
- to ./conf/spark-env.sh
