@@ -33,7 +33,7 @@
 | [star-common](./star-common/README.md)     | 提供StarTemplate组件，方便用户调用插件服务。 |
 | [star-plugin](./star-plugin/README.md)     | 服务器插件本体。                     |
 | [star-template](./star-template/README.md) | 如何使用插件的模板。                   |
-| [demo1](./demo1/README.md)                 | 案例：通过sql查询hive上的数据           |
+| [demo1](./demo1/README.md)                 | 案例：yarn模式                    |
 | [demo2](./demo2/README.md)                 | 案列：spark实现单条数据处理             |
 
 ### 📦 安装使用

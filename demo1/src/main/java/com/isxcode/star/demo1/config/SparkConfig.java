@@ -1,12 +1,43 @@
 package com.isxcode.star.demo1.config;
 
+import com.isxcode.star.demo1.properties.DemoProperties;
 import org.apache.spark.sql.SparkSession;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
+
+import java.io.IOException;
 
 @Configuration
 public class SparkConfig {
 
+    private final DemoProperties demoProperties;
+
+    public SparkConfig(DemoProperties demoProperties) {
+        this.demoProperties = demoProperties;
+    }
+
+    @Bean("initYarn")
+    public void initYarnEnv() {
+
+        Resource coreResource = new ClassPathResource(demoProperties.getCoreSitePath());
+        Resource hdfsResource = new ClassPathResource(demoProperties.getHdfsSitePath());
+        Resource mapredResource = new ClassPathResource(demoProperties.getMapredSitePath());
+        Resource yarnResource = new ClassPathResource(demoProperties.getYarnSitePath());
+        try {
+            PropertiesLoaderUtils.loadProperties(coreResource);
+            PropertiesLoaderUtils.loadProperties(hdfsResource);
+            PropertiesLoaderUtils.loadProperties(mapredResource);
+            PropertiesLoaderUtils.loadProperties(yarnResource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @ConditionalOnBean(name = "initYarn")
     @Bean("SparkSession")
     public SparkSession sparkBean() {
 
