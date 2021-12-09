@@ -33,7 +33,14 @@
 	<repositories>
 		<repository>
 			<id>cloudera</id>
+			<name>Cloudera Repository</name>
 			<url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</repository>
 	</repositories>
 
