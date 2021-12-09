@@ -43,7 +43,7 @@
 ```bash
 git clone https://github.com/ispong/spark-star.git
 cd star-plugin && mvn clean package
-java -jar tar-plugin.jar
+java -jar star-plugin.jar
 ```
 
 ##### 插件使用(客户端)
@@ -69,6 +69,7 @@ public class TemplateController {
 
     @GetMapping("/demo")
     public StarResponse testExecuteSpark() {
+
         return starTemplate.executeSql("${host}", "${port}", "${secretKey}", executeConfig);
     }
 }

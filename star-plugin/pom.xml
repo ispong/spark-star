@@ -204,6 +204,7 @@
     </dependencies>
 
     <build>
+        <finalName>star-plugin</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
