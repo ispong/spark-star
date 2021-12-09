@@ -1,6 +1,7 @@
 package com.isxcode.star.demo1.config;
 
 import com.isxcode.star.demo1.properties.DemoProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
 
 import java.io.IOException;
 
+@Slf4j
 @Configuration
 public class SparkConfig {
 
@@ -23,6 +25,7 @@ public class SparkConfig {
     @Bean("initYarn")
     public void initYarnEnv() {
 
+        log.info("初始化项目yarn环境");
         Resource coreResource = new ClassPathResource(demoProperties.getCoreSitePath());
         Resource hdfsResource = new ClassPathResource(demoProperties.getHdfsSitePath());
         Resource mapredResource = new ClassPathResource(demoProperties.getMapredSitePath());
@@ -41,6 +44,7 @@ public class SparkConfig {
     @Bean("SparkSession")
     public SparkSession sparkBean() {
 
+        log.info("初始化sparkSession");
         return SparkSession
                 .builder()
                 .appName("spark star demo1")
