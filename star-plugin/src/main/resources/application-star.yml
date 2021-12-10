@@ -1,0 +1,9 @@
+server:
+  port: 30156
+
+star:
+  config:
+    app-name: spark star session
+    master: yarn-client
+    spark-ui-port: 30166
+    hive-metastore-uris: thrift://172.23.39.206:30123
