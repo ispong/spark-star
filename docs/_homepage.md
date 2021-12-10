@@ -21,7 +21,7 @@
 <h4 align="center">
     🌟 Spark集成Hive的服务器插件，通过Restful快速查询hive中数据。
 </h4>
-
+****
 ### 📢 公告
 
 目前，仅适用于`cdh-6.2.0`版本，支持`spark on yarn`模式和`local`模式。
