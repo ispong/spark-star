@@ -61,7 +61,7 @@
         <dependency>
             <groupId>com.isxcode.star</groupId>
             <artifactId>star-common</artifactId>
-            <version>0.0.3-SNAPSHOT</version>
+            <version>0.0.4-SNAPSHOT</version>
         </dependency>
 
         <dependency>
