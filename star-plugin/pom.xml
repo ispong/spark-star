@@ -50,15 +50,11 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-        <repository>
-            <id>apache.snapshots</id>
-            <name>Apache Development Snapshot Repository</name>
-            <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
     </repositories>
+
+    <pluginRepositories>
+
+    </pluginRepositories>
 
     <dependencies>
 
