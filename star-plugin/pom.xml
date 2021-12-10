@@ -35,34 +35,16 @@
             <id>cloudera</id>
             <name>Cloudera Repository</name>
             <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
+        </repository>
+        <repository>
+            <id>apache.snapshots</id>
+            <name>Apache Development Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
         </repository>
         <repository>
             <id>s01.apache.snapshots</id>
             <name>S01 Apache Development Snapshot Repository</name>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>apache.snapshots</id>
-            <name>Apache Development Snapshot Repository</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
         </repository>
     </repositories>
 
