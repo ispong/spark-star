@@ -1,16 +1,6 @@
-<p align="center">
-  <a href="https://github.com/ispong/spark-star" style="border-bottom: none !important;">
-    <img alt="spark-star" width="180" src="https://github.com/ispong/spark-star/raw/main/docs/assets/images/logo.png">
-  </a>
-</p>
-
 <h1 align="center">
     Spark Star
 </h1>
-
-<h3 align="center">
-    黑星
-</h3>
 
 <h4 align="center">
     <a href="https://ispong.github.io/spark-star" >
@@ -24,17 +14,17 @@
 
 ### 📢 公告
 
-目前，仅适用于`cdh-6.2.0`版本，支持`spark on yarn`模式和`local`模式。
+目前，仅适用于**cdh-6.2.0**版本，支持**spark on yarn**模式和**local**模式。
 
 ### ✨ 模块
 
-| 模块名                                        | 说明                |
-|:-------------------------------------------|:------------------|
-| [star-common](./star-common/README.md)     | 提供StarTemplate组件。 |
-| [star-plugin](./star-plugin/README.md)     | 服务器插件本体。          |
-| [star-template](./star-template/README.md) | 使用插件模板。           |
-| [demo1](./demo1/README.md)                 | 案例：yarn模式         |
-| [demo2](./demo2/README.md)                 | 案列：spark单条数据处理    |
+| 模块                                         | 状态                 | 说明                           |
+|--------------------------------------------|--------------------|------------------------------|
+| [star-common](./star-common/README.md)     | :white_check_mark: | 提供一系列常规工具类，包括StarTemplate组件。 |
+| [star-plugin](./star-plugin/README.md)     | :white_check_mark: | 服务器插件本体。                     |
+| [star-template](./star-template/README.md) | :white_check_mark: | 客户端使用插件的模板。                  |
+| [demo1](./demo1/README.md)                 | :white_check_mark: | 案例：yarn模式执行sql。              |
+| [demo2](./demo2/README.md)                 | :white_check_mark: | 案列：filter处理单条数据处理。           |
 
 ### 📦 安装使用
 
@@ -43,7 +33,7 @@
 ```bash
 git clone https://github.com/ispong/spark-star.git
 cd star-plugin && mvn clean package
-java -jar star-plugin.jar
+java -jar star-plugin.jar --server.port=${port} --star.config.private-key=${privateKey}
 ```
 
 ##### 插件使用(客户端)
@@ -52,7 +42,7 @@ java -jar star-plugin.jar
 <dependency>
     <groupId>com.isxcode.star</groupId>
     <artifactId>star-common</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>[![Maven Version](https://img.shields.io/maven-central/v/com.isxcode.star/star-common)](https://search.maven.org/artifact/com.isxcode.star/star-common)</version>
 </dependency>
 ```
 
@@ -60,17 +50,21 @@ java -jar star-plugin.jar
 @RestController
 @RequestMapping
 public class TemplateController {
-
-    private final StarTemplate starTemplate;
-
-    public TemplateApplication(StarTemplate starTemplate) {
-        this.starTemplate = starTemplate;
-    }
-
+    
     @GetMapping("/demo")
     public StarResponse testExecuteSpark() {
         
-        return starTemplate.executeSql("${host}", "${port}", "${secretKey}", executeConfig);
+        // 初始化starTemplate
+        StarTemplate starTemplate = StarFactory.build("${host}", "${port}", "${privateKey}");
+        
+        // 提交sql
+        StarResponse = starTemplate.executeSql("select * from demo limit 100");
+        
+        // 等待，消费kafka状态
+        xx = starTemplate.waitting(); 
+        
+        // 返回kafka结果
+        return xx;
     }
 }
 ```

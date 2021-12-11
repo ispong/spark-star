@@ -1,13 +1,18 @@
 package com.isxcode.star.plugin.service;
 
-import com.isxcode.star.common.menu.ResponseEnum;
+import com.alibaba.fastjson.JSON;
 import com.isxcode.star.common.pojo.dto.DataInfo;
-import com.isxcode.star.common.pojo.entity.ExecuteConfig;
+import com.isxcode.star.common.pojo.entity.StarRequest;
 import com.isxcode.star.common.pojo.entity.StarResponse;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.concurrent.ListenableFuture;
+import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,20 +23,41 @@ public class StarBizService {
 
     private final SparkSession sparkSession;
 
-    public StarBizService(SparkSession sparkSession) {
+    private final KafkaTemplate<String, String> kafkaTemplate;
+
+    public StarBizService(SparkSession sparkSession, KafkaTemplate<String, String> kafkaTemplate) {
 
         this.sparkSession = sparkSession;
+        this.kafkaTemplate = kafkaTemplate;
     }
 
-    public StarResponse executeSql(ExecuteConfig executeConfig) {
+    public void sendToKafka(String topic, String key, String value) {
+
+        ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic, key, value);
+        future.addCallback(new ListenableFutureCallback<SendResult<String, String>>() {
+
+            @Override
+            public void onSuccess(SendResult<String, String> integerStringSendResult) {
+                System.out.println("onSuccess" + integerStringSendResult.toString());
+            }
+
+            @Override
+            public void onFailure(Throwable ex) {
+                System.out.println("onFailure" + ex.getMessage());
+            }
+        });
+    }
+
+    @Async
+    public void executeSql(StarRequest starRequest) {
 
         StarResponse starResponse = new StarResponse();
 
         // 执行sql
-        Dataset<Row> rowDataset = sparkSession.sql(executeConfig.getSql());
+        Dataset<Row> rowDataset = sparkSession.sql(starRequest.getSql());
 
-        if (!executeConfig.isHasReturn()) {
-            return new StarResponse(ResponseEnum.EXECUTE_SUCCESS);
+        if (!starRequest.isHasReturn()) {
+            sendToKafka("star-kafka", starRequest.getExecuteId(), JSON.toJSONString(starResponse));
         }
 
         // 解析结果表
@@ -52,9 +78,9 @@ public class StarBizService {
             dataList.add(metaData);
         });
         dataInfo.setDataList(dataList);
-
         starResponse.setDataInfo(dataInfo);
-        return new StarResponse(ResponseEnum.EXECUTE_SUCCESS);
+
+        sendToKafka("star-kafka", starRequest.getExecuteId(), JSON.toJSONString(starResponse));
     }
 
 }

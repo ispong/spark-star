@@ -70,7 +70,7 @@ public class TemplateController {
     @GetMapping("/demo")
     public StarResponse testExecuteSpark() {
 
-        return starTemplate.executeSql("${host}", "${port}", "${secretKey}", executeConfig);
+        return starTemplate.executeSql("${host}", "${port}", "${secretKey}", starRequest);
     }
 }
 ```

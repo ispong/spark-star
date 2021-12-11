@@ -6,7 +6,9 @@ public enum ResponseEnum {
 
     EXECUTE_SUCCESS("200", "执行成功"),
 
-    REMOTE_ERROR("50001", "远程调用失败"),;
+    REMOTE_ERROR("50001", "远程调用失败"),
+
+    SUBMIT_SUCCESS("20001", "提交成功"),;
 
     @Getter
     private final String code;

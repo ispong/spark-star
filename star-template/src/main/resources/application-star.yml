@@ -1,0 +1,11 @@
+star:
+  config:
+    nodes:
+      - node1:
+          host:
+          port:
+          private-key:
+      - node2:
+          host:
+          port:
+          private-key:

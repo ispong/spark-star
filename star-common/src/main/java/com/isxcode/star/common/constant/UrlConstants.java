@@ -4,5 +4,5 @@ public interface UrlConstants {
 
     String BASE_URL = "http://%s:%s/spark-star";
 
-    String EXECUTE_SQL_URL = BASE_URL + "/executeSql";
+    String EXECUTE_SQL_URL = "/executeSql";
 }

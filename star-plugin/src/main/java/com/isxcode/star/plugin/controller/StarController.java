@@ -1,7 +1,8 @@
 package com.isxcode.star.plugin.controller;
 
 
-import com.isxcode.star.common.pojo.entity.ExecuteConfig;
+import com.isxcode.star.common.menu.ResponseEnum;
+import com.isxcode.star.common.pojo.entity.StarRequest;
 import com.isxcode.star.common.pojo.entity.StarResponse;
 import com.isxcode.star.plugin.service.StarBizService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ public class StarController {
     private final StarBizService starBizService;
 
     public StarController(StarBizService starBizService) {
+
         this.starBizService = starBizService;
     }
 
@@ -23,9 +25,11 @@ public class StarController {
      * 执行sparksql
      */
     @PostMapping("/executeSql")
-    public StarResponse executeSql(@RequestBody ExecuteConfig executeConfig) {
+    public StarResponse executeSql(@RequestBody StarRequest starRequest) {
 
-        return starBizService.executeSql(executeConfig);
+        starBizService.executeSql(starRequest);
+
+        return new StarResponse(ResponseEnum.SUBMIT_SUCCESS);
     }
 
     public void getWorkLog() {

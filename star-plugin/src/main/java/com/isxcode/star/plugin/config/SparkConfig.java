@@ -1,6 +1,6 @@
 package com.isxcode.star.plugin.config;
 
-import com.isxcode.star.plugin.properties.StarProperties;
+import com.isxcode.star.common.properties.StarProperties;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

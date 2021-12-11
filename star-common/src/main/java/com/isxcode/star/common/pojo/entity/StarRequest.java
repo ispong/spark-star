@@ -5,7 +5,9 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ExecuteConfig {
+public class StarRequest {
+
+    private String executeId;
 
     private boolean hasReturn;
 
