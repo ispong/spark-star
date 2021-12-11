@@ -3,5 +3,5 @@ spring:
     consumer:
       client-id: spark-star-kafka
       bootstrap-servers: 39.103.230.188:30120
-      key-deserializer: IntegerSerializer.class
-      value-deserializer: StringSerializer.class
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

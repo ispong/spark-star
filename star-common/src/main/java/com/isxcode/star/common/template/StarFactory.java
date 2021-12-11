@@ -5,10 +5,10 @@ import com.isxcode.star.common.properties.StarProperties;
 
 public class StarFactory {
 
-    private static StarProperties starProperties;
+    private StarProperties starProperties;
 
     public StarFactory(StarProperties starProperties) {
-        StarFactory.starProperties = starProperties;
+        this.starProperties = starProperties;
     }
 
     public static StarTemplate build(String nodeName) {

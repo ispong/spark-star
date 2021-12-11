@@ -2,10 +2,6 @@ star:
   config:
     nodes:
       - node1:
-          host:
-          port:
-          private-key:
-      - node2:
-          host:
-          port:
-          private-key:
+          host: 39.103.230.188
+          port: 30156
+          private-key: starkey
