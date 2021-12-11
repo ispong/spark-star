@@ -46,15 +46,14 @@
             <id>s01.apache.snapshots</id>
             <name>S01 Apache Development Snapshot Repository</name>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
         </repository>
     </repositories>
-
-    <pluginRepositories>
-
-    </pluginRepositories>
 
     <dependencies>
 
