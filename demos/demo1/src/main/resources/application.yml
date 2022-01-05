@@ -6,5 +6,5 @@ star:
     app-name: spark-star
     master: yarn
     spark-config:
-      spark.ui.port:
-      hive.metastore.uris:
+      spark.ui.port: 30157
+      hive.metastore.uris: thrift://dcloud-dev:30123

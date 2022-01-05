@@ -15,3 +15,15 @@ export SPARK_HOME=/data/cdh/cloudera/parcels/CDH/lib/spark
 
 source /etc/profile
 ```
+
+##### 运行
+
+```bash
+git clone https://gitee.com/ispong/spark-star.git
+cd spark-star/demos/demo1
+mvn clean package
+
+# 通过spark-submit提交spring项目 
+sudo cp ./target/demo1-0.0.1.jar /data/cdh/cloudera/parcels/CDH/lib/spark/work/demo1-0.0.1.jar
+spark-submit --master yarn --class com.isxcode.star.demo1.Demo1Application --executor-memory=4G --num-executors 2 target/demo1-0.0.1.jar
+```
