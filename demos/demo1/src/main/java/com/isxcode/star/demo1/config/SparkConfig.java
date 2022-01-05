@@ -2,7 +2,6 @@ package com.isxcode.star.demo1.config;
 
 import com.isxcode.star.demo1.properties.DemoProperties;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.core.util.IOUtils;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,10 +9,11 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.UrlResource;
 
 import java.io.*;
-import java.net.MalformedURLException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -28,33 +28,27 @@ public class SparkConfig {
 
     public void initConfigFile() {
 
+        List<String> siteFileList = new ArrayList<>();
+        siteFileList.add("core-site.xml");
+        siteFileList.add("hdfs-site.xml");
+        siteFileList.add("mapred-site.xml");
+        siteFileList.add("yarn-site.xml");
+
         // 读取外部文件
-        demoProperties.getSiteXmlPaths().forEach(e -> {
-            Path path = Paths.get(e);
+        siteFileList.forEach(e -> {
+            Path path = Paths.get(demoProperties.getHadoopConfigPath() + e);
             try {
                 UrlResource urlResource = new UrlResource(path.toUri());
-                System.out.println("getSiteXmlPaths:" + new BufferedReader(new InputStreamReader(urlResource.getInputStream())).lines().collect(Collectors.joining("\n")));
+                File file = new ClassPathResource(e).getFile();
+                String content = new BufferedReader(new InputStreamReader(urlResource.getInputStream())).lines().collect(Collectors.joining("\n"));
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+                bufferedWriter.write(content);
+                bufferedWriter.flush();
+                bufferedWriter.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
-
-        // 写入到项目中
-
-        try {
-            File file = new ClassPathResource("core-site.xml").getFile();
-            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
-            bufferedWriter.write("我特么烦死啦");
-            bufferedWriter.flush();
-            bufferedWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        InputStream xxx = getClass().getClassLoader().getResourceAsStream("core-site.xml");
-        assert xxx != null;
-        System.out.println("initConfigFile:" + new BufferedReader(new InputStreamReader(xxx)).lines().collect(Collectors.joining("\n")));
     }
 
     @Bean("SparkSession")

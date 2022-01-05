@@ -18,5 +18,5 @@ public class DemoProperties {
 
     private Map<String, String> sparkConfig;
 
-    private List<String> siteXmlPaths;
+    private String hadoopConfigPath;
 }
