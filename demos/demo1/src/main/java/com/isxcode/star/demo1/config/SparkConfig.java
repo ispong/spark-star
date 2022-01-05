@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.util.ResourceUtils;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -45,13 +46,19 @@ public class SparkConfig {
 //                UrlResource urlResource = new UrlResource(realPath.toUri());
 //                String content = new BufferedReader(new InputStreamReader(urlResource.getInputStream())).lines().collect(Collectors.joining("\n"));
             // 写入项目中
-            File file = new File("/home/dehoop/spark-star/demos/demo1/target/demo1-0.0.1.jar!/BOOT-INF/classes!/core-site.xml");
-//                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newPath)));
-//                bufferedWriter.write(content);
-//                bufferedWriter.flush();
-//                bufferedWriter.close();
+
+
+//            System.out.println("获取文件");
+//            if (file.exists()) {
+//                System.out.println("获取文件存在");
+//            }
+//            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newPath)));
+//            bufferedWriter.write(content);
+//            bufferedWriter.flush();
+//            bufferedWriter.close();
             // 读取系统文件
             try {
+                File file = ResourceUtils.getFile("classpath:" + e);
                 System.out.println(e + " file ===" + new BufferedReader(new InputStreamReader(new FileInputStream(file))).lines().collect(Collectors.joining("\n")));
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
