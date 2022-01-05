@@ -40,6 +40,7 @@ public class SparkConfig {
                 UrlResource urlResource = new UrlResource(path.toUri());
                 File file = new ClassPathResource(e).getFile();
                 String content = new BufferedReader(new InputStreamReader(urlResource.getInputStream())).lines().collect(Collectors.joining("\n"));
+                System.out.println(e + "==" + content);
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
                 bufferedWriter.write(content);
                 bufferedWriter.flush();
