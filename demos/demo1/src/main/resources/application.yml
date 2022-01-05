@@ -8,4 +8,5 @@ star:
     spark-config:
       spark.ui.port: 30157
       hive.metastore.uris: thrift://dcloud-dev:30123
+    #hadoop-config-path: C://Users//ispon//Desktop//test//
     hadoop-config-path: /data/cdh/cloudera/parcels/CDH/lib/hadoop/etc/hadoop/
