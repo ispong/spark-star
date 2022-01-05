@@ -10,6 +10,8 @@ import org.springframework.core.io.UrlResource;
 
 import java.io.*;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -38,22 +40,22 @@ public class SparkConfig {
         // 读取外部文件
         siteFileList.forEach(e -> {
 
+            // 获取服务器上的配置文件
+//                Path realPath = Paths.get(demoProperties.getHadoopConfigPath() + e);
+//                UrlResource urlResource = new UrlResource(realPath.toUri());
+//                String content = new BufferedReader(new InputStreamReader(urlResource.getInputStream())).lines().collect(Collectors.joining("\n"));
+            // 写入项目中
+            File file = new File("/home/dehoop/spark-star/demos/demo1/target/demo1-0.0.1.jar!/BOOT-INF/classes!/core-site.xml");
+//                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newPath)));
+//                bufferedWriter.write(content);
+//                bufferedWriter.flush();
+//                bufferedWriter.close();
+            // 读取系统文件
             try {
-                // 获取服务器上的配置文件
-                Path realPath = Paths.get(demoProperties.getHadoopConfigPath() + e);
-                UrlResource urlResource = new UrlResource(realPath.toUri());
-                String content = new BufferedReader(new InputStreamReader(urlResource.getInputStream())).lines().collect(Collectors.joining("\n"));
-                // 写入项目中
-                String newPath = new ClassPathResource(e).getPath();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newPath)));
-                bufferedWriter.write(content);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                // 读取系统文件
-                System.out.println(e + " file ===" + new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(e)))).lines().collect(Collectors.joining("\n")));
-            } catch (IOException ex) {
+                System.out.println(e + " file ===" + new BufferedReader(new InputStreamReader(new FileInputStream(file))).lines().collect(Collectors.joining("\n")));
+            } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
-            }
+            };
         });
     }
 
