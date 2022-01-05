@@ -39,12 +39,13 @@ public class SparkConfig {
             try {
                 UrlResource urlResource = new UrlResource(path.toUri());
                 String content = new BufferedReader(new InputStreamReader(urlResource.getInputStream())).lines().collect(Collectors.joining("\n"));
-                System.out.println(e + "==" + content);
+//                System.out.println(e + "==" + content);
                 File file = new ClassPathResource(e).getFile();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
-                bufferedWriter.write(content);
-                bufferedWriter.flush();
-                bufferedWriter.close();
+                System.out.println("file ==" + new BufferedReader(new InputStreamReader(new FileInputStream(file))).lines().collect(Collectors.joining("\n")));
+//                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+//                bufferedWriter.write(content);
+//                bufferedWriter.flush();
+//                bufferedWriter.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
