@@ -6,12 +6,10 @@ import org.apache.logging.log4j.core.util.IOUtils;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.UrlResource;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -42,6 +40,18 @@ public class SparkConfig {
         });
 
         // 写入到项目中
+
+        try {
+            File file = new ClassPathResource("core-site.xml").getFile();
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+            bufferedWriter.write("我特么烦死啦");
+            bufferedWriter.flush();
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         InputStream xxx = getClass().getClassLoader().getResourceAsStream("core-site.xml");
         assert xxx != null;
         System.out.println("initConfigFile:" + new BufferedReader(new InputStreamReader(xxx)).lines().collect(Collectors.joining("\n")));
