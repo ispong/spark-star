@@ -1,1 +1,3 @@
-### 开发手册
+## contributing
+
+- https://ispong.github.io/spark-star/contributing
