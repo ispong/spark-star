@@ -48,6 +48,8 @@ public class SparkConfig {
                 bufferedWriter.write(content);
                 bufferedWriter.flush();
                 bufferedWriter.close();
+                // 读取系统文件
+                System.out.println(e + " file ===" + getClass().getClassLoader().getResourceAsStream(e));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
