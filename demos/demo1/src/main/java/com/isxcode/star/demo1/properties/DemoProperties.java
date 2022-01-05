@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 
 @Data
@@ -16,4 +17,6 @@ public class DemoProperties {
     private String master;
 
     private Map<String, String> sparkConfig;
+
+    private List<String> siteXmlPaths;
 }
