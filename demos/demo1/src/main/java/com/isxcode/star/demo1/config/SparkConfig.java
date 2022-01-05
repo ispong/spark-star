@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -49,7 +50,7 @@ public class SparkConfig {
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 // 读取系统文件
-                System.out.println(e + " file ===" + getClass().getClassLoader().getResourceAsStream(e));
+                System.out.println(e + " file ===" + new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(e)))).lines().collect(Collectors.joining("\n")));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
