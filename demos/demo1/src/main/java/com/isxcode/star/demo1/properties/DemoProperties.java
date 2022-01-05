@@ -4,10 +4,16 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 @Data
 @Component
-@ConfigurationProperties(prefix = "star.hadoop")
+@ConfigurationProperties(prefix = "star.plugin")
 public class DemoProperties {
 
-    private String ConfigPath;
+    private String appName;
+
+    private String master;
+
+    private Map<String, String> sparkConfig;
 }

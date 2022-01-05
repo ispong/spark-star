@@ -1,0 +1,10 @@
+server:
+  port: 30156
+
+star:
+  plugin:
+    app-name: spark-star
+    master: yarn
+    spark-config:
+      spark.ui.port:
+      hive.metastore.uris:

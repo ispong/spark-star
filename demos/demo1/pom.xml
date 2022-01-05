@@ -28,6 +28,7 @@
 		<hive.version>2.1.1-cdh6.2.0</hive.version>
 		<hadoop.version>3.0.0-cdh6.2.0</hadoop.version>
 		<janino.version>3.0.8</janino.version>
+		<lombok.version>1.18.22</lombok.version>
 	</properties>
 
 	<repositories>
@@ -53,6 +54,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -65,7 +67,6 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-core_${scala.version}</artifactId>
