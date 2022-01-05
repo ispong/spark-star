@@ -9,6 +9,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.UrlResource;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -35,17 +36,18 @@ public class SparkConfig {
 
         // 读取外部文件
         siteFileList.forEach(e -> {
-            Path path = Paths.get(demoProperties.getHadoopConfigPath() + e);
+
             try {
-                UrlResource urlResource = new UrlResource(path.toUri());
+                // 获取服务器上的配置文件
+                Path realPath = Paths.get(demoProperties.getHadoopConfigPath() + e);
+                UrlResource urlResource = new UrlResource(realPath.toUri());
                 String content = new BufferedReader(new InputStreamReader(urlResource.getInputStream())).lines().collect(Collectors.joining("\n"));
-//                System.out.println(e + "==" + content);
-                File file = new ClassPathResource(e).getFile();
-                System.out.println("file ==" + new BufferedReader(new InputStreamReader(new FileInputStream(file))).lines().collect(Collectors.joining("\n")));
-//                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
-//                bufferedWriter.write(content);
-//                bufferedWriter.flush();
-//                bufferedWriter.close();
+                // 写入项目中
+                String newPath = new ClassPathResource(e).getPath();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newPath)));
+                bufferedWriter.write(content);
+                bufferedWriter.flush();
+                bufferedWriter.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
