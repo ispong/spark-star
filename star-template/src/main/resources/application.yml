@@ -1,0 +1,8 @@
+server:
+    port: 8888
+
+star:
+  node:
+    host: 39.103.230.188
+    port: 30156
+    key: star-key

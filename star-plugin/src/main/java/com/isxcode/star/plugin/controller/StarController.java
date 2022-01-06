@@ -1,6 +1,10 @@
 package com.isxcode.star.plugin.controller;
 
 
+import com.isxcode.star.common.constant.UrlConstants;
+import com.isxcode.star.common.pojo.dto.StarData;
+import com.isxcode.star.common.response.StarRequest;
+import com.isxcode.star.plugin.response.SuccessResponse;
 import com.isxcode.star.plugin.service.StarBizService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/spark-star")
+@RequestMapping
 public class StarController {
 
     private final StarBizService starBizService;
@@ -19,33 +23,12 @@ public class StarController {
     }
 
     /**
-     * 执行sparksql
+     * 执行spark-sql
      */
-    @PostMapping("/executeSql")
-    public StarResponse executeSql(@RequestBody StarRequest starRequest) {
+    @SuccessResponse
+    @PostMapping(UrlConstants.EXECUTE_SQL_URL)
+    public StarData executeSql(@RequestBody StarRequest starRequest) {
 
-        starBizService.executeSql(starRequest);
-
-        return new StarResponse(ResponseEnum.SUBMIT_SUCCESS);
-    }
-
-    public void getWorkLog() {
-
-    }
-
-    public void getTableInfo() {
-
-    }
-
-    public void listTables() {
-
-    }
-
-    public void foreachParseData() {
-
-    }
-
-    public void getWorkStatus() {
-
+        return starBizService.executeSql(starRequest);
     }
 }

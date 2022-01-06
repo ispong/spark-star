@@ -1,9 +1,20 @@
 server:
   port: 30156
 
+logging:
+  group:
+    star: com.isxcode.star
+  level:
+    star: debug
+
 star:
-  config:
+  plugin:
+    server-key: star-key
     app-name: spark star session
     master: yarn-client
-    spark-ui-port: 30166
-    hive-metastore-uris: thrift://172.23.39.206:30123
+    spark-config:
+      spark.ui.port: 30157
+      hive.metastore.uris: thrift://dcloud-dev:30123
+      spark.driver.memory: 1g
+      spark.executor.memory: 4g
+      spark.sql.storeAssignmentPolicy: LEGACY

@@ -1,28 +1,30 @@
 package com.isxcode.star.template.controller;
 
-import com.isxcode.star.common.pojo.entity.StarRequest;
-import com.isxcode.star.common.pojo.entity.StarResponse;
-import com.isxcode.star.common.template.StarFactory;
+import com.isxcode.star.common.response.StarRequest;
+import com.isxcode.star.common.response.StarResponse;
 import com.isxcode.star.common.template.StarTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping
 @RestController
+@RequestMapping("/demo")
 public class DemoController {
 
-    @GetMapping("/submitSql")
-    public StarResponse submitSql(@RequestParam String sql) {
+    private final StarTemplate starTemplate;
 
-        StarTemplate starTemplate = StarFactory.build("node1");
+    public DemoController(StarTemplate starTemplate) {
+        this.starTemplate = starTemplate;
+    }
+
+    @GetMapping("/executeSql")
+    public void submitSql() {
 
         StarRequest starRequest = StarRequest.builder()
-                .hasReturn(true)
-                .sql(sql)
-                .build();
+            .sql("select * from rd_dev.ispong_table limit 10")
+            .build();
 
-        return starTemplate.executeSql(starRequest);
+        StarResponse starResponse = starTemplate.build().executeSql(starRequest);
+        System.out.println(starResponse.toString());
     }
 }

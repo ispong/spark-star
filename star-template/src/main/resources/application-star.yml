@@ -1,7 +1,0 @@
-star:
-  config:
-    nodes:
-      - node1:
-          host: 39.103.230.188
-          port: 30156
-          private-key: starkey

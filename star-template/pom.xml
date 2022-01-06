@@ -22,6 +22,10 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <log4j.version>2.17.0</log4j.version>
+        <star-common.version>0.0.6-SNAPSHOT</star-common.version>
+        <lombok.version>1.18.22</lombok.version>
     </properties>
 
     <repositories>
@@ -39,20 +43,19 @@
     </repositories>
 
     <dependencies>
+
         <dependency>
             <groupId>com.isxcode.star</groupId>
             <artifactId>star-common</artifactId>
-            <version>0.0.4-SNAPSHOT</version>
+            <version>${star-common.version}</version>
         </dependency>
+
         <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -60,6 +63,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>

@@ -1,0 +1,7 @@
+server:
+  servlet:
+    context-path: /spark-star
+
+spring:
+  profiles:
+    active: star

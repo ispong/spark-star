@@ -7,7 +7,11 @@ import lombok.Getter;
  */
 public enum StarExceptionEnum {
 
-    EXECUTE_ERROR("50001", "执行异常"),
+    KEY_IS_NULL("50001", "key为null"),
+
+    KEY_IS_ERROR("50002", "key不正确"),
+
+    REQUEST_VALUE_EMPTY("50003", "缺少输入参数"),
     ;
 
     @Getter
