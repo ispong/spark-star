@@ -38,9 +38,10 @@ fi
 mkdir -p ../target/build
 unzip ../target/demo1-0.0.1.jar -d ../target/build/
 cp /data/cdh/cloudera/parcels/CDH/lib/hadoop/etc/hadoop/*.xml ../target/build/BOOT-INF/classes/
-jar -cvfM0 ../target/demo1-0.0.1.jar ../target/build/*
+cd ../target/build/ || exit
+jar -cvfM0 ../demo1-0.0.1.jar ./*
 
 # 启动项目
-STAR_APP=../target/demo1-0.0.1.jar
+STAR_APP=../demo1-0.0.1.jar
 nohup java -jar -Xmx2048m "${STAR_APP}" --spring.profiles.active="${ENV}" >> "${STAR_LOG}" 2>&1 &
 echo "部署成功"
