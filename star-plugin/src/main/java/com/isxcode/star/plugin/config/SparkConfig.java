@@ -17,8 +17,8 @@ public class SparkConfig {
         this.starPluginProperties = starPluginProperties;
     }
 
-    @Bean("SparkSession")
-    public SparkSession sparkBean() {
+    @Bean("sparkSession")
+    public SparkSession sparkSession() {
 
         log.info("初始化sparkSession");
         SparkSession.Builder sparkBuilder = SparkSession
