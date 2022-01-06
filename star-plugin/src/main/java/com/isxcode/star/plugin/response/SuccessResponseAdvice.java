@@ -22,7 +22,7 @@ public class SuccessResponseAdvice {
         this.messageSource = messageSource;
     }
 
-    @Pointcut("@annotation(com.isxcode.acorn.plugin.response.SuccessResponse)")
+    @Pointcut("@annotation(com.isxcode.star.plugin.response.SuccessResponse)")
     public void operateLog() {
     }
 
