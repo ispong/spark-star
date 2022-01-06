@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 获取环境变量
-ENV=prod
+ENV=star
 for key in "$@"
 do
     ENV=${key#*=}
