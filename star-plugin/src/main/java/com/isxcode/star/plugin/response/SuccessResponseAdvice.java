@@ -1,7 +1,7 @@
 package com.isxcode.star.plugin.response;
 
-import com.isxcode.acorn.common.pojo.dto.AcornData;
-import com.isxcode.acorn.common.response.AcornResponse;
+import com.isxcode.star.common.pojo.dto.StarData;
+import com.isxcode.star.common.response.StarResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -27,16 +27,16 @@ public class SuccessResponseAdvice {
     }
 
     @AfterReturning(returning = "data", value = "operateLog()&&@annotation(successResponse)")
-    public void afterReturning(JoinPoint joinPoint, AcornData data, SuccessResponse successResponse) {
+    public void afterReturning(JoinPoint joinPoint, StarData data, SuccessResponse successResponse) {
 
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        AcornResponse baseResponse = new AcornResponse();
+        StarResponse baseResponse = new StarResponse();
         if (!"void".equals(signature.getReturnType().getName())) {
             baseResponse.setCode("200");
             if (data.getClass().getDeclaredFields().length == 0) {
-                baseResponse.setAcornData(null);
+                baseResponse.setStarData(null);
             } else {
-                baseResponse.setAcornData(data);
+                baseResponse.setStarData(data);
             }
             baseResponse.setMessage(getMsg(successResponse));
             successResponse(baseResponse);
@@ -61,7 +61,7 @@ public class SuccessResponseAdvice {
         }
     }
 
-    public void successResponse(AcornResponse baseResponse) {
+    public void successResponse(StarResponse baseResponse) {
 
         throw new SuccessException(baseResponse);
     }
