@@ -1,8 +1,10 @@
 package com.isxcode.star.plugin.config;
 
+import com.isxcode.star.common.config.StarAutoConfig;
 import com.isxcode.star.common.properties.StarPluginProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.spark.sql.SparkSession;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,6 +20,7 @@ public class SparkConfig {
     }
 
     @Bean("sparkSession")
+    @ConditionalOnClass(StarAutoConfig.class)
     public SparkSession sparkSession() {
 
         log.debug("初始化sparkSession");
