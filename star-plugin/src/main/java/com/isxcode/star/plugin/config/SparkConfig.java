@@ -20,12 +20,13 @@ public class SparkConfig {
     @Bean("sparkSession")
     public SparkSession sparkSession() {
 
-        log.info("初始化sparkSession");
+        log.debug("初始化sparkSession");
         SparkSession.Builder sparkBuilder = SparkSession
             .builder()
             .appName(starPluginProperties.getAppName())
             .master(starPluginProperties.getMaster());
 
+        log.debug("SparkConfig.sparkSession.starPluginProperties:" + starPluginProperties.getSparkConfig().toString());
         starPluginProperties.getSparkConfig().forEach(sparkBuilder::config);
 
         return sparkBuilder.enableHiveSupport().getOrCreate();
