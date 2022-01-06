@@ -1,7 +1,7 @@
 package com.isxcode.star.plugin.filter;
 
 import com.isxcode.star.common.constant.SecurityConstants;
-import com.isxcode.star.common.properties.StarProperties;
+import com.isxcode.star.common.properties.StarPluginProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -14,11 +14,11 @@ import java.io.IOException;
 @Service
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final StarProperties starProperties;
+    private final StarPluginProperties starPluginProperties;
 
-    public JwtAuthenticationFilter(StarProperties starProperties) {
+    public JwtAuthenticationFilter(StarPluginProperties starPluginProperties) {
 
-        this.starProperties = starProperties;
+        this.starPluginProperties = starPluginProperties;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        if (!authorization.equals(starProperties.getPrivateKey())) {
+        if (!authorization.equals(starPluginProperties.getPrivateKey())) {
             request.getRequestDispatcher(SecurityConstants.AUTH_ERROR_PATH).forward(request, response);
             return;
         }

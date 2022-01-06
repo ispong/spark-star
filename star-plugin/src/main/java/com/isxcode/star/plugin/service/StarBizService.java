@@ -1,9 +1,6 @@
 package com.isxcode.star.plugin.service;
 
 import com.alibaba.fastjson.JSON;
-import com.isxcode.star.common.pojo.dto.DataInfo;
-import com.isxcode.star.common.pojo.entity.StarRequest;
-import com.isxcode.star.common.pojo.entity.StarResponse;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;

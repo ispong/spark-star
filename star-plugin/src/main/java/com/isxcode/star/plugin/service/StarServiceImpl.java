@@ -1,16 +1,16 @@
 package com.isxcode.star.plugin.service;
 
-import com.isxcode.star.common.properties.StarProperties;
+import com.isxcode.star.common.properties.StarPluginProperties;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.stereotype.Service;
 
 @Service
 public class StarServiceImpl implements StarService {
 
-    private final StarProperties starProperties;
+    private final StarPluginProperties starPluginProperties;
 
-    public StarServiceImpl(StarProperties starProperties) {
-        this.starProperties = starProperties;
+    public StarServiceImpl(StarPluginProperties starPluginProperties) {
+        this.starPluginProperties = starPluginProperties;
     }
 
     @Override
@@ -20,7 +20,7 @@ public class StarServiceImpl implements StarService {
                 .builder()
                 .appName("star spark session")
                 .master("yarn-client")
-                .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
+                .config("hive.metastore.uris", starPluginProperties.getHiveMetastoreUris())
                 .enableHiveSupport()
                 .getOrCreate();
     }

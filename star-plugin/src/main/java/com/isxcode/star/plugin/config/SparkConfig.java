@@ -1,6 +1,6 @@
 package com.isxcode.star.plugin.config;
 
-import com.isxcode.star.common.properties.StarProperties;
+import com.isxcode.star.common.properties.StarPluginProperties;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,11 +8,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SparkConfig {
 
-    public final StarProperties starProperties;
+    public final StarPluginProperties starPluginProperties;
 
-    public SparkConfig(StarProperties starProperties) {
+    public SparkConfig(StarPluginProperties starPluginProperties) {
 
-        this.starProperties = starProperties;
+        this.starPluginProperties = starPluginProperties;
     }
 
     @Bean
@@ -20,10 +20,10 @@ public class SparkConfig {
 
         return SparkSession
                 .builder()
-                .appName(starProperties.getAppName())
-                .master(starProperties.getMaster())
-                .config("spark.ui.port", starProperties.getSparkUiPort())
-                .config("hive.metastore.uris", starProperties.getHiveMetastoreUris())
+                .appName(starPluginProperties.getAppName())
+                .master(starPluginProperties.getMaster())
+                .config("spark.ui.port", starPluginProperties.getSparkUiPort())
+                .config("hive.metastore.uris", starPluginProperties.getHiveMetastoreUris())
                 .enableHiveSupport()
                 .getOrCreate();
     }

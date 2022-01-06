@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class DataInfo {
+public class StarData {
 
     private List<String> columnNames;
 

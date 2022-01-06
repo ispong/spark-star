@@ -1,9 +1,6 @@
 package com.isxcode.star.plugin.controller;
 
 
-import com.isxcode.star.common.menu.ResponseEnum;
-import com.isxcode.star.common.pojo.entity.StarRequest;
-import com.isxcode.star.common.pojo.entity.StarResponse;
 import com.isxcode.star.plugin.service.StarBizService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
