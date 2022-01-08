@@ -4,6 +4,7 @@ import com.isxcode.star.common.properties.StarNodeProperties;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -29,6 +30,7 @@ public class KafkaConfig {
     }
 
     @Bean
+    @ConditionalOnProperty(prefix = "star.node", name = "kafka-config")
     public Map<String, Object> consumerConfigs() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, starNodeProperties.getKafkaConfig().get(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG));
@@ -39,11 +41,13 @@ public class KafkaConfig {
     }
 
     @Bean
+    @ConditionalOnProperty(prefix = "star.node", name = "kafka-config")
     public ConsumerFactory<String, String> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
     @Bean
+    @ConditionalOnProperty(prefix = "star.node", name = "kafka-config")
     KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>>
     kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
@@ -52,6 +56,5 @@ public class KafkaConfig {
         factory.getContainerProperties().setPollTimeout(3000);
         return factory;
     }
-
 
 }
