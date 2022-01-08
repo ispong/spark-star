@@ -3,6 +3,8 @@ package com.isxcode.star.common.properties;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.Map;
+
 @Data
 @ConfigurationProperties("star.node")
 public class StarNodeProperties {
@@ -21,4 +23,6 @@ public class StarNodeProperties {
      * 插件服务器密钥
      */
     private String key;
+
+    private Map<String, String> kafkaConfig;
 }

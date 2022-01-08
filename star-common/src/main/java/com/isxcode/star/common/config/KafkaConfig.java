@@ -1,4 +1,4 @@
-package com.isxcode.star.template.config;
+package com.isxcode.star.common.config;
 
 import com.isxcode.star.common.properties.StarPluginProperties;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

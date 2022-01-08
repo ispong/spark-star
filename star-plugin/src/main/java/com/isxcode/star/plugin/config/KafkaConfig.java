@@ -40,7 +40,7 @@ public class KafkaConfig {
     @Bean
     public NewTopic starTopic() {
 
-        return TopicBuilder.name(starPluginProperties.getKafkaConfig().get(KafkaConfigConstants.TOPIC_NAME))
+        return TopicBuilder.name(KafkaConfigConstants.DEFAULT_TOPIC_NAME)
             .partitions(Integer.parseInt(starPluginProperties.getKafkaConfig().get(KafkaConfigConstants.PARTITIONS)))
             .replicas(Integer.parseInt(starPluginProperties.getKafkaConfig().get(KafkaConfigConstants.REPLICATION_FACTOR)))
             .compact()
