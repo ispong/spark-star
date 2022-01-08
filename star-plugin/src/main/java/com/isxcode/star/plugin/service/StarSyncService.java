@@ -56,6 +56,7 @@ public class StarSyncService {
                 default:
             }
         } catch (StarException e) {
+            log.debug(e.getCode() + e.getMsg() + e.getMessage());
             StarResponse starResponse = new StarResponse(e.getCode(), e.getMsg());
             kafkaTemplate.send(starPluginProperties.getKafkaConfig().get(KafkaConfigConstants.TOPIC_NAME), starRequest.getExecuteId(), JSON.toJSONString(starResponse));
         }
