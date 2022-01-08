@@ -31,7 +31,7 @@ class StarAsyncExceptionHandler implements AsyncUncaughtExceptionHandler {
         log.debug("异常信息：" + throwable.getMessage());
         log.debug("方法名字：" + method.getName());
         log.debug("请求参数:" + Arrays.toString(objects));
-        StarRequest starRequest = JSON.parseObject((String.valueOf(objects[0])), StarRequest.class);
+        StarRequest starRequest = JSON.parseObject((JSON.toJSONString(objects[0])), StarRequest.class);
         log.debug("请求体" + starRequest.toString());
 
         // 推送到kafka
