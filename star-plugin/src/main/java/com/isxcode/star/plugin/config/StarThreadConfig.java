@@ -1,8 +1,10 @@
 package com.isxcode.star.plugin.config;
 
+import com.isxcode.star.common.properties.StarPluginProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -13,6 +15,17 @@ import java.util.concurrent.Executor;
 @Configuration
 @EnableAsync
 public class StarThreadConfig implements AsyncConfigurer {
+
+    private final KafkaTemplate<String, String> kafkaTemplate;
+
+    private final StarPluginProperties starPluginProperties;
+
+    public StarThreadConfig(KafkaTemplate<String, String> kafkaTemplate,
+                            StarPluginProperties starPluginProperties) {
+
+        this.kafkaTemplate = kafkaTemplate;
+        this.starPluginProperties = starPluginProperties;
+    }
 
     @Override
     public Executor getAsyncExecutor() {
@@ -34,7 +47,7 @@ public class StarThreadConfig implements AsyncConfigurer {
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
 
-        return new StarAsyncExceptionHandler();
+        return new StarAsyncExceptionHandler(kafkaTemplate, starPluginProperties);
     }
 }
 
