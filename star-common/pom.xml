@@ -14,7 +14,7 @@
 
     <groupId>com.isxcode.star</groupId>
     <artifactId>star-common</artifactId>
-    <version>0.0.9-SNAPSHOT</version>
+    <version>0.0.10-SNAPSHOT</version>
     <name>star-common</name>
     <url>https://github.com/ispong/spark-star</url>
     <description>star-common</description>
