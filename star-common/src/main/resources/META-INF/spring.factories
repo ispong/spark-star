@@ -1,5 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.isxcode.star.common.config.StarAutoConfig,\
-  com.isxcode.star.common.config.KafkaConfig,\
-  com.isxcode.star.common.template.StarEventService
+  com.isxcode.star.common.config.KafkaConfig
 
 

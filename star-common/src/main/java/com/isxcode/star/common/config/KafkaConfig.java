@@ -1,9 +1,14 @@
 package com.isxcode.star.common.config;
 
 import com.isxcode.star.common.properties.StarNodeProperties;
+import com.isxcode.star.common.template.StarEventHandler;
+import com.isxcode.star.common.template.StarEventService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +22,7 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Configuration
 @EnableKafka
 @ConditionalOnClass(StarAutoConfig.class)
@@ -57,4 +63,19 @@ public class KafkaConfig {
         return factory;
     }
 
+    @Bean
+    @ConditionalOnMissingBean(StarEventHandler.class)
+    public StarEventHandler initStarEventHandler() {
+
+        return new StarEventHandler() {
+        };
+    }
+
+    @Bean
+    @ConditionalOnBean(StarEventHandler.class)
+    @ConditionalOnProperty(prefix = "star.node", name = "kafka-config")
+    public StarEventService initStarEventService() {
+
+        return new StarEventService(initStarEventHandler());
+    }
 }
