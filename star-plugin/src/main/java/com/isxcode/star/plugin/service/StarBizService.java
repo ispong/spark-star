@@ -5,7 +5,6 @@ import com.isxcode.star.common.pojo.dto.StarData;
 import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.plugin.exception.StarException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.spark.sql.SparkSession;
 import org.springframework.stereotype.Service;
 
 @Slf4j

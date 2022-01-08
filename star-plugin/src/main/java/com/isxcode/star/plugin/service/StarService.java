@@ -7,5 +7,4 @@ import org.springframework.stereotype.Service;
 public interface StarService {
 
     StarData querySql(String sql);
-
 }

@@ -11,16 +11,10 @@ import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.common.response.StarResponse;
 import com.isxcode.star.plugin.exception.StarException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * 所有的异步服务
@@ -89,32 +83,8 @@ public class StarSyncService {
         }
 
         log.debug("sparkSql开始执行");
-        StarData starData;
-        try {
-//            starData = starService.querySql(starRequest.getSql());
-            log.debug("sparkSql开始执行1");
-            Dataset<Row> rowDataset = sparkSession.sql(starRequest.getSql());
-            log.debug("sparkSql开始执行2");
-
-            String[] columns = rowDataset.columns();
-            StarData.StarDataBuilder starDataBuilder = StarData.builder().columnNames(Arrays.asList(columns));
-
-            List<List<String>> dataList = new ArrayList<>();
-            List<Row> rows = rowDataset.collectAsList();
-            rows.forEach(e -> {
-                List<String> metaData = new ArrayList<>();
-                for (int i = 0; i < e.size(); i++) {
-                    metaData.add(String.valueOf(e.get(i)));
-                }
-                dataList.add(metaData);
-            });
-
-            starData = starDataBuilder.dataList(dataList).build();
-            log.debug("sparkSql执行成功" + starData.toString());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
+        StarData starData = starService.querySql(starRequest.getSql());
+        log.debug("sparkSql结束执行");
 
         StarResponse starResponse = StarResponse.builder().code("200").message(MsgConstants.SUCCESS_RESPONSE_MSG).starData(starData).build();
         kafkaTemplate.send(starPluginProperties.getKafkaConfig().get(KafkaConfigConstants.TOPIC_NAME), starRequest.getExecuteId(), JSON.toJSONString(starResponse));
