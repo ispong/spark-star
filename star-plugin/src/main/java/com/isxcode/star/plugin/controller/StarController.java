@@ -32,6 +32,13 @@ public class StarController {
     @PostMapping(UrlConstants.EXECUTE_SQL_BY_KAFKA_URL)
     public StarData executeSqlByKafka(@RequestBody StarRequest starRequest) {
 
-        return starBizService.executeSyncWork(starRequest);
+        return starBizService.executeSyncWork(starRequest, UrlConstants.EXECUTE_SQL_BY_KAFKA_URL);
+    }
+
+    @SuccessResponse
+    @PostMapping(UrlConstants.EXECUTE_QUERY_SQL_BY_KAFKA_URL)
+    public StarData executeQuerySqlByKafka(@RequestBody StarRequest starRequest) {
+
+        return starBizService.executeSyncWork(starRequest, UrlConstants.EXECUTE_QUERY_SQL_BY_KAFKA_URL);
     }
 }

@@ -3,6 +3,8 @@ package com.isxcode.star.template.controller;
 import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.common.response.StarResponse;
 import com.isxcode.star.common.template.StarTemplate;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,7 @@ public class DemoController {
     private final StarTemplate starTemplate;
 
     public DemoController(StarTemplate starTemplate) {
+
         this.starTemplate = starTemplate;
     }
 
@@ -26,5 +29,11 @@ public class DemoController {
 
         StarResponse starResponse = starTemplate.build().executeSql(starRequest);
         System.out.println(starResponse.toString());
+    }
+
+    @KafkaListener(topics = "star-topic")
+    public void listen(ConsumerRecord<String, String> record) {
+
+        System.out.println("key" + record.key() + "value" + record.value());
     }
 }

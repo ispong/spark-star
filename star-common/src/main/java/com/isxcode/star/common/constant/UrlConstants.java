@@ -21,6 +21,11 @@ public interface UrlConstants {
     String EXECUTE_SQL_BY_KAFKA_URL = "/executeSqlByKafka";
 
     /**
+     * 直接执行返回sql 通过kafka事件推送
+     */
+    String EXECUTE_QUERY_SQL_BY_KAFKA_URL = "/executeQuerySqlByKafka";
+
+    /**
      * 执行sql并返回查询结果
      */
     String EXECUTE_QUERY_SQL_URL = "/executeQuerySql";
