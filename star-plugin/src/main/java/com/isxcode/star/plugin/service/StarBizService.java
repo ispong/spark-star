@@ -20,8 +20,11 @@ public class StarBizService {
 
     private final SparkSession sparkSession;
 
-    public StarBizService(SparkSession sparkSession) {
+    private final StarSyncService starSyncService;
 
+    public StarBizService(SparkSession sparkSession, StarSyncService starSyncService) {
+
+        this.starSyncService = starSyncService;
         this.sparkSession = sparkSession;
     }
 
@@ -52,4 +55,12 @@ public class StarBizService {
 
         return starDataBuilder.dataList(dataList).build();
     }
+
+    public StarData executeSyncWork(StarRequest starRequest) {
+
+        starSyncService.executeSqlByKafka(starRequest);
+
+        return StarData.builder().build();
+    }
+
 }

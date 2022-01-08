@@ -30,4 +30,9 @@ public class StarPluginProperties {
      * 服务器密钥
      */
     private String serverKey = "star-key";
+
+    /**
+     * 相关的kafka配置
+     */
+    private Map<String, String> kafkaConfig;
 }

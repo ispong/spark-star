@@ -12,9 +12,15 @@ star:
     server-key: star-key
     app-name: spark star session
     master: yarn-client
+    kafka-config:
+      bootstrap.servers: 192.168.66.66:30120
+      topic: star-topic
+      replication.factor: 1
+      partitions: 1
     spark-config:
       spark.ui.port: 30157
       hive.metastore.uris: thrift://dcloud-dev:30123
       spark.driver.memory: 1g
       spark.executor.memory: 4g
       spark.sql.storeAssignmentPolicy: LEGACY
+

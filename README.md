@@ -53,7 +53,7 @@ star:
 
 ```java
 @RestController
-@RequestMapping
+@RequestMapping("/demo")
 public class DemoController {
 
     private final StarTemplate starTemplate;
@@ -63,9 +63,14 @@ public class DemoController {
     }
 
     @GetMapping("/executeSql")
-    public StarResponse executeSql() {
+    public void submitSql() {
 
-        return starTemplate.build().executeSql("select * from demo limit 10");
+        StarRequest starRequest = StarRequest.builder()
+            .sql("select * from rd_dev.ispong_table limit 10")
+            .build();
+
+        StarResponse starResponse = starTemplate.build().executeSql(starRequest);
+        System.out.println(starResponse.toString());
     }
 }
 ```

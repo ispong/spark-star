@@ -12,4 +12,14 @@ public class StarRequest {
     private boolean hasReturn;
 
     private String sql;
+
+    private String database;
+
+    private Integer page;
+
+    private Integer pageSize;
+
+    private String tableName;
+
+    private Integer limit;
 }

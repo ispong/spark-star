@@ -1,6 +1,5 @@
 package com.isxcode.star.plugin.controller;
 
-
 import com.isxcode.star.common.constant.UrlConstants;
 import com.isxcode.star.common.pojo.dto.StarData;
 import com.isxcode.star.common.response.StarRequest;
@@ -22,13 +21,17 @@ public class StarController {
         this.starBizService = starBizService;
     }
 
-    /**
-     * 执行spark-sql
-     */
     @SuccessResponse
     @PostMapping(UrlConstants.EXECUTE_SQL_URL)
     public StarData executeSql(@RequestBody StarRequest starRequest) {
 
         return starBizService.executeSql(starRequest);
+    }
+
+    @SuccessResponse
+    @PostMapping(UrlConstants.EXECUTE_SQL_BY_KAFKA_URL)
+    public StarData executeSqlByKafka(@RequestBody StarRequest starRequest) {
+
+        return starBizService.executeSyncWork(starRequest);
     }
 }
