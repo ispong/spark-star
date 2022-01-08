@@ -2,8 +2,10 @@ package com.isxcode.star.common.response;
 
 import com.isxcode.star.common.exception.StarExceptionEnum;
 import com.isxcode.star.common.pojo.dto.StarData;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * star 请求返回体
