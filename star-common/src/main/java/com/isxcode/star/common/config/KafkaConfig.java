@@ -3,6 +3,7 @@ package com.isxcode.star.common.config;
 import com.isxcode.star.common.properties.StarNodeProperties;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 @Configuration
 @EnableKafka
+@ConditionalOnClass(StarAutoConfig.class)
 public class KafkaConfig {
 
     private final StarNodeProperties starNodeProperties;
@@ -50,4 +52,6 @@ public class KafkaConfig {
         factory.getContainerProperties().setPollTimeout(3000);
         return factory;
     }
+
+
 }

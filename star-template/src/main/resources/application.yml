@@ -6,6 +6,6 @@ star:
     host: 39.103.230.188
     port: 30156
     key: star-key
-  kafka-config:
-    bootstrap.servers: 39.103.230.188:30120
-    group.id: test-consumer-group
+    kafka-config:
+      bootstrap.servers: 39.103.230.188:30120
+      group.id: test-consumer-group

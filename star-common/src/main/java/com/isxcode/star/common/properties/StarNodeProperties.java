@@ -24,5 +24,8 @@ public class StarNodeProperties {
      */
     private String key;
 
+    /**
+     * kafka topic相干配置
+     */
     private Map<String, String> kafkaConfig;
 }
