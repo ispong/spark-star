@@ -83,7 +83,13 @@ public class StarSyncService {
         }
 
         log.debug("sparkSql开始执行");
-        StarData starData = starService.querySql(starRequest.getSql());
+        StarData starData;
+        try {
+            starData = starService.querySql(starRequest.getSql());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
         log.debug("sparkSql执行成功" + starData.toString());
         StarResponse starResponse = StarResponse.builder().code("200").message(MsgConstants.SUCCESS_RESPONSE_MSG).starData(starData).build();
         kafkaTemplate.send(starPluginProperties.getKafkaConfig().get(KafkaConfigConstants.TOPIC_NAME), starRequest.getExecuteId(), JSON.toJSONString(starResponse));
