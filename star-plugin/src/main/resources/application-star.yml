@@ -13,7 +13,7 @@ star:
     app-name: spark star session
     master: yarn-client
     kafka-config:
-      bootstrap.servers: 192.168.66.66:30120
+      bootstrap.servers: 39.103.230.188:30120
       topic: star-topic
       replication.factor: 1
       partitions: 1
