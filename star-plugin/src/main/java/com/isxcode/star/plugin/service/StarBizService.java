@@ -5,28 +5,20 @@ import com.isxcode.star.common.pojo.dto.StarData;
 import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.plugin.exception.StarException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Slf4j
 @Service
 public class StarBizService {
 
-    private final SparkSession sparkSession;
 
     private final StarService starService;
 
     private final StarSyncService starSyncService;
 
-    public StarBizService(SparkSession sparkSession, StarService starService,
+    public StarBizService(StarService starService,
                           StarSyncService starSyncService) {
-        this.sparkSession = sparkSession;
 
         this.starService = starService;
         this.starSyncService = starSyncService;
@@ -34,28 +26,11 @@ public class StarBizService {
 
     public StarData executeSql(StarRequest starRequest) {
 
-        // 关键字检测
         if (starRequest.getSql() == null) {
             throw new StarException(StarExceptionEnum.REQUEST_VALUE_EMPTY);
         }
 
-        Dataset<Row> rowDataset = sparkSession.sql(starRequest.getSql());
-
-        String[] columns = rowDataset.columns();
-        StarData.StarDataBuilder starDataBuilder = StarData.builder().columnNames(Arrays.asList(columns));
-
-        List<List<String>> dataList = new ArrayList<>();
-        List<Row> rows = rowDataset.collectAsList();
-        rows.forEach(e -> {
-            List<String> metaData = new ArrayList<>();
-            for (int i = 0; i < e.size(); i++) {
-                metaData.add(String.valueOf(e.get(i)));
-            }
-            dataList.add(metaData);
-        });
-
-        return starDataBuilder.dataList(dataList).build();
-
+        return starService.querySql(starRequest.getSql());
     }
 
     public StarData executeSyncWork(StarRequest starRequest, String url) {
