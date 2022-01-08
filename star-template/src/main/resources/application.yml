@@ -9,3 +9,9 @@ star:
     kafka-config:
       bootstrap.servers: 39.103.230.188:30120
       group.id: test-consumer-group
+
+logging:
+  level:
+    star: debug
+  group:
+    star: com.isxcode.star

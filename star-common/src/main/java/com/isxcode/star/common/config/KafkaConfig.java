@@ -19,6 +19,7 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +29,9 @@ import java.util.Map;
 @ConditionalOnClass(StarAutoConfig.class)
 public class KafkaConfig {
 
+    @Resource
+    private StarEventHandler starEventHandler;
+
     private final StarNodeProperties starNodeProperties;
 
     public KafkaConfig(StarNodeProperties starNodeProperties) {
@@ -36,7 +40,7 @@ public class KafkaConfig {
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "star.node", name = "kafka-config")
+    @ConditionalOnProperty(prefix = "star.node.kafka-config", name = "bootstrap.servers")
     public Map<String, Object> consumerConfigs() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, starNodeProperties.getKafkaConfig().get(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG));
@@ -47,13 +51,13 @@ public class KafkaConfig {
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "star.node", name = "kafka-config")
+    @ConditionalOnProperty(prefix = "star.node.kafka-config", name = "bootstrap.servers")
     public ConsumerFactory<String, String> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(consumerConfigs());
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "star.node", name = "kafka-config")
+    @ConditionalOnProperty(prefix = "star.node.kafka-config", name = "bootstrap.servers")
     KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>>
     kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
@@ -67,15 +71,17 @@ public class KafkaConfig {
     @ConditionalOnMissingBean(StarEventHandler.class)
     public StarEventHandler initStarEventHandler() {
 
+        log.debug("初始化 StarEventHandler");
         return new StarEventHandler() {
         };
     }
 
     @Bean
     @ConditionalOnBean(StarEventHandler.class)
-    @ConditionalOnProperty(prefix = "star.node", name = "kafka-config")
+    @ConditionalOnProperty(prefix = "star.node.kafka-config", name = "bootstrap.servers")
     public StarEventService initStarEventService() {
 
-        return new StarEventService(initStarEventHandler());
+        log.debug("初始化 StarEventService");
+        return new StarEventService(starEventHandler);
     }
 }

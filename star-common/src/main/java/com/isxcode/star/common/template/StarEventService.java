@@ -9,7 +9,6 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Slf4j
-@Service
 public class StarEventService {
 
     private final StarEventHandler starEventHandler;
@@ -24,6 +23,7 @@ public class StarEventService {
 
         String executeId = record.key();
         StarResponse starResponse = JSON.parseObject(record.value(), StarResponse.class);
+        log.debug("监听到的返回数据 executeId：" + executeId + "starResponse:" + starResponse.toString());
 
         starEventHandler.subscribeEvent(executeId, starResponse);
     }
