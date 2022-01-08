@@ -10,6 +10,7 @@ import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.kafka.core.KafkaTemplate;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 @Slf4j
 class StarAsyncExceptionHandler implements AsyncUncaughtExceptionHandler {
@@ -29,7 +30,8 @@ class StarAsyncExceptionHandler implements AsyncUncaughtExceptionHandler {
         log.debug("线程异常");
         log.debug("异常信息：" + throwable.getMessage());
         log.debug("方法名字：" + method.getName());
-        StarRequest starRequest = JSON.parseObject((String) objects[0], StarRequest.class);
+        log.debug("请求参数:" + Arrays.toString(objects));
+        StarRequest starRequest = JSON.parseObject((String.valueOf(objects[0])), StarRequest.class);
         log.debug("请求体" + starRequest.toString());
 
         // 推送到kafka
