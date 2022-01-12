@@ -5,7 +5,10 @@ import com.isxcode.star.common.pojo.dto.StarData;
 import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.plugin.exception.StarException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.spark.launcher.SparkLauncher;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Slf4j
 @Service
