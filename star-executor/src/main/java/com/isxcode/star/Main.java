@@ -7,8 +7,8 @@ public class Main {
     public static void main(String[] args) {
 
         SparkSession spark = SparkSession.builder()
-            .appName("")
-            .master("")
+            .appName("star app")
+            .master("yarn")
             .config("spark.ui.port", "30157")
             .config("hive.metastore.uris","thrift://dcloud-dev:30123")
             .config("spark.driver.memory","1g")
