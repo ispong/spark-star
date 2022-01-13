@@ -74,22 +74,25 @@ public class StarSyncService {
             .setDeployMode(starPluginProperties.getDeployMode())
             .setVerbose(true)
             .setMainClass("com.isxcode.star.Main")
-            .setAppResource("../plugins/stat-executor.jar");
+            .setAppResource("../plugins/stat-executor.jar")
+            .addAppArgs("");
 
         starPluginProperties.getSparkConfig().forEach(sparkLauncher::setConf);
 
         try {
             Process launch = sparkLauncher.launch();
             InputStream inputStream = launch.getInputStream();
-            String logs = new BufferedReader(new InputStreamReader(inputStream)).lines().collect(Collectors.joining("\n"));
-            log.debug("========================> log" + logs);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String tmp;
+            log.debug("========================> log");
+            while ((tmp = bufferedReader.readLine()) != null) {
+                log.debug(tmp);
+            }
         } catch (IOException e) {
             log.debug(e.getMessage());
             throw new StarException(StarExceptionEnum.SPARK_LAUNCHER_ERROR);
         }
-
         log.debug("将结果推送kafka");
-
         StarResponse starResponse = new StarResponse("200", MsgConstants.SUCCESS_RESPONSE_MSG);
         kafkaTemplate.send(KafkaConfigConstants.DEFAULT_TOPIC_NAME, starRequest.getExecuteId(), JSON.toJSONString(starResponse));
     }
