@@ -24,7 +24,10 @@ public class Main {
 
         Dataset<Row> rowDataset = spark.sql("select * from rd_dev.ispong_table");
 
-        rowDataset.write().mode(SaveMode.Append).insertInto("tmp.ispong_table");
+        rowDataset.write()
+            .format("hive")
+            .mode(SaveMode.Append)
+            .saveAsTable("tmp.ispong_table");
 
         spark.stop();
     }
