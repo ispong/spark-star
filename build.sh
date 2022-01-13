@@ -7,17 +7,17 @@ mkdir -p "$STAR_BUILD_DIR"
 
 # 复制bin文件夹
 mkdir -p "$STAR_BUILD_DIR"/bin
-cp ./star-plugin/bin/* "$STAR_BUILD_DIR"/
+cp ./star-plugin/bin/* "$STAR_BUILD_DIR"/bin
 
 # 复制conf文件夹
 mkdir -p "$STAR_BUILD_DIR"/conf
-cp ./star-plugin/conf/* "$STAR_BUILD_DIR"/
+cp ./star-plugin/conf/* "$STAR_BUILD_DIR"/conf
 
 # 创建log文件夹
 mkdir -p "$STAR_BUILD_DIR"/log
 
 # 打包
-mvn clean package
+mvn clean package -Dmaven.test.skip -pl star-common,star-plugin,star-executor
 
 # 创建lib文件夹
 mkdir -p "$STAR_BUILD_DIR"/lib
