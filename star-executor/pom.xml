@@ -161,4 +161,7 @@
 
     </dependencies>
 
+    <build>
+        <finalName>flink-executor</finalName>
+    </build>
 </project>

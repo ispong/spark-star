@@ -1,14 +1,26 @@
-# 构建一个插件依赖
+# 创建star文件
+STAR_BUILD_DIR=./star
+if [ -d "$STAR_BUILD_DIR" ]; then
+    rm -rf "$STAR_BUILD_DIR"
+fi
+mkdir -p "$STAR_BUILD_DIR"
 
-# 创建build 存在则删除
+# 复制bin文件夹
+cp ./star-plugin/bin "$STAR_BUILD_DIR"/
 
-# 构建 bin conf lib log plugins
+# 复制conf文件夹
+cp ./star-plugin/conf "$STAR_BUILD_DIR"/
 
-# 将bin脚本复制到bin种
+# 创建log文件夹
+mkdir -p "$STAR_BUILD_DIR"/log
 
-# 将conf中复制 star-site.xml  star-plugin.properties
+# 打包
+mvn clean package
 
-# 将star中的executor的jar 复制到plugins中
+# 创建lib文件夹
+mkdir -p "$STAR_BUILD_DIR"/lib
+cp ./star-plugin/target/star-plugin.jar "$STAR_BUILD_DIR"/lib/star-plugin.jar
 
-# 将plugin中的jar 复制到lib中
-
+# 创建plugins文件夹
+mkdir -p "$STAR_BUILD_DIR"/plugins
+cp ./star-executor/target/flink-executor.jar "$STAR_BUILD_DIR"/plugins/flink-executor.jar

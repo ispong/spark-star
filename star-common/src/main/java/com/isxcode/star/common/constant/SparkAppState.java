@@ -9,4 +9,6 @@ public interface SparkAppState {
     String RUNNING = "RUNNING";
 
     String FINISHED = "FINISHED";
+
+    String KILLED = "KILLED";
 }
