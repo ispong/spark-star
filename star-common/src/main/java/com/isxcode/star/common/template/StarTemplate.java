@@ -1,11 +1,11 @@
 package com.isxcode.star.common.template;
 
-import com.isxcode.oxygen.core.http.HttpUtils;
 import com.isxcode.star.common.constant.SecurityConstants;
 import com.isxcode.star.common.constant.UrlConstants;
-import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.common.properties.StarNodeProperties;
+import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.common.response.StarResponse;
+import com.isxcode.star.common.utils.HttpUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

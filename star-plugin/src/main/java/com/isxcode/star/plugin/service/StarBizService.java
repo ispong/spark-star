@@ -1,38 +1,19 @@
 package com.isxcode.star.plugin.service;
 
-import com.isxcode.star.common.exception.StarExceptionEnum;
 import com.isxcode.star.common.pojo.dto.StarData;
 import com.isxcode.star.common.response.StarRequest;
-import com.isxcode.star.plugin.exception.StarException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.spark.launcher.SparkLauncher;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 
 @Slf4j
 @Service
 public class StarBizService {
 
-
-    private final StarService starService;
-
     private final StarSyncService starSyncService;
 
-    public StarBizService(StarService starService,
-                          StarSyncService starSyncService) {
-
-        this.starService = starService;
+    public StarBizService(StarSyncService starSyncService) {
+        
         this.starSyncService = starSyncService;
-    }
-
-    public StarData executeSql(StarRequest starRequest) {
-
-        if (starRequest.getSql() == null) {
-            throw new StarException(StarExceptionEnum.REQUEST_VALUE_EMPTY);
-        }
-
-        return starService.querySql(starRequest.getSql());
     }
 
     public StarData executeSyncWork(StarRequest starRequest, String url) {

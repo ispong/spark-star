@@ -22,6 +22,11 @@ public class StarPluginProperties {
     private String master = "local";
 
     /**
+     * 部署模式
+     */
+    private String deployMode = "cluster";
+
+    /**
      * 额外的配置
      */
     private Map<String, String> sparkConfig;

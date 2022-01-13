@@ -14,7 +14,7 @@
 
     <groupId>com.isxcode.star</groupId>
     <artifactId>star-common</artifactId>
-    <version>0.0.16-SNAPSHOT</version>
+    <version>0.0.17-SNAPSHOT</version>
     <name>star-common</name>
     <url>https://github.com/ispong/spark-star</url>
     <description>star-common</description>
@@ -25,7 +25,6 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <isxcode.version>0.12.8</isxcode.version>
         <log4j.version>2.17.1</log4j.version>
         <lombok.version>1.18.22</lombok.version>
     </properties>
@@ -63,11 +62,6 @@
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.isxcode.oxygen</groupId>
-            <artifactId>spring-oxygen-core</artifactId>
-            <version>${isxcode.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

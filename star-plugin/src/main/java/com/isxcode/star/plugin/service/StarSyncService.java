@@ -5,16 +5,21 @@ import com.isxcode.star.common.constant.KafkaConfigConstants;
 import com.isxcode.star.common.constant.MsgConstants;
 import com.isxcode.star.common.constant.UrlConstants;
 import com.isxcode.star.common.exception.StarExceptionEnum;
-import com.isxcode.star.common.pojo.dto.StarData;
 import com.isxcode.star.common.properties.StarPluginProperties;
 import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.common.response.StarResponse;
 import com.isxcode.star.plugin.exception.StarException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.spark.sql.SparkSession;
+import org.apache.spark.launcher.SparkLauncher;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.stream.Collectors;
 
 /**
  * 所有的异步服务
@@ -23,20 +28,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class StarSyncService {
 
-    private final SparkSession sparkSession;
-
     private final StarPluginProperties starPluginProperties;
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     private final StarService starService;
 
-    public StarSyncService(SparkSession sparkSession,
-                           StarPluginProperties starPluginProperties,
+    public StarSyncService(StarPluginProperties starPluginProperties,
                            KafkaTemplate<String, String> kafkaTemplate,
                            StarService starService) {
 
-        this.sparkSession = sparkSession;
         this.starPluginProperties = starPluginProperties;
         this.kafkaTemplate = kafkaTemplate;
         this.starService = starService;
@@ -47,11 +48,8 @@ public class StarSyncService {
 
         try {
             switch (url) {
-                case UrlConstants.EXECUTE_SQL_BY_KAFKA_URL:
-                    executeSqlByKafka(starRequest);
-                    break;
-                case UrlConstants.EXECUTE_QUERY_SQL_BY_KAFKA_URL:
-                    executeQuerySqlByKafka(starRequest);
+                case UrlConstants.EXECUTE_SQL_URL:
+                    executeSql(starRequest);
                     break;
                 default:
             }
@@ -62,31 +60,38 @@ public class StarSyncService {
         }
     }
 
-    public void executeSqlByKafka(StarRequest starRequest) {
+    public void executeSql(StarRequest starRequest) {
 
         if (starRequest.getExecuteId() == null) {
             throw new StarException(StarExceptionEnum.REQUEST_VALUE_EMPTY);
         }
 
         log.debug("开始执行sparkSql");
-        sparkSession.sql(starRequest.getSql());
+
+        SparkLauncher sparkLauncher = new SparkLauncher()
+            .setMaster(starPluginProperties.getMaster())
+            .setAppName("spark-star app")
+            .setDeployMode(starPluginProperties.getDeployMode())
+            .setVerbose(true)
+            .setMainClass("com.isxcode.star.Main")
+            .setAppResource("../plugins/stat-executor.jar");
+
+        starPluginProperties.getSparkConfig().forEach(sparkLauncher::setConf);
+
+        try {
+            Process launch = sparkLauncher.launch();
+            InputStream inputStream = launch.getInputStream();
+            String logs = new BufferedReader(new InputStreamReader(inputStream)).lines().collect(Collectors.joining("\n"));
+            log.debug("========================> log" + logs);
+        } catch (IOException e) {
+            log.debug(e.getMessage());
+            throw new StarException(StarExceptionEnum.SPARK_LAUNCHER_ERROR);
+        }
+
         log.debug("将结果推送kafka");
 
         StarResponse starResponse = new StarResponse("200", MsgConstants.SUCCESS_RESPONSE_MSG);
         kafkaTemplate.send(KafkaConfigConstants.DEFAULT_TOPIC_NAME, starRequest.getExecuteId(), JSON.toJSONString(starResponse));
     }
 
-    public void executeQuerySqlByKafka(StarRequest starRequest) {
-
-        if (starRequest.getExecuteId() == null) {
-            throw new StarException(StarExceptionEnum.REQUEST_VALUE_EMPTY);
-        }
-
-        log.debug("sparkSql开始执行");
-        StarData starData = starService.querySql(starRequest.getSql());
-        log.debug("sparkSql结束执行");
-
-        StarResponse starResponse = StarResponse.builder().code("200").message(MsgConstants.SUCCESS_RESPONSE_MSG).starData(starData).build();
-        kafkaTemplate.send(KafkaConfigConstants.DEFAULT_TOPIC_NAME, starRequest.getExecuteId(), JSON.toJSONString(starResponse));
-    }
 }
