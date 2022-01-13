@@ -29,16 +29,17 @@ public class StarController {
     }
 
     @SuccessResponse
-    @PostMapping(UrlConstants.EXECUTE_SQL_BY_KAFKA_URL)
-    public StarData executeSqlByKafka(@RequestBody StarRequest starRequest) {
+    @PostMapping(UrlConstants.GET_JOB_LOG_URL)
+    public StarData getJobLog(@RequestBody StarRequest starRequest) {
 
-        return starBizService.executeSyncWork(starRequest, UrlConstants.EXECUTE_SQL_BY_KAFKA_URL);
+        return starBizService.getJobLog(starRequest);
     }
 
     @SuccessResponse
-    @PostMapping(UrlConstants.EXECUTE_QUERY_SQL_BY_KAFKA_URL)
-    public StarData executeQuerySqlByKafka(@RequestBody StarRequest starRequest) {
+    @PostMapping(UrlConstants.STOP_JOB_URL)
+    public StarData stopJob(@RequestBody StarRequest starRequest) {
 
-        return starBizService.executeSyncWork(starRequest, UrlConstants.EXECUTE_QUERY_SQL_BY_KAFKA_URL);
+        return starBizService.stopJob(starRequest);
     }
+
 }

@@ -3,8 +3,10 @@ package com.isxcode.star.plugin.service;
 import com.alibaba.fastjson.JSON;
 import com.isxcode.star.common.constant.KafkaConfigConstants;
 import com.isxcode.star.common.constant.MsgConstants;
+import com.isxcode.star.common.constant.SparkAppState;
 import com.isxcode.star.common.constant.UrlConstants;
 import com.isxcode.star.common.exception.StarExceptionEnum;
+import com.isxcode.star.common.pojo.dto.StarData;
 import com.isxcode.star.common.properties.StarPluginProperties;
 import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.common.response.StarResponse;
@@ -84,18 +86,24 @@ public class StarSyncService {
             sparkLauncher.startApplication(new SparkAppHandle.Listener() {
                 @Override
                 public void stateChanged(SparkAppHandle sparkAppHandle) {
-                    log.debug("stateChanged  appId" + sparkAppHandle.getAppId() + ": state:" + sparkAppHandle.getState());
+                    StarResponse starResponse = new StarResponse(MsgConstants.SUCCESS_CODE, MsgConstants.SUCCESS_RESPONSE_MSG, StarData.builder().appState(sparkAppHandle.getState().toString()).build());
+                    kafkaTemplate.send(KafkaConfigConstants.DEFAULT_TOPIC_NAME, starRequest.getExecuteId(), JSON.toJSONString(starResponse));
                 }
-
                 @Override
                 public void infoChanged(SparkAppHandle sparkAppHandle) {
-                    log.debug("infoChanged  appId" + sparkAppHandle.getAppId() + ": state:" + sparkAppHandle.getState());
+                    if (SparkAppState.CONNECTED.equals(sparkAppHandle.getState().toString())) {
+                        StarResponse starResponse = new StarResponse(MsgConstants.SUCCESS_CODE, MsgConstants.SUCCESS_RESPONSE_MSG, StarData.builder().appId(sparkAppHandle.getAppId()).build());
+                        kafkaTemplate.send(KafkaConfigConstants.DEFAULT_TOPIC_NAME, starRequest.getExecuteId(), JSON.toJSONString(starResponse));
+                    }
                 }
             });
         } catch (IOException e) {
             log.debug(e.getMessage());
             throw new StarException(StarExceptionEnum.SPARK_LAUNCHER_ERROR);
         }
+
+        // 查询spark中数据
+
 
         log.debug("将结果推送kafka");
         StarResponse starResponse = new StarResponse("200", MsgConstants.SUCCESS_RESPONSE_MSG);

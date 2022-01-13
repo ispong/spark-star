@@ -73,6 +73,17 @@ public class StarTemplate {
             return requestAcornServer(executeUrl, starRequest);
         }
 
+        public StarResponse getLog(StarRequest starRequest) {
+
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.GET_JOB_LOG_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
+            return requestAcornServer(executeUrl, starRequest);
+        }
+
+        public StarResponse stopJob(StarRequest starRequest) {
+
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.STOP_JOB_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
+            return requestAcornServer(executeUrl, starRequest);
+        }
     }
 
 }

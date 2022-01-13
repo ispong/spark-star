@@ -16,4 +16,10 @@ public class StarData {
     private List<String> columnNames;
 
     private List<List<String>> dataList;
+
+    private String appId;
+
+    private String appState;
+
+    private String log;
 }
