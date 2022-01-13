@@ -50,7 +50,7 @@ public class StarBizService {
             throw new StarException(StarExceptionEnum.REQUEST_VALUE_EMPTY);
         }
 
-        String killJobCommand = "yarn application -kill" + starRequest.getAppId();
+        String killJobCommand = "yarn application -kill " + starRequest.getAppId();
         try {
             CommandUtils.executeNoBackCommand(killJobCommand);
             return StarData.builder().build();

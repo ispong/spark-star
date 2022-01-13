@@ -32,24 +32,25 @@ public class DemoController {
     }
 
     @GetMapping("/getLog")
-    public void getLog(@RequestParam String appId) {
+    public String getLog(@RequestParam String appId) {
 
         StarRequest starRequest = StarRequest.builder()
             .appId(appId)
             .build();
 
         StarResponse starResponse = starTemplate.build().getLog(starRequest);
-        System.out.println(starResponse.toString());
+        return starResponse.toString();
     }
 
     @GetMapping("/stopJob")
-    public void stopJob(@RequestParam String appId) {
+    public String stopJob(@RequestParam String appId) {
 
         StarRequest starRequest = StarRequest.builder()
             .appId(appId)
             .build();
 
         StarResponse starResponse = starTemplate.build().stopJob(starRequest);
-        System.out.println(starResponse.toString());
+        return starResponse.toString();
     }
+
 }
