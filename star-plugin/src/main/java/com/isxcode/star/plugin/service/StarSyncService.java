@@ -10,6 +10,7 @@ import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.common.response.StarResponse;
 import com.isxcode.star.plugin.exception.StarException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.spark.launcher.SparkAppHandle;
 import org.apache.spark.launcher.SparkLauncher;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Async;
@@ -80,18 +81,23 @@ public class StarSyncService {
         starPluginProperties.getSparkConfig().forEach(sparkLauncher::setConf);
 
         try {
-            Process launch = sparkLauncher.launch();
-            InputStream inputStream = launch.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-            String tmp;
-            log.debug("========================> log");
-            while ((tmp = bufferedReader.readLine()) != null) {
-                log.debug(tmp);
-            }
+            sparkLauncher.startApplication(new SparkAppHandle.Listener() {
+
+                @Override
+                public void stateChanged(SparkAppHandle sparkAppHandle) {
+                    log.debug("appId" + sparkAppHandle.getAppId());
+                }
+
+                @Override
+                public void infoChanged(SparkAppHandle sparkAppHandle) {
+
+                }
+            });
         } catch (IOException e) {
             log.debug(e.getMessage());
             throw new StarException(StarExceptionEnum.SPARK_LAUNCHER_ERROR);
         }
+
         log.debug("将结果推送kafka");
         StarResponse starResponse = new StarResponse("200", MsgConstants.SUCCESS_RESPONSE_MSG);
         kafkaTemplate.send(KafkaConfigConstants.DEFAULT_TOPIC_NAME, starRequest.getExecuteId(), JSON.toJSONString(starResponse));
