@@ -6,10 +6,12 @@ fi
 mkdir -p "$STAR_BUILD_DIR"
 
 # 复制bin文件夹
-cp ./star-plugin/bin "$STAR_BUILD_DIR"/
+mkdir -p "$STAR_BUILD_DIR"/bin
+cp ./star-plugin/bin/* "$STAR_BUILD_DIR"/
 
 # 复制conf文件夹
-cp ./star-plugin/conf "$STAR_BUILD_DIR"/
+mkdir -p "$STAR_BUILD_DIR"/conf
+cp ./star-plugin/conf/* "$STAR_BUILD_DIR"/
 
 # 创建log文件夹
 mkdir -p "$STAR_BUILD_DIR"/log
