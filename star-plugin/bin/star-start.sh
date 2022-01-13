@@ -1,12 +1,5 @@
 #!/bin/bash
 
-# 获取环境变量
-ENV=star
-for key in "$@"
-do
-    ENV=${key#*=}
-done
-
 # mvn打包
 POM_PATH=../pom.xml
 mvn clean package -f "${POM_PATH}" || exit
@@ -24,24 +17,13 @@ if [ _"${STAR_PID}" != _ ];then
   kill -9 "${STAR_PID}"
 fi
 
-# 如果日志文件不存在则创建
-STAR_LOG_DIR=~/star-plugin/
-if [ ! -d "$STAR_LOG_DIR" ]; then
-    mkdir -p "$STAR_LOG_DIR"
-fi
-STAR_LOG=~/star-plugin/star-plugin.log
+# 创建日志文件
+STAR_LOG=../log/star-plugin.log
 if [ ! -f "$STAR_LOG" ]; then
     touch "$STAR_LOG"
 fi
 
-# 重新解压把环境变量放到jar中
-mkdir -p ../target/build
-unzip ../target/star-plugin.jar -d ../target/build/
-cp /data/cdh/cloudera/parcels/CDH/lib/hadoop/etc/hadoop/*.xml ../target/build/BOOT-INF/classes/
-cd ../target/build/ || exit
-jar -cvfM0 ../star-plugin.jar ./*
-
 # 启动项目
-STAR_APP=../star-plugin.jar
-nohup java -jar -Xmx2048m "${STAR_APP}" --spring.profiles.active="${ENV}" >> "${STAR_LOG}" 2>&1 &
+STAR_APP=../lib/star-plugin.jar
+nohup java -jar -Xmx2048m "${STAR_APP}" --spring.profiles.active=star --spring.config.location=../conf/application-star.yml >> "${STAR_LOG}" 2>&1 &
 echo "部署成功"
