@@ -9,9 +9,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String args1 = args[0];
-        System.out.println(args1);
-
         SparkSession spark = SparkSession.builder()
             .appName("star app")
             .master("yarn")
