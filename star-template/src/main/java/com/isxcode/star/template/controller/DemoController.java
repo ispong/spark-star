@@ -22,6 +22,7 @@ public class DemoController {
     public void submitSql() {
 
         StarRequest starRequest = StarRequest.builder()
+            .executeId("123")
             .sql("select * from rd_dev.ispong_table limit 10")
             .build();
 

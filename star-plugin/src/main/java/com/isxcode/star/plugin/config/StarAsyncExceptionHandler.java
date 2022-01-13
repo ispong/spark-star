@@ -35,7 +35,7 @@ class StarAsyncExceptionHandler implements AsyncUncaughtExceptionHandler {
         log.debug("请求体" + starRequest.toString());
 
         // 推送到kafka
-        StarResponse starResponse = new StarResponse("500", starRequest.getExecuteId() + "任务异常");
+        StarResponse starResponse = new StarResponse("500", starRequest.getExecuteId() + "任务异常:" + throwable.getMessage());
         kafkaTemplate.send(KafkaConfigConstants.DEFAULT_TOPIC_NAME, starRequest.getExecuteId(), JSON.toJSONString(starResponse));
     }
 }
