@@ -82,15 +82,14 @@ public class StarSyncService {
 
         try {
             sparkLauncher.startApplication(new SparkAppHandle.Listener() {
-
                 @Override
                 public void stateChanged(SparkAppHandle sparkAppHandle) {
-                    log.debug("appId" + sparkAppHandle.getAppId());
+                    log.debug("stateChanged  appId" + sparkAppHandle.getAppId() + ": state:" + sparkAppHandle.getState());
                 }
 
                 @Override
                 public void infoChanged(SparkAppHandle sparkAppHandle) {
-
+                    log.debug("infoChanged  appId" + sparkAppHandle.getAppId() + ": state:" + sparkAppHandle.getState());
                 }
             });
         } catch (IOException e) {
