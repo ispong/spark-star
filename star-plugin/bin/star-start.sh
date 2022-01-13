@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# mvn打包
-POM_PATH=../pom.xml
-mvn clean package -f "${POM_PATH}" || exit
-
 # 关闭原有进程
 for metaResult in $(ps -e -o pid,command | grep star-plugin.jar)
 do
