@@ -22,4 +22,6 @@ public class StarData {
     private String appState;
 
     private String log;
+
+    private String eventType;
 }

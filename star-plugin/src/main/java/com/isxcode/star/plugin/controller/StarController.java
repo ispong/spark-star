@@ -22,10 +22,31 @@ public class StarController {
     }
 
     @SuccessResponse
-    @PostMapping(UrlConstants.EXECUTE_SQL_URL)
+    @PostMapping(UrlConstants.EXECUTE_URL)
     public StarData executeSql(@RequestBody StarRequest starRequest) {
 
-        return starBizService.executeSyncWork(starRequest, UrlConstants.EXECUTE_SQL_URL);
+        return starBizService.executeSyncWork(starRequest, UrlConstants.EXECUTE_URL);
+    }
+
+    @SuccessResponse
+    @PostMapping(UrlConstants.EXECUTE_QUERY_URL)
+    public StarData executeQuerySql(@RequestBody StarRequest starRequest) {
+
+        return starBizService.executeSyncWork(starRequest, UrlConstants.EXECUTE_QUERY_URL);
+    }
+
+    @SuccessResponse
+    @PostMapping(UrlConstants.EXECUTE_PAGE_QUERY_URL)
+    public StarData executePageQuerySql(@RequestBody StarRequest starRequest) {
+
+        return starBizService.executeSyncWork(starRequest, UrlConstants.EXECUTE_PAGE_QUERY_URL);
+    }
+
+    @SuccessResponse
+    @PostMapping(UrlConstants.EXECUTE_MULTI_SQL_URL)
+    public StarData executeMultiSql(@RequestBody StarRequest starRequest) {
+
+        return starBizService.executeSyncWork(starRequest, UrlConstants.EXECUTE_MULTI_SQL_URL);
     }
 
     @SuccessResponse

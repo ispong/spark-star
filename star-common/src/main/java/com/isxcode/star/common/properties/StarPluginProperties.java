@@ -14,7 +14,7 @@ public class StarPluginProperties {
     /**
      * 默认application name
      */
-    private String appName = "spark star application";
+    private String appName = "spark-star application";
 
     /**
      * 默认的配置 使用本地模式

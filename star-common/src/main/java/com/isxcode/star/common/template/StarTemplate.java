@@ -67,9 +67,27 @@ public class StarTemplate {
             }
         }
 
-        public StarResponse executeSql(StarRequest starRequest) {
+        public StarResponse execute(StarRequest starRequest) {
 
-            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_SQL_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
+            return requestAcornServer(executeUrl, starRequest);
+        }
+
+        public StarResponse executeQuery(StarRequest starRequest) {
+
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_QUERY_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
+            return requestAcornServer(executeUrl, starRequest);
+        }
+
+        public StarResponse executePageQuery(StarRequest starRequest) {
+
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_PAGE_QUERY_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
+            return requestAcornServer(executeUrl, starRequest);
+        }
+
+        public StarResponse executeMultiSql(StarRequest starRequest) {
+
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_MULTI_SQL_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
             return requestAcornServer(executeUrl, starRequest);
         }
 

@@ -11,9 +11,24 @@ public interface UrlConstants {
     String BASE_URL = "http://%s:%s/spark-star";
 
     /**
-     * 直接执行sql
+     * 直接执行sql 无返回结果
      */
-    String EXECUTE_SQL_URL = "/executeSql";
+    String EXECUTE_URL = "/execute";
+
+    /**
+     * 执行sql 有返回结果
+     */
+    String EXECUTE_QUERY_URL = "/executeQuery";
+
+    /**
+     * 执行sql 分页返回结果
+     */
+    String EXECUTE_PAGE_QUERY_URL = "/executePageQuery";
+
+    /**
+     * 执行多条sql 无返回结果
+     */
+    String EXECUTE_MULTI_SQL_URL = "/executeMultiSql";
 
     /**
      * 查询spark的日志

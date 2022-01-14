@@ -4,7 +4,15 @@ import com.isxcode.star.common.response.StarResponse;
 
 public interface StarEventHandler {
 
-    default void subscribeEvent(String executeId, StarResponse starResponse) {
+    default void queryResultEvent(String executeId, StarResponse starResponse) {
+
+    }
+
+    default void stateChangedEvent(String executeId, StarResponse starResponse) {
+
+    }
+
+    default void infoChangedEvent(String executeId, StarResponse starResponse) {
 
     }
 }

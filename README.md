@@ -2,28 +2,22 @@
     Spark Star
 </h1>
 
-<h3 align="center">
-    🌟 Spark集成Hive的服务器插件，通过Restful快速查询hive中数据。
-</h3>
+<h4 align="center">
+    通过插件的方式，实现对不同版本，不同服务器上的spark做统一的管理。
+</h4>
 
 <h4 align="center">
-    ✨✨✨ <a href="https://ispong.github.io/spark-star" >
-        https://ispong.github.io/spark-star
-    </a> ✨✨✨
+    ✨✨✨ <a href="https://ispong.github.io/spark-star">https://ispong.github.io/spark-star</a> ✨✨✨
 </h4>
 
 ### 📢 公告
 
-目前，仅支持**cdh-6.2.0**版本的spark模块，支持**spark on yarn**模式和**local**模式。
-
-### ✨ 模块说明
-
-| 模块                                                   | 状态                 | 说明                           |
-|------------------------------------------------------|--------------------|------------------------------|
-| [star-common](https://ispong.github.io/spark-star)   | :white_check_mark: | 提供一系列常规工具类，包括StarTemplate组件。 |
-| [star-plugin](https://ispong.github.io/spark-star)   | :white_check_mark: | 服务器插件本体。                     |
-| [star-template](https://ispong.github.io/spark-star) | :white_check_mark: | 客户端使用插件的模板。                  |
-| [demos](https://ispong.github.io/spark-star)         | :white_check_mark: | 各种spark相关的demo。              |
+支持版本：
+  - 2.4.0-cdh6.2.0
+  
+支持模式：
+  - YARN
+  - local
 
 ### 📒 相关文档
 
@@ -31,7 +25,7 @@
 - [开发者手册](https://ispong.github.io/flink-acorn/#/zh-cn/contributing)
 - [版本历史](https://ispong.github.io/flink-acorn/#/zh-cn/changelog)
 
-### 📦 安装使用
+### 📦 使用说明
 
 [![Maven Version](https://img.shields.io/maven-central/v/com.isxcode.star/star-common)](https://search.maven.org/artifact/com.isxcode.star/star-common)
 
@@ -46,9 +40,12 @@
 ```yaml
 star:
   node:
-    host: xxx.xxx.xxx.xxx
-    port: 30156
-    key: star-key
+    host: ${spark-server-host}
+    port: ${star-plugin-port}
+    key: ${star-plugin-key}
+    kafka-config:
+       bootstrap.servers: ${kafka-servers}
+       group.id: ${kafka-group-id}
 ```
 
 ```java
@@ -75,7 +72,11 @@ public class DemoController {
 }
 ```
 
+```java
+
+```
+
 ### 👏 社区开发
 
 欢迎一同维护开发，具体请参照[开发文档](https://github.com/ispong/spark-star/blob/main/CONTRIBUTING.md) 。
-如需加入我们，请联系邮箱 ispong@outlook.com 。
+如需加入我们，请联系邮箱 `ispong@outlook.com` 。

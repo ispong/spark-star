@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -17,6 +19,8 @@ public class StarRequest {
 
     private String sql;
 
+    private List<String> sqls;
+
     private String database;
 
     private Integer page;
@@ -25,7 +29,7 @@ public class StarRequest {
 
     private String tableName;
 
-    private Integer limit;
+    private Integer limit = 2000;
 
     private String appId;
 }

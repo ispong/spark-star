@@ -1,6 +1,12 @@
 server:
     port: 8888
 
+logging:
+  level:
+    star: debug
+  group:
+    star: com.isxcode.star
+
 star:
   node:
     host: 39.103.230.188
@@ -9,9 +15,3 @@ star:
     kafka-config:
       bootstrap.servers: 39.103.230.188:30120
       group.id: test-consumer-group
-
-logging:
-  level:
-    star: debug
-  group:
-    star: com.isxcode.star
