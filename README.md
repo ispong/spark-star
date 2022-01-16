@@ -41,9 +41,9 @@ star:
     port: 30156
     key: star-key
     kafka-config:
-       topic: spark-star-topic
-       bootstrap.servers: 127.0.0.1:9192
-       group.id: test-consumer-group
+      topic: spark-star-topic
+      bootstrap.servers: 127.0.0.1:9192
+      group.id: test-consumer-group
 ```
 
 ```java
