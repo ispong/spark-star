@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-    通过插件的方式，实现对不同版本，不同服务器上的spark做统一的管理。
+    通过服务器插件的形式，实现对不同服务器与不同版本的spark做统一管理。
 </h4>
 
 <h4 align="center">
@@ -12,16 +12,13 @@
 
 ### 📢 公告
 
-支持版本：
-  - 2.4.0-cdh6.2.0
-  
-支持模式：
-  - YARN
-  - local
+| 版本号          | Spark Standalone   | Mesos | YARN               | Kubernetes |
+|--------------|--------------------|-------|--------------------|------------|
+| 2.4.0(6.2.0) | :white_check_mark: | :x:   | :white_check_mark: | :x:        |
 
-### 📒 相关文档
+### 📒 文档
 
-- [快速使用入口](https://ispong.github.io/flink-acorn/#/zh-cn/start/%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8)
+- [快速使用](https://ispong.github.io/flink-acorn/#/zh-cn/quickstart)
 - [开发者手册](https://ispong.github.io/flink-acorn/#/zh-cn/contributing)
 - [版本历史](https://ispong.github.io/flink-acorn/#/zh-cn/changelog)
 

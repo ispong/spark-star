@@ -1,3 +1,11 @@
+if [ $# -lt 1 ];
+then
+        echo "USAGE: $0 [-daemon] server.properties [--override property=value]*"
+        exit 1
+fi
+base_dir=$(dirname $0)
+
+
 # 创建star文件
 STAR_BUILD_DIR=./star
 if [ -d "$STAR_BUILD_DIR" ]; then
