@@ -37,12 +37,13 @@
 ```yaml
 star:
   node:
-    host: ${spark-server-host}
-    port: ${star-plugin-port}
-    key: ${star-plugin-key}
+    host: 127.0.0.1
+    port: 30156
+    key: star-key
     kafka-config:
-       bootstrap.servers: ${kafka-servers}
-       group.id: ${kafka-group-id}
+       topic: spark-star-topic
+       bootstrap.servers: 127.0.0.1:9192
+       group.id: test-consumer-group
 ```
 
 ```java
