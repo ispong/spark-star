@@ -12,9 +12,9 @@
 
 ### 📢 公告
 
-| 版本号          | Spark Standalone   | Mesos | YARN               | Kubernetes |
-|--------------|--------------------|-------|--------------------|------------|
-| 2.4.0(6.2.0) | :white_check_mark: | :x:   | :white_check_mark: | :x:        |
+| 版本号              |  Spark Standalone  | Mesos |        YARN        | Kubernetes |
+|------------------|:------------------:|:-----:|:------------------:|:----------:|
+| 2.4.0(cdh-6.2.0) | :white_check_mark: |  :x:  | :white_check_mark: |    :x:     |
 
 ### 📒 文档
 
@@ -46,27 +46,17 @@ star:
 ```
 
 ```java
-@RestController
-@RequestMapping("/demo")
-public class DemoController {
+StarRequest starRequest = StarRequest.builder()
+    .executeId("1234567890")
+    .database("dev")
+    .sql("select * from demo_table limit 10")
+    .page(1)
+    .pageSize(10)
+    .key("name")
+    .build();
 
-    private final StarTemplate starTemplate;
-
-    public DemoController(StarTemplate starTemplate) {
-        this.starTemplate = starTemplate;
-    }
-
-    @GetMapping("/executeSql")
-    public void submitSql() {
-
-        StarRequest starRequest = StarRequest.builder()
-            .sql("select * from rd_dev.ispong_table limit 10")
-            .build();
-
-        StarResponse starResponse = starTemplate.build().executeSql(starRequest);
-        System.out.println(starResponse.toString());
-    }
-}
+StarResponse starResponse = starTemplate.build().executeSql(starRequest);
+System.out.println(starResponse.toString());
 ```
 
 ```java
