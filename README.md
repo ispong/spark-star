@@ -46,21 +46,24 @@ star:
 ```
 
 ```java
-StarRequest starRequest = StarRequest.builder()
-    .executeId("1234567890")
-    .database("dev")
-    .sql("select * from demo_table limit 10")
-    .page(1)
-    .pageSize(10)
-    .key("name")
-    .build();
+public class Demo{
+    
+    public void demo(){
 
-StarResponse starResponse = starTemplate.build().executeSql(starRequest);
-System.out.println(starResponse.toString());
-```
+        StarRequest starRequest = StarRequest.builder()
+            .executeId("1234567890")
+            .database("dev")
+            .sql("select * from demo_table")
+            .limit(100)
+            .page(1)
+            .pageSize(10)
+            .key("name")
+            .build();
 
-```java
-
+        StarResponse starResponse = starTemplate.build().executeSql(starRequest);
+        System.out.println(starResponse.toString());
+    }
+}
 ```
 
 ### 👏 社区开发
