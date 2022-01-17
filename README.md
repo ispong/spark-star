@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-    通过[Spring](https://spring.io/)插件的形式，实现对不同服务器与不同版本的[spark](https://spark.apache.org/)做统一管理。
+    通过`Spring`插件的形式，实现对不同服务器与不同版本的`spark`做统一管理。
 </h4>
 
 <h4 align="center">
