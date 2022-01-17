@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-    通过服务器插件的形式，实现对不同服务器与不同版本的spark做统一管理。
+    通过[Spring](https://spring.io/)插件的形式，实现对不同服务器与不同版本的[spark](https://spark.apache.org/)做统一管理。
 </h4>
 
 <h4 align="center">
@@ -19,8 +19,6 @@
 ### 📒 文档
 
 - [快速使用](https://ispong.github.io/flink-acorn/#/zh-cn/quickstart)
-- [开发者手册](https://ispong.github.io/flink-acorn/#/zh-cn/contributing)
-- [版本历史](https://ispong.github.io/flink-acorn/#/zh-cn/changelog)
 
 ### 📦 使用说明
 
@@ -61,7 +59,7 @@ public class Demo{
             .key("name")
             .build();
 
-        StarResponse starResponse = starTemplate.build().executeSql(starRequest);
+        StarResponse starResponse = starTemplate.build().execute(starRequest);
         System.out.println(starResponse.toString());
     }
 }

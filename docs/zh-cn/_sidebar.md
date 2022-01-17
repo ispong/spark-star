@@ -1,9 +1,12 @@
-- **开始使用**
-    - [总览](/zh-cn/start/总览.md)
+- [**开始**](#/README)
+    - [Flink Acorn 是什么](_homepage.md)
     - [快速使用](/zh-cn/start/快速使用.md)
-- **插件**
-    - 小栗子
-- **博客**
-    - 2021
-      - [Spark集群安装](/zh-cn/blogs/Spark集群安装.md)
-      - [Spark常用命令](/zh-cn/blogs/Spark常用命令.md)
+- [**使用手册**](_homepage.md)
+    - [插件部署](/zh-cn/reference/插件部署.md)
+    - [插件使用](/zh-cn/reference/插件使用.md)
+    - [插件离线部署](/zh-cn/reference/插件离线部署.md)
+- [**维护手册**](/zh-cn/contributing.md)
+- [**版本历史**](/zh-cn/changelog.md)
+- [**小火星博客**](_homepage.md)
+    - [Spark集群安装](/zh-cn/blogs/Spark集群安装.md)
+    - [Spark常用命令](/zh-cn/blogs/Spark常用命令.md)

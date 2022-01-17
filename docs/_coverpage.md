@@ -3,11 +3,8 @@
 <h1 align="center" style="font-weight: bold">
     Spark Star
 </h1>
-<h3 align="center" style="font-weight: bold">
-    黑星
-</h3>
 
-- 🌟 Spark集成Hive的服务器插件，通过Restful快速查询hive中数据。
+- ⭐ Spark + Spring 快速集成插件。
 
 <div class="buttons">
   <a href="https://github.com/ispong/spark-star/" target="_blank"><span>GitHub</span></a>
