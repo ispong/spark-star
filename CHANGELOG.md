@@ -1,3 +1,3 @@
-## 版本历史
+## CHANGELOG
 
-- https://ispong.github.io/spark-star/changelog
+- https://ispong.github.io/spark-star/zh-cn/changelog

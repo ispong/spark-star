@@ -1,5 +1,5 @@
 - [**开始**](#/README)
-    - [Flink Acorn 是什么](_homepage.md)
+    - [Spark Star 是什么](_homepage.md)
     - [快速使用](/zh-cn/start/快速使用.md)
 - [**使用手册**](_homepage.md)
     - [插件部署](/zh-cn/reference/插件部署.md)

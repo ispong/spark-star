@@ -72,11 +72,12 @@ public class StarSyncService {
 
         SparkLauncher sparkLauncher = new SparkLauncher()
             .setMaster(starPluginProperties.getMaster())
-            .setAppName(starPluginProperties.getAppName())
+            .setAppName(starPluginProperties.getAppNamePrefix() + starRequest.getExecuteId())
             .setVerbose(true)
-            .setMainClass("com.isxcode.star.Main")
-            .setAppResource("../plugins/stat-executor.jar")
-            .addAppArgs("");
+            .setMainClass(ExecutorMainClass.EXECUTE_MAIN_CLASS)
+            .setAppResource(ExecutorMainClass.EXECUTOR_JAR_PATH)
+            .setPropertiesFile(starPluginProperties.getPropertiesFile())
+            .addAppArgs(JSON.toJSONString(starRequest));
         if (starPluginProperties.getDeployMode() != null) {
             sparkLauncher.setDeployMode(starPluginProperties.getDeployMode());
         }
@@ -84,12 +85,14 @@ public class StarSyncService {
 
         try {
             sparkLauncher.startApplication(new SparkAppHandle.Listener() {
+
                 @Override
                 public void stateChanged(SparkAppHandle sparkAppHandle) {
                     StarData starData = StarData.builder().appId(sparkAppHandle.getAppId()).appState(sparkAppHandle.getState().toString()).eventType(EventTypeConstants.STATE_CHANGED_EVENT).build();
                     StarResponse starResponse = new StarResponse(MsgConstants.SUCCESS_CODE, MsgConstants.SUCCESS_RESPONSE_MSG, starData);
                     kafkaTemplate.send(KafkaConfigConstants.DEFAULT_TOPIC_NAME, starRequest.getExecuteId(), JSON.toJSONString(starResponse));
                 }
+
                 @Override
                 public void infoChanged(SparkAppHandle sparkAppHandle) {
                     if (SparkAppState.CONNECTED.equals(sparkAppHandle.getState().toString())) {
@@ -104,11 +107,4 @@ public class StarSyncService {
             throw new StarException(StarExceptionEnum.SPARK_LAUNCHER_ERROR);
         }
     }
-
-
-//    StarData starData = starService.queryData("spark_star_tmp", starRequest.getExecuteId());
-//        starData.setEventType(EventTypeConstants.QUERY_RESULT_EVENT);
-//    StarResponse starResponse = new StarResponse(MsgConstants.SUCCESS_CODE, MsgConstants.SUCCESS_RESPONSE_MSG);
-//        kafkaTemplate.send(KafkaConfigConstants.DEFAULT_TOPIC_NAME, starRequest.getExecuteId(), JSON.toJSONString(starResponse));
-
 }

@@ -1,3 +1,3 @@
-## 开发说明
+## CONTRIBUTING
 
-- https://ispong.github.io/spark-star/contributing
+- https://ispong.github.io/spark-star/zh-cn/contributing

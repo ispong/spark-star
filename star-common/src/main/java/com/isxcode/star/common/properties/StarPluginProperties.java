@@ -14,7 +14,7 @@ public class StarPluginProperties {
     /**
      * 默认application name
      */
-    private String appName = "spark-star application";
+    private String appNamePrefix = "spark-star application ";
 
     /**
      * 默认的配置 使用本地模式
@@ -30,6 +30,11 @@ public class StarPluginProperties {
      * 额外的配置
      */
     private Map<String, String> sparkConfig;
+
+    /**
+     * 属性文件
+     */
+    private String propertiesFile;
 
     /**
      * 服务器密钥

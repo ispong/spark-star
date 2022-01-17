@@ -1,5 +1,7 @@
 server:
   port: 30156
+    servlet:
+    context-path: /spark-star
 
 logging:
   group:
@@ -18,9 +20,7 @@ star:
       replication.factor: 1
       partitions: 1
     spark-config:
-      spark.ui.port: 30157
       spark.driver.memory: 1g
       spark.executor.memory: 4g
       spark.executor.cores: 1
       spark.num.executors: 1
-      spark.sql.storeAssignmentPolicy: LEGACY

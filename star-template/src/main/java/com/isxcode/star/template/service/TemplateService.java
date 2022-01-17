@@ -22,12 +22,11 @@ public class TemplateService {
 
     public void execute() {
 
-        String sql = "select * from rd_dev.ispong_table";
+        String sql = "insert into rd_dev.ispong_table(username, age, lucky_date) values ('ispong', 18, '2021-12-12 12:12:12')";
 
         StarRequest starRequest = StarRequest.builder()
             .executeId(UUID.randomUUID().toString())
             .sql(sql)
-            .limit(100)
             .build();
 
         StarResponse starResponse = starTemplate.build().execute(starRequest);
