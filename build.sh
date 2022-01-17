@@ -27,7 +27,7 @@ echo "创建 STAR_BUILD_DIR 成功"
 # 复制bin文件夹
 mkdir -p "${STAR_BUILD_DIR}"/bin
 cp "${BASE_PATH}"/star-plugin/bin/* "${STAR_BUILD_DIR}"/bin
-chmod a+x "${ACORN_BUILD_DIR}"/bin/*.sh
+chmod a+x "${STAR_BUILD_DIR}"/bin/*.sh
 echo "创建 bin 成功"
 
 # 复制conf文件夹
