@@ -17,7 +17,6 @@
         <module>star-common</module>
 		<module>star-template</module>
         <module>star-executor</module>
-
         <module>demos/demo1</module>
     </modules>
 

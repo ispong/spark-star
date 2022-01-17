@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-    通过`Spring`插件的形式，实现对不同服务器与不同版本的`spark`做统一管理。
+    通过Spring插件的形式，实现对不同服务器与不同版本的spark做统一管理。
 </h4>
 
 <h4 align="center">
