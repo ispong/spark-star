@@ -23,7 +23,7 @@ public class SparkConfig {
         log.debug("初始化sparkSession");
         SparkSession.Builder sparkBuilder = SparkSession
             .builder()
-            .appName(starPluginProperties.getAppName())
+            .appName(starPluginProperties.getAppNamePrefix() + "plugin")
             .master(starPluginProperties.getMaster());
 
         log.debug("SparkConfig.sparkSession.starPluginProperties:" + starPluginProperties.getSparkConfig().toString());
