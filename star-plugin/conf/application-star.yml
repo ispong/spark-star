@@ -1,6 +1,6 @@
 server:
   port: 30156
-    servlet:
+  servlet:
     context-path: /spark-star
 
 logging:
