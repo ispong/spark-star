@@ -43,7 +43,7 @@ fi
 mkdir -p "${TMP_BUILD_DIR}"
 unzip "${BASE_PATH}"/star-plugin/target/star-plugin.jar -d "${TMP_BUILD_DIR}"/
 cp "${HADOOP_HOME}"/etc/hadoop/* "${TMP_BUILD_DIR}"/BOOT-INF/classes/
-cd "${TMP_BUILD_DIR}" && jar -cvfM0 star-plugin.jar /*
+cd "${TMP_BUILD_DIR}" && jar -cvfM0 star-plugin.jar ./*
 
 # 创建lib文件夹
 mkdir -p "${STAR_BUILD_DIR}"/lib
