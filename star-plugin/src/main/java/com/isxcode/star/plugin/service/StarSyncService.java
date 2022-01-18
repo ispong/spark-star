@@ -75,8 +75,8 @@ public class StarSyncService {
             .setAppName(starPluginProperties.getAppNamePrefix() + starRequest.getExecuteId())
             .setVerbose(true)
             .setMainClass(ExecutorMainClass.EXECUTE_MAIN_CLASS)
-            .setAppResource(ExecutorMainClass.EXECUTOR_JAR_PATH)
-            .setPropertiesFile(starPluginProperties.getPropertiesFile())
+            .setAppResource("/home/dehoop/spark-star/star/plugins/star-executor.jar")
+            .setPropertiesFile("/home/dehoop/spark-star/star/conf/executor.conf")
             .addAppArgs(JSON.toJSONString(starRequest));
         if (starPluginProperties.getDeployMode() != null) {
             sparkLauncher.setDeployMode(starPluginProperties.getDeployMode());
