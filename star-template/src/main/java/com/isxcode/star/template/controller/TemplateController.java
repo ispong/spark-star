@@ -1,9 +1,8 @@
 package com.isxcode.star.template.controller;
 
+import com.isxcode.star.template.pojo.TemplateReq;
 import com.isxcode.star.template.service.TemplateService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/template")
@@ -15,10 +14,10 @@ public class TemplateController {
         this.templateService = templateService;
     }
 
-    @GetMapping("/execute")
-    public String execute() {
+    @PostMapping("/execute")
+    public String execute(@RequestBody TemplateReq templateReq) {
 
-        templateService.execute();
+        templateService.execute(templateReq);
 
         return "运行成功等待结果";
     }

@@ -11,4 +11,6 @@ public interface SparkAppState {
     String FINISHED = "FINISHED";
 
     String KILLED = "KILLED";
+
+    String FILED = "FILED";
 }

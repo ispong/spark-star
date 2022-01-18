@@ -80,6 +80,7 @@ public class StarSyncService {
             .setAppResource("/home/dehoop/spark-star/star/plugins/star-executor.jar")
             .addJar("/home/dehoop/spark-star/star/lib/star-common.jar")
             .addJar("/home/dehoop/spark-star/star/lib/fastjson-1.2.79.jar")
+            .setPropertiesFile("/home/dehoop/spark-star/star/conf/executor.conf")
             .addAppArgs(JSON.toJSONString(starRequest));
 
         try {

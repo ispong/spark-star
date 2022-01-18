@@ -15,12 +15,11 @@ public class Execute {
         // 构建新的sparkSession
         SparkSession sparkSession = SparkSession.builder()
             .config("hive.metastore.uris", "thrift://dcloud-dev:30123")
-            .config("spark.ui.port","30157")
             .config("spark.driver.memory", "1g")
             .config("spark.executor.memory", "2g")
             .config("spark.sql.storeAssignmentPolicy", "LEGACY")
-            .enableHiveSupport().getOrCreate();
-        //            .setPropertiesFile("/home/dehoop/spark-star/star/conf/executor.conf")
+            .enableHiveSupport()
+            .getOrCreate();
 
         // 执行spark
         System.out.println("开始执行");

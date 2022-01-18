@@ -3,6 +3,7 @@ package com.isxcode.star.template.service;
 import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.common.response.StarResponse;
 import com.isxcode.star.common.template.StarTemplate;
+import com.isxcode.star.template.pojo.TemplateReq;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -20,13 +21,11 @@ public class TemplateService {
         this.starTemplate = starTemplate;
     }
 
-    public void execute() {
-
-        String sql = "insert into rd_dev.ispong_table ( username, age,birth, lucky_date ) values ( 'ispong',800, '2021-12-12 12:12:12', '2021-12-12 12:12:12' )";
+    public void execute(TemplateReq templateReq) {
 
         StarRequest starRequest = StarRequest.builder()
             .executeId(UUID.randomUUID().toString())
-            .sql(sql)
+            .sql(templateReq.getSql())
             .build();
 
         StarResponse starResponse = starTemplate.build().execute(starRequest);
