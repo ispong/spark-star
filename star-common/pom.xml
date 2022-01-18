@@ -118,6 +118,7 @@
     </distributionManagement>
 
     <build>
+        <finalName>star-common</finalName>
         <plugins>
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>

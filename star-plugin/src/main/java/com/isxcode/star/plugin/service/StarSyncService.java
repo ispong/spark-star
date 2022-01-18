@@ -78,6 +78,7 @@ public class StarSyncService {
             .setMainClass(ExecutorMainClass.EXECUTE_MAIN_CLASS)
             .setAppResource("/home/dehoop/spark-star/star/plugins/star-executor.jar")
             .addAppArgs(JSON.toJSONString(starRequest))
+            .addJar("/home/dehoop/spark-star/star/lib/star-common.jar")
             .setDeployMode("cluster");
 
         try {

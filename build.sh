@@ -48,6 +48,7 @@ cd "${TMP_BUILD_DIR}" && jar -cvfM0 star-plugin.jar ./*
 # 创建lib文件夹
 mkdir -p "${STAR_BUILD_DIR}"/lib
 cp "${TMP_BUILD_DIR}"/star-plugin.jar "${STAR_BUILD_DIR}"/lib/star-plugin.jar
+cp "${BASE_PATH}"/star-common/target/star-common.jar "${STAR_BUILD_DIR}"/lib/star-common.jar
 echo "创建 lib 成功"
 
 # 复制conf文件夹
