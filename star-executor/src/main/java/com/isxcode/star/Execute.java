@@ -18,7 +18,7 @@ public class Execute {
         // 执行spark
         System.out.println("开始执行");
 //        sparkSession.sql("use " + starRequest.getDatabase());
-        sparkSession.sql("insert into rd_dev.ispong_table(username, age, lucky_date) values ('ispong', 18, '2021-12-12 12:12:12')");
+        sparkSession.sql("insert into rd_dev.ispong_table ( username, age, lucky_date ) values ( 'ispong', 18, '2021-12-12 12:12:12' )");
 
         // 停止session
         sparkSession.stop();
