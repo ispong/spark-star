@@ -76,7 +76,12 @@ public class StarSyncService {
             .setVerbose(true)
             .setMainClass(ExecutorMainClass.EXECUTE_MAIN_CLASS)
             .setAppResource("/home/dehoop/spark-star/star/plugins/star-executor.jar")
-            .setPropertiesFile("/home/dehoop/spark-star/star/conf/executor.conf")
+//            .setPropertiesFile("/home/dehoop/spark-star/star/conf/executor.conf")
+            .setConf("spark.ui.port", "30157")
+            .setConf("hive.metastore.uris", "thrift://dcloud-dev:30123")
+            .setConf("spark.driver.memory", "1g")
+            .setConf("spark.executor.memory", "2g")
+            .setConf("spark.sql.storeAssignmentPolicy", "LEGACY")
             .addAppArgs(JSON.toJSONString(starRequest))
             .setDeployMode("cluster");
 
