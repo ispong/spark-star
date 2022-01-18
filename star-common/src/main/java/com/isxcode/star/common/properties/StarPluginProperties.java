@@ -34,7 +34,7 @@ public class StarPluginProperties {
     /**
      * 属性文件
      */
-    private String propertiesFile;
+    private String propertiesFile = "../conf/executor.conf";
 
     /**
      * 服务器密钥

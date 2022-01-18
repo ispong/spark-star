@@ -5,3 +5,19 @@ server:
 spring:
   profiles:
     active: star
+
+#star:
+#  plugin:
+#    server-key: star-key
+#    app-name-prefix: spark-star
+#    master: yarn
+#    kafka-config:
+#      bootstrap.servers: 39.103.230.188:30120
+#      topic: star-topic
+#      replication.factor: 1
+#      partitions: 1
+#    spark-config:
+#      spark.executor.memory: 4g
+#      spark.executor.cores: 1
+#      spark.driver.memory: 1g
+#      spark.num.executors: 1
