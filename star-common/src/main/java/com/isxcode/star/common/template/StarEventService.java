@@ -36,6 +36,9 @@ public class StarEventService {
             case EventTypeConstants.INFO_CHANGED_EVENT:
                 starEventHandler.infoChangedEvent(executeId, starResponse);
                 break;
+            case EventTypeConstants.THREAD_ERROR_EVENT:
+                starEventHandler.threadErrorEvent(executeId, starResponse);
+                break;
         }
     }
 }

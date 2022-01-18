@@ -1,7 +1,9 @@
 package com.isxcode.star.plugin.config;
 
 import com.alibaba.fastjson.JSON;
+import com.isxcode.star.common.constant.EventTypeConstants;
 import com.isxcode.star.common.constant.KafkaConfigConstants;
+import com.isxcode.star.common.pojo.dto.StarData;
 import com.isxcode.star.common.properties.StarPluginProperties;
 import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.common.response.StarResponse;
@@ -35,7 +37,8 @@ class StarAsyncExceptionHandler implements AsyncUncaughtExceptionHandler {
         log.debug("请求体" + starRequest.toString());
 
         // 推送到kafka
-        StarResponse starResponse = new StarResponse("500", starRequest.getExecuteId() + "任务异常:" + throwable.getMessage());
+        StarData starData = StarData.builder().eventType(EventTypeConstants.THREAD_ERROR_EVENT).build();
+        StarResponse starResponse = new StarResponse("500", starRequest.getExecuteId() + "任务异常:" + throwable.getMessage(), starData);
         kafkaTemplate.send(KafkaConfigConstants.DEFAULT_TOPIC_NAME, starRequest.getExecuteId(), JSON.toJSONString(starResponse));
     }
 }

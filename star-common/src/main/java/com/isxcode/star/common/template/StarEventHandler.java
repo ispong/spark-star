@@ -15,4 +15,8 @@ public interface StarEventHandler {
     default void infoChangedEvent(String executeId, StarResponse starResponse) {
 
     }
+
+    default void threadErrorEvent(String executeId, StarResponse starResponse) {
+
+    }
 }

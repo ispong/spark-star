@@ -7,4 +7,6 @@ public interface EventTypeConstants {
     String STATE_CHANGED_EVENT = "STATE_CHANGED_EVENT";
 
     String INFO_CHANGED_EVENT = "INFO_CHANGED_EVENT";
+
+    String THREAD_ERROR_EVENT = "THREAD_ERROR_EVENT";
 }

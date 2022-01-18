@@ -24,4 +24,9 @@ public class StarEventReceiveService implements StarEventHandler {
     public void infoChangedEvent(String executeId, StarResponse starResponse) {
         log.info("执行id:" + executeId + "app相关信息:" + starResponse);
     }
+
+    @Override
+    public void threadErrorEvent(String executeId, StarResponse starResponse) {
+        log.info("执行id:" + executeId + "异常信息:" + starResponse);
+    }
 }
