@@ -66,7 +66,8 @@ public class StarSyncService {
 
     public void execute(StarRequest starRequest) {
 
-        if (starRequest.getExecuteId() == null) {
+        if (starRequest.getExecuteId() == null ||
+            starRequest.getSql() == null) {
             throw new StarException(StarExceptionEnum.REQUEST_VALUE_EMPTY);
         }
 
