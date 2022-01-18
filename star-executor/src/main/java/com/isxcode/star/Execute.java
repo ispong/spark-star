@@ -9,8 +9,8 @@ public class Execute {
     public static void main(String[] args) {
 
         // 获取请求参数
-//        StarRequest starRequest = JSON.parseObject(String.valueOf(args[0]), StarRequest.class);
-//        System.out.println("显示请求参数：" + starRequest.toString());
+        StarRequest starRequest = JSON.parseObject(String.valueOf(args[0]), StarRequest.class);
+        System.out.println("显示请求参数：" + starRequest.toString());
 
         // 构建新的sparkSession
         SparkSession sparkSession = SparkSession.builder()
@@ -20,14 +20,11 @@ public class Execute {
             .config("spark.executor.memory", "2g")
             .config("spark.sql.storeAssignmentPolicy", "LEGACY")
             .enableHiveSupport().getOrCreate();
-
         //            .setPropertiesFile("/home/dehoop/spark-star/star/conf/executor.conf")
-
 
         // 执行spark
         System.out.println("开始执行");
-//        sparkSession.sql("use " + starRequest.getDatabase());
-        sparkSession.sql("insert into rd_dev.ispong_table ( username, age,birth, lucky_date ) values ( 'ispong',800, '2021-12-12 12:12:12', '2021-12-12 12:12:12' )");
+        sparkSession.sql(starRequest.getSql());
 
         // 停止session
         sparkSession.stop();
