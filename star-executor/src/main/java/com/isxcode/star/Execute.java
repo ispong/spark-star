@@ -15,12 +15,19 @@ public class Execute {
         // 构建新的sparkSession
         SparkSession sparkSession = SparkSession.builder()
             .config("hive.metastore.uris", "thrift://dcloud-dev:30123")
+            .config("spark.ui.port","30157")
+            .config("spark.driver.memory", "1g")
+            .config("spark.executor.memory", "2g")
+            .config("spark.sql.storeAssignmentPolicy", "LEGACY")
             .enableHiveSupport().getOrCreate();
+
+        //            .setPropertiesFile("/home/dehoop/spark-star/star/conf/executor.conf")
+
 
         // 执行spark
         System.out.println("开始执行");
 //        sparkSession.sql("use " + starRequest.getDatabase());
-        sparkSession.sql("insert into rd_dev.ispong_table ( username, age, lucky_date ) values ( 'ispong', 18, '2021-12-12 12:12:12' )");
+        sparkSession.sql("insert into rd_dev.ispong_table ( username, age,birth, lucky_date ) values ( 'ispong',800, '2021-12-12 12:12:12', '2021-12-12 12:12:12' )");
 
         // 停止session
         sparkSession.stop();
