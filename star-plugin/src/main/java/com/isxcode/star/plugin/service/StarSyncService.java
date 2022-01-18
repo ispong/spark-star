@@ -73,13 +73,14 @@ public class StarSyncService {
 
         SparkLauncher sparkLauncher = new SparkLauncher()
             .setMaster("yarn")
+            .setDeployMode("cluster")
             .setAppName("star-test " + starRequest.getExecuteId())
             .setVerbose(true)
             .setMainClass(ExecutorMainClass.EXECUTE_MAIN_CLASS)
             .setAppResource("/home/dehoop/spark-star/star/plugins/star-executor.jar")
-            .addAppArgs(JSON.toJSONString(starRequest))
             .addJar("/home/dehoop/spark-star/star/lib/star-common.jar")
-            .setDeployMode("cluster");
+            .addJar("/home/dehoop/spark-star/star/lib/fastjson-1.2.79.jar")
+            .addAppArgs(JSON.toJSONString(starRequest));
 
         try {
             sparkLauncher.startApplication(new SparkAppHandle.Listener() {
