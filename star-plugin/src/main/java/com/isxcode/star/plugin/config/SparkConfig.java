@@ -1,6 +1,5 @@
 package com.isxcode.star.plugin.config;
 
-import com.isxcode.star.common.properties.StarPluginProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.context.annotation.Bean;
@@ -10,25 +9,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SparkConfig {
 
-    private final StarPluginProperties starPluginProperties;
-
-    public SparkConfig(StarPluginProperties starPluginProperties) {
-
-        this.starPluginProperties = starPluginProperties;
-    }
-
     @Bean("sparkSession")
     public SparkSession sparkSession() {
 
         log.debug("初始化sparkSession");
         SparkSession.Builder sparkBuilder = SparkSession
             .builder()
-            .appName(starPluginProperties.getAppNamePrefix() + "plugin")
-            .master(starPluginProperties.getMaster());
+            .appName("spark-star plugin")
+            .master("yarn")
+            .config("spark.executor.memory", "1g")
+            .config("spark.executor.cores", "1")
+            .config("spark.driver.memory", "1g")
+            .config("spark.num.executors", "1");
 
-        log.debug("SparkConfig.sparkSession.starPluginProperties:" + starPluginProperties.getSparkConfig().toString());
-        starPluginProperties.getSparkConfig().forEach(sparkBuilder::config);
-
-        return sparkBuilder.enableHiveSupport().getOrCreate();
+        return sparkBuilder.getOrCreate();
     }
 }

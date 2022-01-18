@@ -71,17 +71,14 @@ public class StarSyncService {
         }
 
         SparkLauncher sparkLauncher = new SparkLauncher()
-            .setMaster(starPluginProperties.getMaster())
-            .setAppName(starPluginProperties.getAppNamePrefix() + starRequest.getExecuteId())
+            .setMaster("yarn")
+            .setAppName("star-test " + starRequest.getExecuteId())
             .setVerbose(true)
             .setMainClass(ExecutorMainClass.EXECUTE_MAIN_CLASS)
             .setAppResource("/home/dehoop/spark-star/star/plugins/star-executor.jar")
             .setPropertiesFile("/home/dehoop/spark-star/star/conf/executor.conf")
-            .addAppArgs(JSON.toJSONString(starRequest));
-        if (starPluginProperties.getDeployMode() != null) {
-            sparkLauncher.setDeployMode(starPluginProperties.getDeployMode());
-        }
-        starPluginProperties.getSparkConfig().forEach(sparkLauncher::setConf);
+            .addAppArgs(JSON.toJSONString(starRequest))
+            .setDeployMode("cluster");
 
         try {
             sparkLauncher.startApplication(new SparkAppHandle.Listener() {
