@@ -14,7 +14,7 @@ star:
     server-key: star-key
     master: yarn
     kafka-config:
-      bootstrap.servers: 39.103.230.188:30120
-      topic: star-topic
+      bootstrap.servers: 8.142.31.232:9092
+      topic: spark-star-topic
       replication.factor: 1
       partitions: 1

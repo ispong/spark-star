@@ -9,9 +9,9 @@ logging:
 
 star:
   node:
-    host: 39.103.230.188
+    host: 8.142.31.232
     port: 30156
     key: star-key
     kafka-config:
-      bootstrap.servers: 39.103.230.188:30120
+      bootstrap.servers: 8.142.31.232:9092
       group.id: test-consumer-group
