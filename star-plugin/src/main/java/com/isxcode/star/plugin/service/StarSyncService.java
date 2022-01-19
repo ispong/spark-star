@@ -77,9 +77,9 @@ public class StarSyncService {
             .setAppName("star-test " + starRequest.getExecuteId())
             .setVerbose(true)
             .setMainClass(ExecutorMainClass.EXECUTE_MAIN_CLASS)
-            .setAppResource("/home/dehoop/spark-star/star/plugins/star-executor.jar")
-            .addJar("/home/dehoop/spark-star/star/lib/star-common.jar")
-            .addJar("/home/dehoop/spark-star/star/lib/fastjson-1.2.79.jar")
+            .setAppResource("/home/cdh/spark-star/star/plugins/star-executor.jar")
+            .addJar("/home/cdh/spark-star/star/lib/star-common.jar")
+            .addJar("/home/cdh/spark-star/star/lib/fastjson-1.2.79.jar")
             .addAppArgs(JSON.toJSONString(starRequest));
 
         try {
