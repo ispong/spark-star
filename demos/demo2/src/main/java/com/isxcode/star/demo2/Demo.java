@@ -1,5 +1,7 @@
 package com.isxcode.star.demo2;
 
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 public class Demo {
@@ -17,7 +19,8 @@ public class Demo {
 
         // 执行spark
         System.out.println("开始执行");
-        sparkSession.sql("select * from default.userinfo limit 100");
+        Dataset<Row> sql = sparkSession.sql("select count(1) from default.userinfo");
+        sql.show();
 
         // 停止session
         sparkSession.stop();
