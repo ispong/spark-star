@@ -17,7 +17,7 @@ public class Demo {
             .config("hive.metastore.uris", "thrift://localhost:9083")
             .config("spark.driver.memory", "1g")
             .config("spark.executor.memory", "2g")
-            .config("spark.executor.cores", "2g")
+            .config("spark.executor.cores", 2)
             .config("spark.yarn.historyServer.allowTracking", true)
             .config("spark.sql.storeAssignmentPolicy", "LEGACY")
             .enableHiveSupport()
