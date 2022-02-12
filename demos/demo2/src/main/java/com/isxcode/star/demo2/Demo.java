@@ -15,8 +15,8 @@ public class Demo {
             .config("deploy-mode", "cluster")
             .config("spark.yarn.queue", "default")
             .config("hive.metastore.uris", "thrift://localhost:9083")
-            .config("spark.driver.memory", "1g") // 实际不会申请 满
-            //.config("spark.num.executors", 4)  // 一个作业设置多少个executor
+            .config("spark.driver.memory", "1g") // 不用给太多
+            .config("spark.num.executors", 4)  // 一个作业设置多少个executor
             // 1g 500m Size must be specified as bytes (b), kibibytes (k), mebibytes (m), gibibytes (g), tebibytes (t), or pebibytes(p). E.g. 50b, 100k, or 250m.
             // executor一共可申请内存,受限于yarn的总内存 (yarn.nodemanager.resource.memory-mb) 不可占满yarn的内存
             .config("spark.executor.memory", "4g")
