@@ -22,6 +22,7 @@ public class Demo {
             // 实际使用大概50%左右
             .config("spark.executor.memory", "2g")
             // 每一个executor使用cpu0-vcore, 受限于yarn的vcores (yarn.nodemanager.resource.cpu-vcores)
+            // 一个核处理100m+的数据
             .config("spark.executor.cores", 1)
             // 经过产看官方文档发现 --num-executors该属性只有在YARN模式下有效  可能申请不到资源
             .config("spark.executor.instances", 4)
@@ -37,7 +38,7 @@ public class Demo {
 
         // 执行spark
         System.out.println("开始执行");
-        Dataset<Row> sql = sparkSession.sql("select count(1) from default.userinfo where username like '平%' and school in ('高中','初中')");
+        Dataset<Row> sql = sparkSession.sql("select count(1) from default.userinfo_big where username like '平%' and school in ('高中','初中')");
         System.out.println("开始结束");
         sql.show();
 
