@@ -26,11 +26,11 @@ public class Demo {
             .config("spark.executor.memory", "1g")
             // 单个executor使用cpu-core的个数, 受限于yarn的cores总个数 (yarn-site.xml文件中的yarn.nodemanager.resource.cpu-vcores配置，修改后需要重启yarn) 不可占满yarn的vcore总个数
             // 一个core处理，可处理100M+的数据量，设置太多会浪费
-            .config("spark.executor.cores", 2)
+            .config("spark.executor.cores", 1)
             // 每个作业需要使用executor的个数，看情况设置，设置太多的话，会浪费资源，设置太少的话，运行会慢。设置太多申请资源，也会变慢，且浪费资源。
             // 如果资源不足的话，设置为4，可现有资源只够3个使用，它会等待资源释放，时间会变慢，如果资源还是不足，它会申请2个，然后执行spark作业。
             // 如果等待后资源一个都不够的话，spark作业直接卡死失败。
-            .config("spark.executor.instances", 4)
+            .config("spark.executor.instances", 10)
 //            高级玩法-动态分配，暂时不需要，上面的配置调一调，应该就快起来了
 //            .config("spark.dynamicAllocation.enabled", true)
 //            .config("spark.dynamicAllocation.initialExecutors", 3)
