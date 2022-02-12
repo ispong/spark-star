@@ -24,11 +24,12 @@ public class Demo {
             .config("spark.executor.core", 4)
             // 经过产看官方文档发现 --num-executors该属性只有在YARN模式下有效
 //            .config("spark.num.executors", 10)  // 一个作业设置多少个executor
-            .config("spark.executor.instances", 3)
-//            .config("spark.dynamicAllocation.enabled", true)
-//            .config("spark.dynamicAllocation.initialExecutors", 3)
-//            .config("spark.dynamicAllocation.minExecutors", 1)
-//            .config("spark.shuffle.service.enabled", true)
+//            .config("spark.executor.instances", 3)
+//            动态分配
+            .config("spark.dynamicAllocation.enabled", true)
+            .config("spark.dynamicAllocation.initialExecutors", 3)
+            .config("spark.dynamicAllocation.minExecutors", 1)
+            .config("spark.shuffle.service.enabled", true)
             .config("spark.yarn.historyServer.allowTracking", true) // 允许historyServer监控
             .config("spark.sql.storeAssignmentPolicy", "LEGACY")
             .enableHiveSupport()
