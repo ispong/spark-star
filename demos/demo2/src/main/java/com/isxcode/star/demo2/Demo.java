@@ -22,7 +22,7 @@ public class Demo {
             // 实际使用大概50%左右
             .config("spark.executor.memory", "2g")
             // 每一个executor使用cpu0-vcore, 受限于yarn的vcores (yarn.nodemanager.resource.cpu-vcores)
-            .config("spark.executor.cores", 2)
+            .config("spark.executor.cores", 1)
             // 经过产看官方文档发现 --num-executors该属性只有在YARN模式下有效  可能申请不到资源
             .config("spark.executor.instances", 4)
 //            动态分配
