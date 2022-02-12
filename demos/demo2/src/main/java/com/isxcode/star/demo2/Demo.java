@@ -19,10 +19,10 @@ public class Demo {
             .config("spark.driver.cores", 1) // driver进程的CPU core 数量
             // 1g 500m Size must be specified as bytes (b), kibibytes (k), mebibytes (m), gibibytes (g), tebibytes (t), or pebibytes(p). E.g. 50b, 100k, or 250m.
             // executor可申请内存,受限于yarn的总内存 (yarn.nodemanager.resource.memory-mb) 不可占满yarn的内存
-            .config("spark.executor.memory", "1g")
+            .config("spark.executor.memory", "2g")
             // executor一共可申请的内核,受限于yarn的vcores (yarn.nodemanager.resource.cpu-vcores)
             .config("spark.executor.cores", 1)
-            // 经过产看官方文档发现 --num-executors该属性只有在YARN模式下有效
+            // 经过产看官方文档发现 --num-executors该属性只有在YARN模式下有效  可能申请不到资源
             .config("spark.executor.instances", 4)
 //            动态分配
 //            .config("spark.dynamicAllocation.enabled", true)
