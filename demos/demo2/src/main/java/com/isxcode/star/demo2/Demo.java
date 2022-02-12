@@ -43,7 +43,7 @@ public class Demo {
 
         // 执行spark
         System.out.println("开始执行");
-        Dataset<Row> sql = sparkSession.sql("select count(1) from default.userinfo_big where username like '松%' and school in ('高中','初中')");
+        Dataset<Row> sql = sparkSession.sql("select count(1) from default.userinfo_big where username like '平%' and school in ('高中','初中')");
         System.out.println("开始结束");
         sql.show();
 
