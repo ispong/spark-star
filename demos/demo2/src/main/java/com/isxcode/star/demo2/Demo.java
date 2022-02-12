@@ -18,8 +18,8 @@ public class Demo {
             .config("spark.driver.memory", "8g")
             .config("spark.num.executors", 4)  // 一个作业设置多少个executor
             // 当executor.memory设置太小的时候 就会要求driver.memory设置大一点
-            .config("spark.executor.memory", "500m") //   executor一共可申请内存  1g 500m Size must be specified as bytes (b), kibibytes (k), mebibytes (m), gibibytes (g), tebibytes (t), or pebibytes(p). E.g. 50b, 100k, or 250m.
-            .config("spark.executor.cores", 2) // 每个executor可申请内核
+            .config("spark.executor.memory", "1g") //   executor一共可申请内存  1g 500m Size must be specified as bytes (b), kibibytes (k), mebibytes (m), gibibytes (g), tebibytes (t), or pebibytes(p). E.g. 50b, 100k, or 250m.
+            .config("spark.executor.cores", 4) // 每个executor可申请内核
             .config("spark.yarn.historyServer.allowTracking", true) // 允许historyServer监控
             .config("spark.sql.storeAssignmentPolicy", "LEGACY")
             .enableHiveSupport()
