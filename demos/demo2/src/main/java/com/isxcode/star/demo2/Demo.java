@@ -17,8 +17,8 @@ public class Demo {
             .config("hive.metastore.uris", "thrift://localhost:9083")
             .config("spark.driver.memory", "2g")
             .config("spark.num.executors", 4)  // 一个作业设置多少个executor
-            .config("spark.executor.memory", "1g") // 每个executor可申请内存
-            .config("spark.executor.cores", 1) // 每个executor可申请内核
+            .config("spark.executor.memory", "0.5g") // executor一共可申请内存
+            .config("spark.executor.cores", 2) // 每个executor可申请内核
             .config("spark.yarn.historyServer.allowTracking", true) // 允许historyServer监控
             .config("spark.sql.storeAssignmentPolicy", "LEGACY")
             .enableHiveSupport()
