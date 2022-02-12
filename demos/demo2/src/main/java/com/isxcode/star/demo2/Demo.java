@@ -30,7 +30,8 @@ public class Demo {
             // 一个作业需要使用executor个数，看情况设置，设置太多的话，会浪费资源，设置太少的话，运行会慢。
             // 如果资源不足的话，设置4，可现资源只够3个使用，它会等待一会儿资源释放，这边会变慢，如果资源还是不足的话，它会申请2个，然后继续执行
             // 如果资源一个都不够的话，spark作业直接卡死
-            .config("spark.executor.instances", 2)
+            // 设置太多也会浪费
+            .config("spark.executor.instances", 1)
 //            高级玩法-动态分配，暂时不需要，上面的配置调一调，应该就快起来了
 //            .config("spark.dynamicAllocation.enabled", true)
 //            .config("spark.dynamicAllocation.initialExecutors", 3)
