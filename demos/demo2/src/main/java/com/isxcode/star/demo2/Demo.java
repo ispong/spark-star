@@ -23,7 +23,7 @@ public class Demo {
             .config("spark.driver.cores", 1) // 设置driver进程的cpu-core个数，除非数据量特别大，否则不用给太多
             // 单个executor最大可申请使用内存,受限于yarn的总内存 (yarn-site.xml文件中的yarn.nodemanager.resource.memory-mb配置，修改后需要重启yarn) 不可占满yarn的总内存
             // 实际申请不会打满，一般设置2g，会申请1.3个g左右
-            .config("spark.executor.memory", "2g")
+            .config("spark.executor.memory", "3g")
             // 单个executor使用cpu-core的个数, 受限于yarn的cores总个数 (yarn-site.xml文件中的yarn.nodemanager.resource.cpu-vcores配置，修改后需要重启yarn) 不可占满yarn的vcore总个数
             // 一个core处理，可处理100M+的数据量，设置太多会浪费
             .config("spark.executor.cores", 2)
