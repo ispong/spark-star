@@ -24,6 +24,12 @@ public class StarException extends RuntimeException {
         this.msg = msg;
     }
 
+    public StarException(String msg) {
+
+        this.code = "500";
+        this.msg = msg;
+    }
+
     public StarException(StarExceptionEnum starExceptionEnum) {
 
         this.code = starExceptionEnum.getCode();

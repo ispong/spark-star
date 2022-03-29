@@ -5,6 +5,7 @@ import com.isxcode.star.common.pojo.dto.StarData;
 import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.common.utils.CommandUtils;
 import com.isxcode.star.plugin.exception.StarException;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +13,12 @@ import java.io.IOException;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class StarBizService {
 
     private final StarSyncService starSyncService;
 
-    public StarBizService(StarSyncService starSyncService) {
-
-        this.starSyncService = starSyncService;
-    }
+    private final StarService starService;
 
     public StarData executeSyncWork(StarRequest starRequest, String url) {
 
@@ -60,4 +59,8 @@ public class StarBizService {
         }
     }
 
+    public StarData quickExecuteQuerySql(StarRequest starRequest) {
+
+        return starService.queryData(starRequest);
+    }
 }

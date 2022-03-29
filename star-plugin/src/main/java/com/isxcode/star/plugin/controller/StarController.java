@@ -5,20 +5,34 @@ import com.isxcode.star.common.pojo.dto.StarData;
 import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.plugin.response.SuccessResponse;
 import com.isxcode.star.plugin.service.StarBizService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/*
+ * 插件api入口
+ *
+ * @ispong
+ */
 @RestController
 @RequestMapping
+@RequiredArgsConstructor
 public class StarController {
 
     private final StarBizService starBizService;
 
-    public StarController(StarBizService starBizService) {
+    /*
+     *通过插件的spark session查询数据
+     *
+     * @ispong
+     */
+    @SuccessResponse("查询成功")
+    @PostMapping(UrlConstants.STAR_QUICK_EXECUTE_QUERY_URL)
+    public StarData quickExecuteQuerySql(@RequestBody StarRequest starRequest) {
 
-        this.starBizService = starBizService;
+        return starBizService.quickExecuteQuerySql(starRequest);
     }
 
     @SuccessResponse

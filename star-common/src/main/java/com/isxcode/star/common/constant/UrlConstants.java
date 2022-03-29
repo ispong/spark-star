@@ -39,4 +39,9 @@ public interface UrlConstants {
      * 停止作业
      */
     String STOP_JOB_URL = "/stopJob";
+
+    /**
+     * 执行sql 有返回结果
+     */
+    String STAR_QUICK_EXECUTE_QUERY_URL = "/quick/executeQuery";
 }
