@@ -6,6 +6,8 @@ import com.isxcode.star.plugin.exception.StarException;
 import com.isxcode.star.plugin.service.SqlParseService;
 import com.isxcode.star.plugin.service.StarService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.parquet.Strings;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class StarServiceImpl implements StarService {
@@ -28,20 +31,22 @@ public class StarServiceImpl implements StarService {
     public StarData queryData(StarRequest starRequest) {
 
         // 校验关键字
-        Assert.notNull(starRequest.getSql(), "sql字段不能为空");
+        Assert.notNull(starRequest.getDatabase(), "database不能为空");
+        Assert.notNull(starRequest.getTableName(), "tableName不能为空");
+        Assert.notEmpty(starRequest.getColumns(), "columns不能为空");
 
-        // 解析sql,判断sql中是否存在`limit`字段
-        boolean hasLimit = sqlParseService.hasLimit(starRequest.getSql());
-        if (!hasLimit) {
-            if (starRequest.getLimit() == null) {
-                throw new StarException("查询必须要有条数限制");
-            } else {
-                starRequest.setSql(starRequest.getSql() + " limit " + starRequest.getLimit());
-            }
-        }
+        // 拼接sql
+        String querySql = " select " + Strings.join(starRequest.getColumns(), ",") + " from " + starRequest.getTableName();
 
         // 执行sql
-        Dataset<Row> rowDataset = sparkSession.sql(starRequest.getSql());
+        Dataset<Row> rowDataset;
+        try {
+            sparkSession.sql("use " + starRequest.getDatabase());
+            rowDataset = sparkSession.sql(querySql).limit(starRequest.getLimit());
+        } catch (Exception e) {
+            log.info(e.getMessage());
+            throw new StarException(e.getMessage());
+        }
 
         // 初始化返回对象
         StarData.StarDataBuilder starDataBuilder = StarData.builder();

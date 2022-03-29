@@ -1,0 +1,25 @@
+logging:
+  level:
+    root: info
+
+star:
+  plugin:
+    server-key: star-key
+    app-name-prefix: spark-star
+    master: yarn
+    spark-config:
+      spark.ui.port: 30128
+      spark.executor.memory: 4g
+      spark.executor.cores: 1
+      spark.driver.memory: 1g
+      spark.num.executors: 1
+      hive.metastore.uris: thrift://cdh-master:9083
+      spark.sql.hive.metastore.jars: /u01/cloudera/parcels/CDH/lib/hive/lib/*
+#      spark.sql.hive.metastore.version: 2.1.1
+#      spark.sql.storeAssignmentPolicy: LEGACY
+#    properties-file: /home/dehoop/spark-star/star/conf/executor.conf
+#    kafka-config:
+#      bootstrap.servers: 39.103.230.188:30120
+#      topic: star-topic
+#      replication.factor: 1
+#      partitions: 1

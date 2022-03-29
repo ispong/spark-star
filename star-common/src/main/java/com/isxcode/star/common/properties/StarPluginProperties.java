@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
@@ -29,7 +30,7 @@ public class StarPluginProperties {
     /**
      * 额外的配置
      */
-    private Map<String, String> sparkConfig;
+    private Map<String, String> sparkConfig = new HashMap<>();
 
     /**
      * 属性文件
