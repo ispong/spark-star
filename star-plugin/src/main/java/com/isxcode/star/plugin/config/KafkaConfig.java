@@ -21,7 +21,7 @@ import java.util.Map;
 
 @EnableKafka
 @Configuration
-@ConditionalOnProperty(prefix = "star.plugin", name = "kafkaConfig")
+@ConditionalOnProperty(prefix = "star.node.kafka-config", name = "bootstrap.servers")
 public class KafkaConfig {
 
     private final StarPluginProperties starPluginProperties;
