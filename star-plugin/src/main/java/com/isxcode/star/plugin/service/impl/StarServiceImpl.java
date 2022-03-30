@@ -7,7 +7,7 @@ import com.isxcode.star.plugin.service.SqlParseService;
 import com.isxcode.star.plugin.service.StarService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.parquet.Strings;
+import org.apache.logging.log4j.util.Strings;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -36,7 +36,7 @@ public class StarServiceImpl implements StarService {
         Assert.notEmpty(starRequest.getColumns(), "columns不能为空");
 
         // 拼接sql
-        String querySql = " select " + Strings.join(starRequest.getColumns(), ",") + " from " + starRequest.getTableName();
+        String querySql = " select " + Strings.join(starRequest.getColumns(), ',') + " from " + starRequest.getTableName();
 
         // 执行sql
         Dataset<Row> rowDataset;
