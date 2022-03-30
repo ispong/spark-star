@@ -19,8 +19,8 @@ fi
 
 # 创建日志文件
 STAR_LOG="${BASE_PATH}"/../log/star-plugin.log
-if [ ! -f "$STAR_LOG" ]; then
-    touch "$STAR_LOG"
+if [ ! -f "${STAR_LOG}" ]; then
+    touch "${STAR_LOG}"
 fi
 
 # 启动项目
