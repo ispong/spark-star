@@ -25,5 +25,5 @@ fi
 
 # 启动项目
 STAR_APP="${BASE_PATH}"/../lib/star-plugin.jar
-nohup java -jar -Xmx2048m "${STAR_APP}" --spring.config.location="${BASE_PATH}"/../conf/application-star.yml >> "${STAR_LOG}" 2>&1 &
+nohup java -jar -Xmx2048m "${STAR_APP}" --spring.config.location="${BASE_PATH}"/../conf/application.yml >> "${STAR_LOG}" 2>&1 &
 echo "部署成功"
