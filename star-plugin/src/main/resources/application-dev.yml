@@ -1,6 +1,13 @@
+server:
+  port: 30156
+  servlet:
+    context-path: /spark-star
+
 logging:
+  group:
+    star: com.isxcode.star
   level:
-    root: info
+    star: debug
 
 star:
   plugin:
@@ -13,7 +20,7 @@ star:
       spark.executor.cores: 1
       spark.driver.memory: 1g
       spark.num.executors: 1
-      hive.metastore.uris: thrift://cdh-master:9083
+      hive.metastore.uris: thrift://192.168.66.66:9083
 #      spark.sql.hive.metastore.jars: /u01/cloudera/parcels/CDH/lib/hive/lib/*
 #      spark.sql.hive.metastore.version: 2.1.1
 #      spark.sql.storeAssignmentPolicy: LEGACY

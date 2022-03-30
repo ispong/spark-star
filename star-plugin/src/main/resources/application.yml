@@ -1,8 +1,3 @@
-server:
-  port: 30156
-  servlet:
-    context-path: /spark-star
-
 spring:
   profiles:
     active: star
