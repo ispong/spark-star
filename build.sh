@@ -1,20 +1,26 @@
-## 获取当前路径
-current_path=`pwd`
-case "`uname`" in
-    Linux)
-        bin_abs_path=$(readlink -f $(dirname $0))
-        ;;
-    *)
-        bin_abs_path=`cd $(dirname $0); pwd`
-        ;;
-esac
-BASE_PATH=${bin_abs_path}
-echo "获取当前路径:"+ "${BASE_PATH}"
+# 进入spark-star项目
+BASE_PATH=$(cd "$(dirname "$0")" || exit ; pwd)
+cd "${BASE_PATH}" || exit
+echo "Spark-Star ==> Go to ${BASE_PATH}"
 
-# 检查hadoop_home 环境变量
-if [ _"${HADOOP_HOME}" == _ ];then
+# 检查环境变量
+if [ _"${HADOOP_HOME}" = _ ];then
    echo "请检查环境变量 HADOOP_HOME"
+   exit
 fi
+echo "环境变量HADOOP_HOME:${HADOOP_HOME}"
+if [ _"${SPARK_HOME}" = _ ];then
+   echo "请检查环境变量 SPARK_HOME"
+   exit
+fi
+echo "环境变量SPARK_HOME:${SPARK_HOME}"
+
+# 获取安装路径
+for prefix in "$@"
+do
+    HOME=${prefix#*=}
+done
+echo "安装路径 ${HOME}"
 
 # 打包
 echo "开始打包"
@@ -22,7 +28,7 @@ mvn clean package -Dmaven.test.skip -pl star-common,star-plugin,star-executor ||
 echo "打包成功"
 
 # 创建star文件
-STAR_BUILD_DIR="${BASE_PATH}"/star
+STAR_BUILD_DIR="${HOME}"/spark-star
 if [ -d "${STAR_BUILD_DIR}" ]; then
     rm -rf "${STAR_BUILD_DIR}"
 fi
@@ -65,3 +71,7 @@ echo "创建 log 成功"
 mkdir -p "${STAR_BUILD_DIR}"/plugins
 cp "${BASE_PATH}"/star-executor/target/star-executor.jar "${STAR_BUILD_DIR}"/plugins/star-executor.jar
 echo "创建 plugins 成功"
+
+# 创建tmp文件夹
+mkdir -p "${STAR_BUILD_DIR}"/tmp
+echo "创建 tmp 成功"

@@ -1,3 +1,3 @@
 ## CONTRIBUTING
 
-- https://ispong.github.io/spark-star/zh-cn/contributing
+- https://spark-star.isxcode.com/zh-cn/contributing

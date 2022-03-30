@@ -1,3 +1,3 @@
 ## CHANGELOG
 
-- https://ispong.github.io/spark-star/zh-cn/changelog
+- https://spark-star.isxcode.com/zh-cn/changelog

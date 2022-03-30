@@ -1,3 +1,3 @@
 ## SECURITY
 
-- https://ispong.github.io/spark-star/zh-cn/security
+- https://spark-star.isxcode.com/zh-cn/security

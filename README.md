@@ -7,7 +7,7 @@
 </h4>
 
 <h4 align="center">
-    ✨✨✨ <a href="https://ispong.github.io/spark-star">https://ispong.github.io/spark-star</a> ✨✨✨
+    ✨✨✨ <a href="https://spark-star.isxcode.com">https://spark-star.isxcode.com</a> ✨✨✨
 </h4>
 
 ### 📢 公告
@@ -18,7 +18,7 @@
 
 ### 📒 文档
 
-- [快速使用](https://ispong.github.io/flink-acorn/#/zh-cn/quickstart)
+- [快速使用](https://spark-star.isxcode.com/#/zh-cn/quickstart)
 
 ### 📦 使用说明
 

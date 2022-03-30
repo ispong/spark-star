@@ -14,7 +14,7 @@ star:
       spark.driver.memory: 1g
       spark.num.executors: 1
       hive.metastore.uris: thrift://cdh-master:9083
-      spark.sql.hive.metastore.jars: /u01/cloudera/parcels/CDH/lib/hive/lib/*
+#      spark.sql.hive.metastore.jars: /u01/cloudera/parcels/CDH/lib/hive/lib/*
 #      spark.sql.hive.metastore.version: 2.1.1
 #      spark.sql.storeAssignmentPolicy: LEGACY
 #    properties-file: /home/dehoop/spark-star/star/conf/executor.conf
