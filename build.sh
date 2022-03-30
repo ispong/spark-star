@@ -28,7 +28,7 @@ mvn clean package -Dmaven.test.skip -pl star-common,star-plugin,star-executor ||
 echo "打包成功"
 
 # 创建star文件
-STAR_BUILD_DIR="${HOME}"/spark-star
+STAR_BUILD_DIR=${BASE_PATH}/spark-star
 if [ -d "${STAR_BUILD_DIR}" ]; then
     rm -rf "${STAR_BUILD_DIR}"
 fi
@@ -38,7 +38,7 @@ echo "创建 STAR_BUILD_DIR 成功"
 # 复制bin文件夹
 mkdir -p "${STAR_BUILD_DIR}"/bin
 cp "${BASE_PATH}"/star-plugin/bin/* "${STAR_BUILD_DIR}"/bin
-chmod a+x "${STAR_BUILD_DIR}"/bin/*.sh
+chmod a+x "${STAR_BUILD_DIR}"/bin/*
 echo "创建 bin 成功"
 
 # 把系统的yarn配置文件放进去
@@ -75,3 +75,6 @@ echo "创建 plugins 成功"
 # 创建tmp文件夹
 mkdir -p "${STAR_BUILD_DIR}"/tmp
 echo "创建 tmp 成功"
+
+# 创建软连接
+ln -s "${STAR_BUILD_DIR}" "${HOME}/spark-star"
