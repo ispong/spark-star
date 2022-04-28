@@ -18,3 +18,4 @@
     - [环境安装3-Hive单节点安装](/zh-cn/blogs/环境安装3-Hive单节点安装.md)
     - [环境安装4-Spark单节点安装](/zh-cn/blogs/环境安装4-Spark单节点安装.md)
     - [环境安装5-安装常见问题](/zh-cn/blogs/环境安装5-安装常见问题.md)
+    - [环境安装6-Spark-Star插件部署](/zh-cn/blogs/环境安装6-Spark-Star插件部署.md)

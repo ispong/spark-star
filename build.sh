@@ -24,11 +24,12 @@ echo "安装路径 ${HOME}"
 
 # 打包
 echo "开始打包"
-mvn clean package -Dmaven.test.skip -pl star-common,star-plugin,star-executor || exit
+#mvn clean package -Dmaven.test.skip -pl star-common,star-plugin,star-executor || exit
+mvn clean package -Dmaven.test.skip -pl star-common,star-plugin || exit
 echo "打包成功"
 
 # 创建star文件
-STAR_BUILD_DIR=${BASE_PATH}/spark-star
+STAR_BUILD_DIR=${BASE_PATH}/build
 if [ -d "${STAR_BUILD_DIR}" ]; then
     rm -rf "${STAR_BUILD_DIR}"
 fi
@@ -67,9 +68,9 @@ mkdir -p "${STAR_BUILD_DIR}"/log
 echo "创建 log 成功"
 
 # 创建plugins文件夹
-mkdir -p "${STAR_BUILD_DIR}"/plugins
-cp "${BASE_PATH}"/star-executor/target/star-executor.jar "${STAR_BUILD_DIR}"/plugins/star-executor.jar
-echo "创建 plugins 成功"
+#mkdir -p "${STAR_BUILD_DIR}"/plugins
+#cp "${BASE_PATH}"/star-executor/target/star-executor.jar "${STAR_BUILD_DIR}"/plugins/star-executor.jar
+#echo "创建 plugins 成功"
 
 # 创建tmp文件夹
 mkdir -p "${STAR_BUILD_DIR}"/tmp

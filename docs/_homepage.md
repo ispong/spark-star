@@ -18,8 +18,15 @@
 
 ```bash
 git clone https://github.com/ispong/spark-star.git
-bash spark-star/build.sh
-star/bin/spark-star start
+cd spark-star
+nohup bash build.sh >> build.log 2>&1 &
+#tail -f build.log
+```
+
+##### 启动插件
+
+```bash
+./bin/spark-star start
 ```
 
 ### 🔨 客户端使用说明

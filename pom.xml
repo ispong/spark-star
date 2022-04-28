@@ -15,10 +15,10 @@
 	<modules>
         <module>star-plugin</module>
         <module>star-common</module>
-<!--		<module>star-template</module>-->
+		<module>star-template</module>
         <module>star-executor</module>
-<!--        <module>demos/demo1</module>-->
-<!--        <module>demos/demo2</module>-->
+        <module>demos/demo1</module>
+        <module>demos/demo2</module>
     </modules>
 
 </project>
