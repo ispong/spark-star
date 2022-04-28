@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-    通过Spring插件的形式，实现对不同服务器与不同版本的spark做统一管理。
+    通过Spring插件的形式，实现对不同服务器与不同版本的Spark做统一管理。
 </h4>
 
 <h4 align="center">
@@ -12,13 +12,19 @@
 
 ### 📢 公告
 
-| 版本号              |  Spark Standalone  | Mesos |        YARN        | Kubernetes |
-|------------------|:------------------:|:-----:|:------------------:|:----------:|
-| 2.4.0(cdh-6.2.0) | :white_check_mark: |  :x:  | :white_check_mark: |    :x:     |
-
+> 目前支持`2.4.0(cdh-6.2.0)`版本，其他版本尚未支持，项目仅供参考。
+ 
 ### 📒 文档
 
 - [快速使用](https://spark-star.isxcode.com/#/zh-cn/quickstart)
+
+### 📦 安装说明
+
+```bash
+git clone https://github.com/ispong/spark-star.git
+bash spark-star/build.sh
+spark-star start
+```
 
 ### 📦 使用说明
 
@@ -33,33 +39,27 @@
 ```
 
 ```yaml
-star:
-  node:
-    host: 127.0.0.1
-    port: 30156
-    key: star-key
-    kafka-config:
-      topic: spark-star-topic
-      bootstrap.servers: 127.0.0.1:9192
-      group.id: test-consumer-group
+spark-star:
+  workers:
+    default: 
+      host: 127.0.0.1
+      port: 30156
+      key: star-key
+    work1:
+      host: 127.0.0.1
+      port: 30157
+      key: star-key
 ```
 
 ```java
 public class Demo{
-    
     public void demo(){
-
         StarRequest starRequest = StarRequest.builder()
-            .executeId("1234567890")
-            .database("dev")
-            .sql("select * from demo_table")
-            .limit(100)
-            .page(1)
-            .pageSize(10)
-            .key("name")
-            .build();
+                .db("dev")
+                .sql("select * from demo_table")
+                .build();
 
-        StarResponse starResponse = starTemplate.build().execute(starRequest);
+        StarResponse starResponse = starTemplate.build("work1").execute(starRequest);
         System.out.println(starResponse.toString());
     }
 }

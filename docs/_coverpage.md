@@ -4,7 +4,7 @@
     Spark Star
 </h1>
 
-- ⭐ Spark + Spring 快速集成插件
+- ⭐ 通过Spring插件的形式，实现对不同服务器与不同版本的Spark做统一管理。
 
 <div class="buttons">
   <a href="https://github.com/ispong/spark-star/" target="_blank"><span>GitHub</span></a>
