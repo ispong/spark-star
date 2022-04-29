@@ -58,7 +58,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_${scala.version}</artifactId>
+            <artifactId>spark-yarn_${scala.version}</artifactId>
             <version>${spark.version}</version>
         </dependency>
 
