@@ -29,11 +29,6 @@
 
         <!-- common版本 -->
         <star-common.version>1.0.0</star-common.version>
-
-        <!-- 组件版本 -->
-        <spark.version>3.1.1</spark.version>
-        <scala.version>2.12</scala.version>
-        <hive.version>3.1.2</hive.version>
     </properties>
 
     <dependencies>
