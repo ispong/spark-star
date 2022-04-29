@@ -18,8 +18,12 @@ if [ _"${HADOOP_CLASSPATH}" = _ ];then
    echo "请检查环境变量 HADOOP_CLASSPATH"
    exit
 fi
-echo "环境变量HADOOP_CLASSPATH:${HADOOP_CLASSPATH}"
-
+echo "环境变量HIVE_HOME:${HIVE_HOME}"
+if [ _"${HIVE_HOME}" = _ ];then
+   echo "请检查环境变量 HIVE_HOME"
+   exit
+fi
+echo "环境变量HIVE_HOME:${HIVE_HOME}"
 
 # 获取安装路径
 for prefix in "$@"
@@ -55,6 +59,10 @@ if [ -d "${TMP_BUILD_DIR}" ]; then
 fi
 mkdir -p "${TMP_BUILD_DIR}"
 unzip "${BASE_PATH}"/star-plugin/target/star-plugin.jar -d "${TMP_BUILD_DIR}"/
+# 删除spark下面的旧依赖
+rm "${TMP_BUILD_DIR}"/BOOT-INF/classes/janino-*.jar
+cp "${HIVE_HOME}"/lib/* "${TMP_BUILD_DIR}"/BOOT-INF/classes/
+cp "${SPARK_HOME}"/jars/* "${TMP_BUILD_DIR}"/BOOT-INF/classes/
 cp "${HADOOP_HOME}"/etc/hadoop/* "${TMP_BUILD_DIR}"/BOOT-INF/classes/
 cd "${TMP_BUILD_DIR}" && jar -cvfM0 star-plugin.jar ./*
 
