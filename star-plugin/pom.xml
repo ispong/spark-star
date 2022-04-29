@@ -29,6 +29,10 @@
 
         <!-- common版本 -->
         <star-common.version>1.0.0</star-common.version>
+
+        <!-- 组件版本 -->
+        <spark.version>3.1.1</spark.version>
+        <scala.version>2.12</scala.version>
     </properties>
 
     <dependencies>
@@ -38,6 +42,13 @@
             <groupId>com.isxcode.star</groupId>
             <artifactId>star-common</artifactId>
             <version>${star-common.version}</version>
+        </dependency>
+
+        <!-- spark -->
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_${scala.version}</artifactId>
+            <version>${spark.version}</version>
         </dependency>
 
         <!-- spring -->
