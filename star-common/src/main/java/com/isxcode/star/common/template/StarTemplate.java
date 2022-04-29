@@ -112,6 +112,10 @@ public class StarTemplate {
 
         public StarResponse quickExecuteQuery(StarRequest starRequest) {
 
+            if (starRequest.getLimit() == null) {
+                starRequest.setLimit(100);
+            }
+
             String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.QUICK_EXECUTE_QUERY_URL, workerProperties.getHost(), workerProperties.getPort());
             return requestAcornServer(executeUrl, starRequest);
         }

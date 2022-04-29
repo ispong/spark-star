@@ -7,7 +7,6 @@ import com.isxcode.star.plugin.service.SqlParseService;
 import com.isxcode.star.plugin.service.StarService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.Strings;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
