@@ -61,7 +61,6 @@ mkdir -p "${TMP_BUILD_DIR}"
 unzip "${BASE_PATH}"/star-plugin/target/star-plugin.jar -d "${TMP_BUILD_DIR}"/
 # 删除spark下面的旧依赖
 rm -f "${TMP_BUILD_DIR}"/BOOT-INF/lib/janino-*.jar
-#cp "${HIVE_HOME}"/lib/* "${TMP_BUILD_DIR}"/BOOT-INF/lib/
 cp "${SPARK_HOME}"/jars/janino-*.jar "${TMP_BUILD_DIR}"/BOOT-INF/lib/
 rm -f "${TMP_BUILD_DIR}"/BOOT-INF/lib/*.pom
 cp "${HADOOP_HOME}"/etc/hadoop/* "${TMP_BUILD_DIR}"/BOOT-INF/classes/
