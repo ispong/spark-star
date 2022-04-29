@@ -1,21 +1,28 @@
-##### Hadoop版本
+?> Hadoop版本 `3.2.2`
 
-- 3.2.2
+##### 环境信息
 
-##### 环境
+- CentOS`7.9`
+- 内网: 172.26.34.175
+- 外网: 39.99.140.167
 
-- CentOS(7.9)
-- 内网: 172.26.34.174
-- 外网: 39.99.237.190
-
-##### 创建用户ispong
+##### 创建用户`ispong`
 
 ```bash
 useradd ispong
 passwd ispong
 vim /etc/sudoers
-# / ## Allow root to run any commands anywhere
-#ispong  ALL=(ALL) ALL
+
+# `/` ## Allow root to run any commands anywhere
+# === vim /etc/sudoers ===
+ispong  ALL=(ALL) ALL
+# === vim /etc/sudoers ===
+```
+
+##### 配置服务器hostname
+
+```bash
+sudo hostnamectl set-hostname isxcode
 ```
 
 ##### 下载hadoop
@@ -52,7 +59,6 @@ sudo vim /etc/profile
 
 # === sudo vim /etc/profile ===
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk
-
 export HADOOP_HOME=/opt/hadoop
 export HADOOP_CLASSPATH=/opt/hadoop/etc/hadoop:/opt/hadoop/share/hadoop/common/lib/*:/opt/hadoop/share/hadoop/common/*:/opt/hadoop/share/hadoop/hdfs:/opt/hadoop/share/hadoop/hdfs/lib/*:/opt/hadoop/share/hadoop/hdfs/*:/opt/hadoop/share/hadoop/mapreduce/lib/*:/opt/hadoop/share/hadoop/mapreduce/*:/opt/hadoop/share/hadoop/yarn:/opt/hadoop/share/hadoop/yarn/lib/*:/opt/hadoop/share/hadoop/yarn/* 
 export PATH=$PATH:$HADOOP_HOME/bin 
@@ -71,12 +77,6 @@ vim /opt/hadoop/etc/hadoop/hadoop-env.sh
 # === vim /opt/hadoop/etc/hadoop/hadoop-env.sh ===
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk
 # === vim /opt/hadoop/etc/hadoop/hadoop-env.sh ===
-```
-
-##### 检查安装
-
-```bash
-hadoop version
 ```
 
 ##### 设置localhost免密
@@ -151,12 +151,6 @@ hdfs namenode -format
 #  Storage directory /data/hadoop/name has been successfully formatted.
 ```
 
-##### 配置服务器hostname
-
-```bash
-sudo hostnamectl set-hostname isxcode
-```
-
 ##### 启动hdfs
 
 ```bash
@@ -164,7 +158,8 @@ start-dfs.sh
 # stop-dfs.sh
 ```
 
-- 39.99.237.190:9870
+?> 访问hdfs页面  http://39.99.140.167:9870
+
 
 ##### 配置mapred-site.xml
 
@@ -211,4 +206,4 @@ start-yarn.sh
 #stop-yarn.sh
 ```
 
-- 39.99.237.190:8088
+?> 访问yarn页面  http://39.99.140.167:8088

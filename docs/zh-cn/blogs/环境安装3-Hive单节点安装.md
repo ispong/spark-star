@@ -1,6 +1,4 @@
-##### Hive
-
-- 3.1.2
+?> Hive版本 `3.1.2`
 
 ##### 下载hive
 
@@ -31,15 +29,9 @@ sudo vim /etc/profile
 # === vim /etc/profile ===
 export HIVE_HOME=/opt/hive 
 export PATH=$PATH:$HIVE_HOME/bin 
-
 # === vim /etc/profile ===
+
 source /etc/profile
-```
-
-##### 版本检测
-
-```bash
-hive --version
 ```
 
 ##### 下载hive驱动
@@ -87,9 +79,9 @@ export HIVE_CONF_DIR=/opt/hive/conf
 # === vim /opt/hive/conf/hive-env.sh === 
 ```
 
-##### 配置hive的mysql数据库
+##### 配置hive-site.xml
 
-!> Note: # [3215,9] 3215行删掉描述  vim : 3215 dd
+!> 3215行描述一定要删除  `vim :3215` dd
 
 ```bash
 mkdir -p /data/hive/tmp
@@ -186,6 +178,7 @@ beeline -n ispong -p ispong123 -u jdbc:hive2://localhost:10000
 ```
 
 ```sql
+-- 建表
 CREATE TABLE IF NOT EXISTS default.demo_table(
     username   STRING  COMMENT 'comment for username',
     age        INT     COMMENT 'comment for age'
@@ -195,7 +188,9 @@ DELIMITED FIELDS TERMINATED BY '\001'
 LINES TERMINATED BY '\n'
 STORED AS TEXTFILE;
 
+-- 插入数据
 INSERT INTO default.demo_table (username, age) VALUES ('ispong', 18);
 
+-- 查询数据
 SELECT * FROM default.demo_table;
 ```

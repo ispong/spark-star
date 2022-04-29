@@ -5,21 +5,6 @@
 git clone https://github.com/ispong/spark-star.git
 ```
 
-##### 修改pom文件中的组件版本
-
-```bash
-vim /home/ispong/spark-star/star-plugin/pom.xml
-```
-
-```xml
-<properties>
-    <spark.version>3.1.1</spark.version>
-    <scala.version>2.12</scala.version>
-    <hive.version>3.1.2</hive.version>
-    <hadoop.version>3.2.2</hadoop.version>
-</properties>
-```
-
 ##### 编译项目
 
 ```bash
@@ -62,3 +47,5 @@ spark-star config
 # 关闭插件
 spark-star stop
 ```
+
+!> 访问spark-star 

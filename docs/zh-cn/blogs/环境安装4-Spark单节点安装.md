@@ -1,6 +1,4 @@
-##### Spark版本
-
-- 3.1.1
+?> Hive版本 `3.1.1`
 
 ##### 下载spark
 
@@ -23,7 +21,7 @@ tar -vzxf spark-3.1.1-bin-hadoop3.2.tgz -C /data/spark
 sudo ln -s /data/spark/spark-3.1.1-bin-hadoop3.2 /opt/spark
 ```
 
-##### 配置环境变量
+##### 配置系统环境变量
 
 ```bash
 sudo vim /etc/profile
@@ -48,7 +46,7 @@ export YARN_CONF_DIR=/opt/hadoop/ect/hadoop
 # === vim /opt/spark/conf/spark-env.sh ===
 ```
 
-##### 配置capacity-scheduler
+##### 配置capacity-scheduler.xml
 
 ```bash
 vim /opt/hadoop/etc/hadoop/capacity-scheduler.xml
@@ -61,28 +59,17 @@ vim /opt/hadoop/etc/hadoop/capacity-scheduler.xml
 </property>
 ```
 
-##### 将hive中的hive-site.xml拷贝到spark的conf下面
+##### 配置spark访问hive数据
 
 ```bash
 cp /opt/hive/conf/hive-site.xml /opt/spark/conf
-```
-
-##### 将mysql驱动复制到spark的jars下面
-
-```bash
 cp mysql-connector-java-8.0.22/mysql-connector-java-8.0.22.jar /opt/spark/jars/
 ```
 
-##### spark测试
+##### 测试spark
 
 ```bash
-# 查看版本
-spark-submit --version
-
-# 通过spark-shell查询hive中的数据
 spark-shell
-```
-
-```scala
+# scala 访问数据库
 spark.sql("SELECT * FROM default.demo_table").show
 ```
