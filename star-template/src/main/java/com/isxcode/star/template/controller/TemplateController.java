@@ -14,6 +14,14 @@ public class TemplateController {
         this.templateService = templateService;
     }
 
+    @GetMapping("/executeQuery")
+    public String executeQuery() {
+
+        templateService.executeQuery();
+
+        return "运行成功等待结果";
+    }
+
     @PostMapping("/execute")
     public String execute(@RequestBody TemplateReq templateReq) {
 
@@ -22,13 +30,6 @@ public class TemplateController {
         return "运行成功等待结果";
     }
 
-    @GetMapping("/executeQuery")
-    public String executeQuery() {
-
-        templateService.executeQuery();
-
-        return "运行成功等待结果";
-    }
 
     @GetMapping("/executePageQuery")
     public String executePageQuery() {

@@ -4,7 +4,7 @@
 - [**使用手册**](_homepage.md)
     - [插件配置说明](/zh-cn/guide/插件配置说明.md)
     - [客户端配置说明](/zh-cn/guide/客户端配置说明.md)
-    - [Api说明](/zh-cn/guide/Api说明)
+    - [StarTemplate使用说明](/zh-cn/guide/StarTemplate使用说明.md)
 - [**常见问题**](/zh-cn/problem/常见问题.md)
 - [**维护手册**](/zh-cn/contributing.md)
 - [**版本历史**](/zh-cn/changelog.md)

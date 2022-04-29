@@ -8,7 +8,9 @@ logging:
     star: com.isxcode.star
 
 star:
-  node:
-    host: 39.99.140.167
-    port: 30156
-    key: star-key
+  client:
+    workers:
+      worker1:
+        host: 39.99.140.167
+        port: 30156
+        key: star-key

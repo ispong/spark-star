@@ -30,18 +30,15 @@ public class StarServiceImpl implements StarService {
     @Override
     public StarData queryData(StarRequest starRequest) {
 
-        // 校验关键字
-        Assert.notNull(starRequest.getDatabase(), "database不能为空");
-        Assert.notNull(starRequest.getTableName(), "tableName不能为空");
-        Assert.notEmpty(starRequest.getColumns(), "columns不能为空");
+        // 校验关键字段
+        Assert.notNull(starRequest.getLimit(), "limit不能为空");
 
         // 拼接sql
-        String querySql = " select " + Strings.join(starRequest.getColumns(), ',') + " from " + starRequest.getTableName();
+        String querySql = starRequest.getSql();
 
         // 执行sql
         Dataset<Row> rowDataset;
         try {
-            sparkSession.sql("use " + starRequest.getDatabase());
             rowDataset = sparkSession.sql(querySql).limit(starRequest.getLimit());
         } catch (Exception e) {
             log.info(e.getMessage());

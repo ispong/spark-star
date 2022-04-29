@@ -19,6 +19,18 @@ public class TemplateService {
 
     private final StarTemplate starTemplate;
 
+    public void executeQuery() {
+
+        String sql = "select * from default.demo_table";
+
+        StarRequest starRequest = StarRequest.builder()
+            .sql(sql)
+            .build();
+
+        StarResponse starResponse = starTemplate.build("worker1").quickExecuteQuery(starRequest);
+        log.info("调用状态" + starResponse.toString());
+    }
+
     public void execute(TemplateReq templateReq) {
 
         StarRequest starRequest = StarRequest.builder()
@@ -27,20 +39,6 @@ public class TemplateService {
             .build();
 
         StarResponse starResponse = starTemplate.build().execute(starRequest);
-        log.info("调用状态" + starResponse.toString());
-    }
-
-    public void executeQuery() {
-
-        String sql = "select * from default.demo_table";
-
-        StarRequest starRequest = StarRequest.builder()
-            .executeId(UUID.randomUUID().toString())
-            .sql(sql)
-            .limit(100)
-            .build();
-
-        StarResponse starResponse = starTemplate.build().executeQuery(starRequest);
         log.info("调用状态" + starResponse.toString());
     }
 

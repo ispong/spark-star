@@ -23,13 +23,8 @@ public class StarController {
 
     private final StarBizService starBizService;
 
-    /*
-     *通过插件的spark session查询数据
-     *
-     * @ispong
-     */
     @SuccessResponse("查询成功")
-    @PostMapping(UrlConstants.STAR_QUICK_EXECUTE_QUERY_URL)
+    @PostMapping(UrlConstants.QUICK_EXECUTE_QUERY_URL)
     public StarData quickExecuteQuerySql(@RequestBody StarRequest starRequest) {
 
         return starBizService.quickExecuteQuerySql(starRequest);

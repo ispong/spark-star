@@ -2,7 +2,8 @@ package com.isxcode.star.common.template;
 
 import com.isxcode.star.common.constant.SecurityConstants;
 import com.isxcode.star.common.constant.UrlConstants;
-import com.isxcode.star.common.properties.StarNodeProperties;
+import com.isxcode.star.common.properties.StarClientProperties;
+import com.isxcode.star.common.properties.WorkerProperties;
 import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.common.response.StarResponse;
 import com.isxcode.star.common.utils.HttpUtils;
@@ -20,16 +21,22 @@ import java.util.Map;
 @Slf4j
 public class StarTemplate {
 
-    private final StarNodeProperties starNodeProperties;
+    private final StarClientProperties starClientProperties;
 
-    public StarTemplate(StarNodeProperties starNodeProperties) {
+    public StarTemplate(StarClientProperties starClientProperties) {
 
-        this.starNodeProperties = starNodeProperties;
+        this.starClientProperties = starClientProperties;
+    }
+
+    public StarTemplate.Builder build(String workerName) {
+
+        WorkerProperties workerProperties = starClientProperties.getWorkers().get(workerName);
+        return new Builder(workerProperties);
     }
 
     public StarTemplate.Builder build() {
 
-        return new Builder(starNodeProperties);
+        return build("default");
     }
 
     public StarTemplate.Builder build(String host, int port, String key) {
@@ -39,26 +46,26 @@ public class StarTemplate {
 
     public static class Builder {
 
-        private final StarNodeProperties starNodeProperties;
+        private final WorkerProperties workerProperties;
 
-        public Builder(StarNodeProperties starNodeProperties) {
+        public Builder(WorkerProperties workerProperties) {
 
-            this.starNodeProperties = starNodeProperties;
+            this.workerProperties = workerProperties;
         }
 
         public Builder(String host, int port, String key) {
 
-            StarNodeProperties starNodeProperties = new StarNodeProperties();
-            starNodeProperties.setHost(host);
-            starNodeProperties.setPort(port);
-            starNodeProperties.setKey(key);
-            this.starNodeProperties = starNodeProperties;
+            WorkerProperties workerProperties = new WorkerProperties();
+            workerProperties.setHost(host);
+            workerProperties.setPort(port);
+            workerProperties.setKey(key);
+            this.workerProperties = workerProperties;
         }
 
         public StarResponse requestAcornServer(String url, StarRequest starRequest) {
 
             Map<String, String> headers = new HashMap<>();
-            headers.put(SecurityConstants.HEADER_AUTHORIZATION, starNodeProperties.getKey());
+            headers.put(SecurityConstants.HEADER_AUTHORIZATION, workerProperties.getKey());
 
             try {
                 return HttpUtils.doPost(url, headers, starRequest, StarResponse.class);
@@ -69,37 +76,43 @@ public class StarTemplate {
 
         public StarResponse execute(StarRequest starRequest) {
 
-            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_URL, workerProperties.getHost(), workerProperties.getPort());
             return requestAcornServer(executeUrl, starRequest);
         }
 
         public StarResponse executeQuery(StarRequest starRequest) {
 
-            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_QUERY_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_QUERY_URL, workerProperties.getHost(), workerProperties.getPort());
             return requestAcornServer(executeUrl, starRequest);
         }
 
         public StarResponse executePageQuery(StarRequest starRequest) {
 
-            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_PAGE_QUERY_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_PAGE_QUERY_URL, workerProperties.getHost(), workerProperties.getPort());
             return requestAcornServer(executeUrl, starRequest);
         }
 
         public StarResponse executeMultiSql(StarRequest starRequest) {
 
-            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_MULTI_SQL_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.EXECUTE_MULTI_SQL_URL, workerProperties.getHost(), workerProperties.getPort());
             return requestAcornServer(executeUrl, starRequest);
         }
 
         public StarResponse getLog(StarRequest starRequest) {
 
-            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.GET_JOB_LOG_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.GET_JOB_LOG_URL, workerProperties.getHost(), workerProperties.getPort());
             return requestAcornServer(executeUrl, starRequest);
         }
 
         public StarResponse stopJob(StarRequest starRequest) {
 
-            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.STOP_JOB_URL, starNodeProperties.getHost(), starNodeProperties.getPort());
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.STOP_JOB_URL, workerProperties.getHost(), workerProperties.getPort());
+            return requestAcornServer(executeUrl, starRequest);
+        }
+
+        public StarResponse quickExecuteQuery(StarRequest starRequest) {
+
+            String executeUrl = String.format(UrlConstants.BASE_URL + UrlConstants.QUICK_EXECUTE_QUERY_URL, workerProperties.getHost(), workerProperties.getPort());
             return requestAcornServer(executeUrl, starRequest);
         }
     }

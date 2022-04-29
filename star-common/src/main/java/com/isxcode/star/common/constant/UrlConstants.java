@@ -43,5 +43,5 @@ public interface UrlConstants {
     /**
      * 执行sql 有返回结果
      */
-    String STAR_QUICK_EXECUTE_QUERY_URL = "/quick/executeQuery";
+    String QUICK_EXECUTE_QUERY_URL = "/quick/executeQuery";
 }

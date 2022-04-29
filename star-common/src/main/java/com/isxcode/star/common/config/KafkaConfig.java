@@ -1,6 +1,6 @@
 package com.isxcode.star.common.config;
 
-import com.isxcode.star.common.properties.StarNodeProperties;
+import com.isxcode.star.common.properties.StarClientProperties;
 import com.isxcode.star.common.template.StarEventHandler;
 import com.isxcode.star.common.template.StarEventService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,19 +32,19 @@ public class KafkaConfig {
     @Resource
     private StarEventHandler starEventHandler;
 
-    private final StarNodeProperties starNodeProperties;
+    private final StarClientProperties starClientProperties;
 
-    public KafkaConfig(StarNodeProperties starNodeProperties) {
+    public KafkaConfig(StarClientProperties starClientProperties) {
 
-        this.starNodeProperties = starNodeProperties;
+        this.starClientProperties = starClientProperties;
     }
 
     @Bean
     @ConditionalOnProperty(prefix = "star.node.kafka-config", name = "bootstrap.servers")
     public Map<String, Object> consumerConfigs() {
         Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, starNodeProperties.getKafkaConfig().get(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG));
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, starNodeProperties.getKafkaConfig().get(ConsumerConfig.GROUP_ID_CONFIG));
+//        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, starClientProperties.getKafkaConfig().get(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG));
+//        props.put(ConsumerConfig.GROUP_ID_CONFIG, starClientProperties.getKafkaConfig().get(ConsumerConfig.GROUP_ID_CONFIG));
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
