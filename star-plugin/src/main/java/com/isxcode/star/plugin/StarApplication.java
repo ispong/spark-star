@@ -11,3 +11,4 @@ public class StarApplication {
         SpringApplication.run(StarApplication.class, args);
     }
 }
+
