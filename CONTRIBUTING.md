@@ -2,7 +2,7 @@
 
 - https://spark-star.isxcode.com/zh-cn/contributing
 
-#### 本地文档
+#### 本地开发文档
 
 ```bash
 # 前提: 安装nodejs
