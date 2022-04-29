@@ -28,7 +28,7 @@
         <lombok.version>1.18.22</lombok.version>
 
         <!-- common版本 -->
-        <star-common.version>0.0.21-SNAPSHOT</star-common.version>
+        <star-common.version>1.0.0</star-common.version>
 
         <!-- 组件版本 -->
         <spark.version>3.1.1</spark.version>
