@@ -12,10 +12,10 @@ cd "${BASE_PATH}" || exit
 
 # 根据不同的参数，执行命令
 case ${exec_command} in
-    start) star-start;;
+    start) star-start && star-log;;
     log) star-log;;
     stop) star-stop;;
     version) echo "spark-star version is V1.0.0";;
-    config) vim "${BASE_PATH}"/../conf/application-star.yml;;
+    config) vim "${BASE_PATH}"/../conf/application.yml;;
     status) ps -e -o pid,command | grep star-plugin.jar;;
 esac

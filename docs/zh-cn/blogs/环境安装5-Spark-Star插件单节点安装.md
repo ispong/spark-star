@@ -10,6 +10,8 @@ sudo yum install -y unzip
 
 ```bash
 git clone https://github.com/ispong/spark-star.git
+# OR
+git clone https://gitee.com/ispong/spark-star.git
 ```
 
 ##### 编译项目
@@ -53,4 +55,4 @@ spark-star config
 spark-star stop
 ```
 
-!> 访问spark-star 
+?> 访问spark-session http://39.99.140.167:30128
