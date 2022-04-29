@@ -12,19 +12,11 @@
 
 ### 📢 公告
 
-> 目前支持`2.4.0(cdh-6.2.0)`版本，其他版本尚未支持，项目仅供参考。
+> 目前支持`3.1.1(apache)`版本，其他版本尚未支持，项目仅供参考。
  
 ### 📒 文档
 
 - [快速使用](https://spark-star.isxcode.com/#/zh-cn/quickstart)
-
-### 📦 安装说明
-
-```bash
-git clone https://github.com/ispong/spark-star.git
-bash spark-star/build.sh
-spark-star start
-```
 
 ### 📦 使用说明
 
@@ -34,17 +26,13 @@ spark-star start
 <dependency>
     <groupId>com.isxcode.star</groupId>
     <artifactId>star-common</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
 ```yaml
 spark-star:
   workers:
-    default: 
-      host: 127.0.0.1
-      port: 30156
-      key: star-key
     work1:
       host: 127.0.0.1
       port: 30157
@@ -54,12 +42,13 @@ spark-star:
 ```java
 public class Demo{
     public void demo(){
+        
         StarRequest starRequest = StarRequest.builder()
-                .db("dev")
-                .sql("select * from demo_table")
+                .sql("select * from dev.demo_table")
                 .build();
 
         StarResponse starResponse = starTemplate.build("work1").execute(starRequest);
+        
         System.out.println(starResponse.toString());
     }
 }
