@@ -4,6 +4,7 @@ import com.isxcode.star.common.response.StarRequest;
 import com.isxcode.star.common.response.StarResponse;
 import com.isxcode.star.common.template.StarTemplate;
 import com.isxcode.star.template.pojo.TemplateReq;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +14,10 @@ import java.util.UUID;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class TemplateService {
 
     private final StarTemplate starTemplate;
-
-    public TemplateService(StarTemplate starTemplate) {
-        this.starTemplate = starTemplate;
-    }
 
     public void execute(TemplateReq templateReq) {
 
@@ -34,7 +32,7 @@ public class TemplateService {
 
     public void executeQuery() {
 
-        String sql = "select * from rd_dev.ispong_table";
+        String sql = "select * from default.demo_table";
 
         StarRequest starRequest = StarRequest.builder()
             .executeId(UUID.randomUUID().toString())

@@ -56,3 +56,5 @@ spark-star stop
 ```
 
 ?> 访问spark-session http://39.99.140.167:30128
+
+?> 自动跳转yarn http://39.99.140.167:8088/proxy/application_1651208364883_0004/jobs/

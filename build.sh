@@ -14,6 +14,12 @@ if [ _"${SPARK_HOME}" = _ ];then
    exit
 fi
 echo "环境变量SPARK_HOME:${SPARK_HOME}"
+if [ _"${HADOOP_CLASSPATH}" = _ ];then
+   echo "请检查环境变量 HADOOP_CLASSPATH"
+   exit
+fi
+echo "环境变量HADOOP_CLASSPATH:${HADOOP_CLASSPATH}"
+
 
 # 获取安装路径
 for prefix in "$@"
