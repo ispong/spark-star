@@ -62,13 +62,6 @@
             <version>${spark.version}</version>
         </dependency>
 
-        <!-- hive -->
-        <dependency>
-            <groupId>org.apache.hive</groupId>
-            <artifactId>hive-common</artifactId>
-            <version>${hive.version}</version>
-        </dependency>
-
         <!-- spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
