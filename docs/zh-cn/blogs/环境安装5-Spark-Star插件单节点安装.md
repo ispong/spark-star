@@ -1,15 +1,20 @@
+##### 安装编译环境
+
+```bash
+sudo yum install -y git
+sudo yum install -y maven
+sudo yum install -y unzip
+```
+
 ##### 下载spark-star源码
 
 ```bash
-# sudo yum install -y git
 git clone https://github.com/ispong/spark-star.git
 ```
 
 ##### 编译项目
 
-```bash
-# sudo yum install -y maven
-# sudo yum install -y unzip 
+```bash 
 cd spark-star
 nohup bash build.sh >> build.log 2>&1 &
 tail -f build.log
