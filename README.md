@@ -16,7 +16,7 @@
  
 ### 📒 文档
 
-- [快速使用](https://spark-star.isxcode.com/#/zh-cn/quickstart)
+- [快速使用](https://spark-star.isxcode.com/#/zh-cn/start/快速使用)
 
 ### 📦 使用说明
 
@@ -31,7 +31,7 @@
 ```
 
 ```yaml
-spark-star:
+star:
   workers:
     work1:
       host: 127.0.0.1
