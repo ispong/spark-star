@@ -32,11 +32,12 @@
 
 ```yaml
 star:
-  workers:
-    work1:
-      host: 127.0.0.1
-      port: 30157
-      key: star-key
+  client:
+    workers:
+      worker1:
+        host: 39.99.140.167
+        port: 30156
+        key: star-key
 ```
 
 ```java
